@@ -231,7 +231,7 @@ class Game extends Component {
           apple.jump();
           hasApple = true;
           play("blip");
-          play("takeOnMe")
+          // play("takeOnMe")
         }
       });
 
