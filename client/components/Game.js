@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addCoinsToAccount } from "../store";
 import kaboom from "kaboom";
@@ -6,7 +6,6 @@ import kaboom from "kaboom";
 class Game extends Component {
   constructor(props) {
     super(props);
-    const { user } = this.props;
     this.state = {
       cash: 0,
     };
@@ -41,8 +40,7 @@ class Game extends Component {
     loadSound("blip", "/sounds/blip.mp3");
     loadSound("hit", "/sounds/hit.mp3");
     loadSound("portal", "/sounds/portal.mp3");
-
-    // const [localCoins, setLocalCoins] = useState(0);
+    loadSound("takeOnMe", '/sounds/take_on_me_chiptune_a_ha_-3218709482115074402.mp3')
 
     // custom component controlling enemy patrol movement
     function patrol(speed = 60, dir = 1) {
@@ -233,6 +231,7 @@ class Game extends Component {
           apple.jump();
           hasApple = true;
           play("blip");
+          play("takeOnMe")
         }
       });
 
@@ -314,7 +313,6 @@ class Game extends Component {
     go("game");
   }
   render() {
-    // if (!this.props.user) return "Loading";
     return (
       <div>
         {this.state.cash === 0
@@ -331,7 +329,6 @@ class Game extends Component {
 const mapState = (state) => {
   return {
     auth: state.auth,
-    user: state.user,
   };
 };
 
