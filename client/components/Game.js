@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import { connect } from "react-redux";
+import { addCoinsToAccount } from '../store';
 import kaboom from "kaboom";
 
 class Game extends Component {
@@ -320,6 +321,7 @@ class Game extends Component {
   }
 }
 
+// TODO: Remove any excess
 const mapState = (state) => {
   return {
     auth: state.auth,
@@ -327,4 +329,10 @@ const mapState = (state) => {
   };
 };
 
-export default connect(mapState)(Game);
+const mapDispatch = (dispatch) => {
+  return ({
+      addCoinsToAccount: (coins) => dispatch(addCoinsToAccount(coins))
+  })
+}
+
+export default connect(mapState, mapDispatch)(Game);
