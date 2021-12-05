@@ -7,11 +7,15 @@ const TOKEN = 'token'
  * ACTION TYPES
  */
 const SET_AUTH = 'SET_AUTH'
+const ADD_COINS = "ADD_COINS";
 
 /**
  * ACTION CREATORS
  */
 const setAuth = auth => ({type: SET_AUTH, auth})
+const addCoins = (auth) => ({ type: ADD_COINS, auth });
+
+
 
 /**
  * THUNK CREATORS
@@ -47,12 +51,21 @@ export const logout = () => {
   }
 }
 
+export const addCoinsToAccount = (auth) => {
+  return async (dispatch) => {
+    const { data: updatedCoinAmount } = await axios.put(`/api/users/${auth.id}`, auth);
+    dispatch(addCoins(updatedCoinAmount));
+  };
+};
+
 /**
  * REDUCER
  */
 export default function(state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
+      return action.auth
+    case ADD_COINS:
       return action.auth
     default:
       return state
