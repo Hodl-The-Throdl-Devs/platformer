@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import { connect } from "react-redux";
-import { addCoinsToAccount } from '../store';
+import { addCoinsToAccount } from "../store";
 import kaboom from "kaboom";
 
 class Game extends Component {
@@ -10,15 +10,15 @@ class Game extends Component {
     this.state = {
       cash: 0,
     };
-    this.updateCash = this.updateCash.bind(this)
+    this.updateCash = this.updateCash.bind(this);
   }
 
   updateCash(newCash) {
-    this.setState({cash: newCash})
+    this.setState({ cash: newCash });
   }
 
   componentDidUpdate() {
-    console.log('componentDidUpdate')
+    console.log("componentDidUpdate");
   }
 
   componentDidMount() {
@@ -261,7 +261,7 @@ class Game extends Component {
         coinPitch += 100;
         coins += 1;
         coinsLabel.text = coins;
-        this.updateCash(coins)
+        this.updateCash(coins);
       });
 
       const coinsLabel = add([text(coins), pos(24, 24), fixed()]);
@@ -302,22 +302,28 @@ class Game extends Component {
     });
 
     scene("win", () => {
-      add([text(`You win ${this.state.cash} ${this.state.cash === 1 ? `coin!`:`coins!`}`)]);
-      // TODO: Empty cash to user's account
-      // TODO: Reset cash
+      const { auth, addCoinsToAccount } = this.props;
+      const { cash } = this.state;
+      add([text(`You win ${cash} ${cash === 1 ? `coin!` : `coins!`}`)]);
+      auth.coins = auth.coins + cash;
+      addCoinsToAccount(auth);
+      this.setState({ cash: 0 });
       onKeyPress(() => go("game"));
     });
 
     go("game");
-
   }
   render() {
     // if (!this.props.user) return "Loading";
-    return <div>
-      {this.state.cash === 0 ? 'You have no coins!' : `Win to have ${this.state.cash} ${this.state.cash === 1 ?'coin':'coins'} added to your account!`}
-      
-      
+    return (
+      <div>
+        {this.state.cash === 0
+          ? "You have no coins!"
+          : `Win to have ${this.state.cash} ${
+              this.state.cash === 1 ? "coin" : "coins"
+            } added to your account!`}
       </div>
+    );
   }
 }
 
@@ -330,9 +336,9 @@ const mapState = (state) => {
 };
 
 const mapDispatch = (dispatch) => {
-  return ({
-      addCoinsToAccount: (coins) => dispatch(addCoinsToAccount(coins))
-  })
-}
+  return {
+    addCoinsToAccount: (coins) => dispatch(addCoinsToAccount(coins)),
+  };
+};
 
 export default connect(mapState, mapDispatch)(Game);
