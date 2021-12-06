@@ -10,7 +10,7 @@ export const Home = props => {
 
   return (
     <div>
-      <Game />
+      Game component has move to Game on the navbar.
     </div>
   )
 }
