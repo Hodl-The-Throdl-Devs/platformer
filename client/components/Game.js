@@ -34,7 +34,7 @@ class Game extends Component {
     loadSprite("prize", "/sprites/jumpy.png");
     loadSprite("apple", "/sprites/apple.png");
     loadSprite("portal", "/sprites/portal.png");
-    loadSprite("coin", "/sprites/coin.png");
+    loadSprite("coin", "/sprites/ether.png");
     loadSprite("nightsky", "/sprites/nightsky.png");
     loadSound("coin", "/sounds/score.mp3");
     loadSound("powerup", "/sounds/powerup.mp3");
@@ -146,7 +146,7 @@ class Game extends Component {
       height: 64,
       // define each object as a list of components
       "=": () => [sprite("grass"), area(), solid(), origin("bot")],
-      $: () => [sprite("coin"), area(), pos(0, -9), origin("bot"), "coin"],
+      $: () => [sprite("coin"), area(), pos(0, -9), origin("bot"), scale(.08), "coin"],
       "%": () => [sprite("prize"), area(), solid(), origin("bot"), "prize"],
       "^": () => [sprite("spike"), area(), solid(), origin("bot"), "danger"],
       "#": () => [sprite("apple"), area(), origin("bot"), body(), "apple"],
@@ -169,6 +169,7 @@ class Game extends Component {
 
     scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
       gravity(3200);
+      camScale(0.75,0.75)
 
       // add level to scene
       const level = addLevel(LEVELS[levelId ?? 0], levelConf);
