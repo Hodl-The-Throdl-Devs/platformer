@@ -40,7 +40,15 @@ class Game extends Component {
     loadSound("blip", "/sounds/blip.mp3");
     loadSound("hit", "/sounds/hit.mp3");
     loadSound("portal", "/sounds/portal.mp3");
-    loadSound("takeOnMe", '/sounds/take_on_me_chiptune_a_ha_-3218709482115074402.mp3')
+    loadSound(
+      "takeOnMe",
+      "/sounds/take_on_me_chiptune_a_ha_-3218709482115074402.mp3"
+    );
+
+  //   const takeOnMe = play("takeOnMe", {
+  //     volume: 0.2,
+  //     seek: 20
+  // })
 
     // custom component controlling enemy patrol movement
     function patrol(speed = 60, dir = 1) {
@@ -205,7 +213,6 @@ class Game extends Component {
       });
 
       player.onGround((l) => {
-        //fullscreen(!isFullscreen())
         if (l.is("enemy")) {
           player.jump(JUMP_FORCE * 1.5);
           destroy(l);
@@ -231,7 +238,6 @@ class Game extends Component {
           apple.jump();
           hasApple = true;
           play("blip");
-          // play("takeOnMe")
         }
       });
 
@@ -281,7 +287,13 @@ class Game extends Component {
         player.move(MOVE_SPEED, 0);
       });
 
+      onKeyDown("up", () => {
+        // takeOnMe.stop()
+      })
+
       onKeyPress("down", () => {
+        // takeOnMe.stop()
+        // takeOnMe.play()
         player.weight = 3;
       });
 
