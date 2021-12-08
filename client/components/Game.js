@@ -35,6 +35,7 @@ class Game extends Component {
     loadSprite("apple", "/sprites/apple.png");
     loadSprite("portal", "/sprites/portal.png");
     loadSprite("coin", "/sprites/coin.png");
+    loadSprite("nightsky", "/sprites/nightsky.png");
     loadSound("coin", "/sounds/score.mp3");
     loadSound("powerup", "/sounds/powerup.mp3");
     loadSound("blip", "/sounds/blip.mp3");
@@ -45,10 +46,11 @@ class Game extends Component {
       "/sounds/take_on_me_chiptune_a_ha_-3218709482115074402.mp3"
     );
 
-  //   const takeOnMe = play("takeOnMe", {
-  //     volume: 0.2,
-  //     seek: 20
-  // })
+
+    //   const takeOnMe = play("takeOnMe", {
+    //     volume: 0.2,
+    //     seek: 20
+    // })
 
     // custom component controlling enemy patrol movement
     function patrol(speed = 60, dir = 1) {
@@ -171,6 +173,8 @@ class Game extends Component {
       // add level to scene
       const level = addLevel(LEVELS[levelId ?? 0], levelConf);
 
+      add([sprite("nightsky"), fixed(), pos(0,0), scale(2), z(-2)]);
+
       // define player object
       const player = add([
         sprite("bean"),
@@ -289,7 +293,7 @@ class Game extends Component {
 
       onKeyDown("up", () => {
         // takeOnMe.stop()
-      })
+      });
 
       onKeyPress("down", () => {
         // takeOnMe.stop()
