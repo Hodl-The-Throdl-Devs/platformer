@@ -5,13 +5,14 @@ import {logout} from '../store'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <div>
-    <h1>kaboom-react</h1>
+    <h1>hodl the throdl</h1>
     <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">Home</Link>
           <Link to="/game">Game</Link>
+          <Link to="/account">Account</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
