@@ -34,13 +34,23 @@ class Game extends Component {
     loadSprite("prize", "/sprites/jumpy.png");
     loadSprite("apple", "/sprites/apple.png");
     loadSprite("portal", "/sprites/portal.png");
-    loadSprite("coin", "/sprites/coin.png");
+    loadSprite("coin", "/sprites/ether.png");
+    loadSprite("nightsky", "/sprites/nightsky.png");
     loadSound("coin", "/sounds/score.mp3");
     loadSound("powerup", "/sounds/powerup.mp3");
     loadSound("blip", "/sounds/blip.mp3");
     loadSound("hit", "/sounds/hit.mp3");
     loadSound("portal", "/sounds/portal.mp3");
-    loadSound("takeOnMe", '/sounds/take_on_me_chiptune_a_ha_-3218709482115074402.mp3')
+    loadSound(
+      "takeOnMe",
+      "/sounds/take_on_me_chiptune_a_ha_-3218709482115074402.mp3"
+    );
+
+
+    //   const takeOnMe = play("takeOnMe", {
+    //     volume: 0.2,
+    //     seek: 20
+    // })
 
     // custom component controlling enemy patrol movement
     function patrol(speed = 60, dir = 1) {
@@ -136,7 +146,7 @@ class Game extends Component {
       height: 64,
       // define each object as a list of components
       "=": () => [sprite("grass"), area(), solid(), origin("bot")],
-      $: () => [sprite("coin"), area(), pos(0, -9), origin("bot"), "coin"],
+      $: () => [sprite("coin"), area(), pos(0, -9), origin("bot"), scale(.08), "coin"],
       "%": () => [sprite("prize"), area(), solid(), origin("bot"), "prize"],
       "^": () => [sprite("spike"), area(), solid(), origin("bot"), "danger"],
       "#": () => [sprite("apple"), area(), origin("bot"), body(), "apple"],
@@ -159,9 +169,12 @@ class Game extends Component {
 
     scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
       gravity(3200);
+      camScale(0.75,0.75)
 
       // add level to scene
       const level = addLevel(LEVELS[levelId ?? 0], levelConf);
+
+      add([sprite("nightsky"), fixed(), pos(0,0), scale(2), z(-2)]);
 
       // define player object
       const player = add([
@@ -205,7 +218,6 @@ class Game extends Component {
       });
 
       player.onGround((l) => {
-        //fullscreen(!isFullscreen())
         if (l.is("enemy")) {
           player.jump(JUMP_FORCE * 1.5);
           destroy(l);
@@ -231,7 +243,6 @@ class Game extends Component {
           apple.jump();
           hasApple = true;
           play("blip");
-          play("takeOnMe")
         }
       });
 
@@ -281,7 +292,13 @@ class Game extends Component {
         player.move(MOVE_SPEED, 0);
       });
 
+      onKeyDown("up", () => {
+        // takeOnMe.stop()
+      });
+
       onKeyPress("down", () => {
+        // takeOnMe.stop()
+        // takeOnMe.play()
         player.weight = 3;
       });
 
