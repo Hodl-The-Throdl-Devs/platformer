@@ -1,5 +1,11 @@
 module.exports = {
   entry: ["./client/index.js"],
+  resolve: {
+    fallback: {
+      util: require.resolve("util/"),
+      stream: require.resolve("stream-browserify"),
+    },
+  },
   output: {
     path: __dirname,
     filename: "./public/bundle.js",
