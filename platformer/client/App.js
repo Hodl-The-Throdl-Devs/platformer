@@ -6,6 +6,7 @@ import Routes from "./Routes";
 import getWeb3 from "./getWeb3";
 import MetaCoinContract from "./contracts/MetaCoin.json";
 import Web3TestButton from "./components/Web3TestButton";
+import HDWalletProvider from "@truffle/hdwallet-provider";
 
 class App extends Component {
   state = { web3: null, accounts: null, contracts: null };
@@ -14,6 +15,12 @@ class App extends Component {
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
+
+      // HD Wallet Provider Set-Up. Make sure to replace private key when making Ganache network
+      const provider = new HDWalletProvider(
+        "aa965c6b836b5ddb8bf26792dd1405fddcc1c492e6d4289a60df1ff0d892a3ad",
+        "HTTP://127.0.0.1:7545"
+      );
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();

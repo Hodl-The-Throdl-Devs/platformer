@@ -1,11 +1,4 @@
 import Web3 from "web3/dist/web3.min";
-import HDWalletProvider from "@truffle/hdwallet-provider";
-
-// Make sure to replace private key when making Ganache network
-let provider = new HDWalletProvider(
-  "aa965c6b836b5ddb8bf26792dd1405fddcc1c492e6d4289a60df1ff0d892a3ad",
-  "HTTP://127.0.0.1:7545"
-);
 
 const getWeb3 = () =>
   new Promise((resolve, reject) => {
