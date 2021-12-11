@@ -25,3 +25,14 @@ form div {
 canvas {
   align-self: center;
 }
+
+#navdiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+a {
+  color: white;
+}
