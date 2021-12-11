@@ -4,13 +4,11 @@ const {
 } = require("../db");
 module.exports = router;
 
+//Get Products
 router.get("/", async (req, res, next) => {
   try {
     const products = await Product.findAll({
-      // explicitly select only the id and username fields - even though
-      // users' passwords are encrypted, it won't help if we just
-      // send everything to anyone who asks!
-      attributes: ["id", "username"],
+      attributes: ["name", "imageURL"],
     });
     res.json(products);
   } catch (err) {
@@ -18,6 +16,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+//Get single product
 router.get("/:id", async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
@@ -27,6 +26,16 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
+//Creating New Product
+router.post("/", async (req, res, next) => {
+    try {
+      res.send(await Product.create(req.body));
+    } catch (err) {
+      next(err);
+    }
+  });
+
+//Updating Single Product
 router.put("/:id", async (req, res, next) => {
   try {
     const product = await Product.findByPk(req.params.id);
@@ -35,3 +44,17 @@ router.put("/:id", async (req, res, next) => {
     next(error);
   }
 });
+
+//Deleting Single Product...
+router.delete("/:id", async (req, res, next) => {
+    try {
+      const product = await Product.findByPk(req.params.id);
+      await product.destroy();
+      res.send(product);
+    } catch (err) {
+      next(err);
+    }
+  });
+  
+
+module.exports = router;
