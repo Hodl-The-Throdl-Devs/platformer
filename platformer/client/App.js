@@ -8,7 +8,7 @@ import MetaCoinContract from "./contracts/MetaCoin.json";
 import Web3TestButton from "./components/Web3TestButton";
 
 class App extends Component {
-  state = { storageValue: 0, web3: null, accounts: null, contracts: null };
+  state = { web3: null, accounts: null, contracts: null };
 
   componentDidMount = async () => {
     try {
