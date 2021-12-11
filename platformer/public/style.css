@@ -21,3 +21,7 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+canvas {
+  align-self: center;
+}
