@@ -13,11 +13,3 @@
 ## Additional Resources
 
 - Truffle Quickstart Guide: https://trufflesuite.com/docs/truffle/quickstart.html
-
-## SIDE NOTES: CONTRACT
-
-- Choice between ETH and HTT (Working with Eth First)
-  What we want it to do:
-
-1. Exchanging token for ETH (Ex. 1 token === 0.00001 ETH)
-2. Transfer ETH from 'Bank' address to user address
