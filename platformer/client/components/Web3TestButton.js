@@ -3,8 +3,10 @@ import React from "react";
 const Web3TestButton = (props) => {
   const { contracts, accounts } = props;
 
-  const testFunc = () => {
-    console.log(accounts);
+  const testFunc = async () => {
+    const contract = contracts.metaCoin;
+    let balance = await contract.methods.getBalance(accounts[0]).call();
+    console.log(balance);
   };
 
   return (
