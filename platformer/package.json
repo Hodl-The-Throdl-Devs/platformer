@@ -30,10 +30,12 @@
     "jsonwebtoken": "^8.5.1",
     "kaboom": "^2000.1.6",
     "morgan": "^1.9.1",
+    "node-polyfill-webpack-plugin": "^1.1.4",
     "npm": "^8.1.4",
     "pg": "^8.5.1",
     "react-scripts": "^4.0.3",
     "sequelize": "^6.3.5",
+    "truffle-hdwallet-provider": "^1.0.17",
     "web3": "^1.6.1"
   },
   "devDependencies": {
