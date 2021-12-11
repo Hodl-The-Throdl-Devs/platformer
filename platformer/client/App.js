@@ -48,7 +48,10 @@ class App extends Component {
   render() {
     return (
       <div onClick={this.killKaboom}>
-        <Web3TestButton />
+        <Web3TestButton
+          contracts={this.state.contracts}
+          accounts={this.state.accounts}
+        />
         <Navbar />
         <Routes />
       </div>

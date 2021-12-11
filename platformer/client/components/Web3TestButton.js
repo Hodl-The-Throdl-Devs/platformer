@@ -1,8 +1,10 @@
 import React from "react";
 
 const Web3TestButton = (props) => {
+  const { contracts, accounts } = props;
+
   const testFunc = () => {
-    console.log("testFunc success");
+    console.log(accounts);
   };
 
   return (
