@@ -7,6 +7,11 @@ module.exports = {
     path: __dirname,
     filename: "./public/bundle.js",
   },
+  resolve: {
+    fallback: {
+      http: require.resolve("stream-http"),
+    },
+  },
   devtool: "source-map",
   module: {
     rules: [
