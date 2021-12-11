@@ -38,10 +38,12 @@ class App extends Component {
   };
 
   killKaboom() {
-    console.log(`Location: ${window.location.pathname}`);
+    const canvasTag = document.getElementsByTagName("CANVAS")[0];
     if (window.location.pathname !== "/game") {
-      document.getElementsByTagName("CANVAS")[0].remove();
-      console.log("Killing Kaboom...");
+      if (canvasTag) {
+        canvasTag.remove();
+        console.log("Killing Kaboom...");
+      }
     }
   }
 
