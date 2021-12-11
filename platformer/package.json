@@ -34,7 +34,9 @@
     "npm": "^8.1.4",
     "pg": "^8.5.1",
     "phaser": "^3.55.2",
-    "sequelize": "^6.3.5"
+    "react-scripts": "^4.0.3",
+    "sequelize": "^6.3.5",
+    "web3": "^1.6.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
