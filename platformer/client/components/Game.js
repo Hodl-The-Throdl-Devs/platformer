@@ -173,6 +173,7 @@ class Game extends Component {
     scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
       gravity(3200);
       camScale(0.8,0.8)
+      volume(0.07)
 
       // add level to scene
       const level = addLevel(LEVELS[levelId ?? 0], levelConf);
