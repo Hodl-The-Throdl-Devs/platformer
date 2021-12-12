@@ -13,7 +13,7 @@ const Web3TestButton = (props) => {
 
     // Getting balance of signed in address
     let balance = await contract.methods.getBalance(accounts[0]).call();
-    console.log(state);
+    console.log(balance);
   };
 
   return (
