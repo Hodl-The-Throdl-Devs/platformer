@@ -6,23 +6,20 @@ import Routes from "./Routes";
 import getWeb3 from "./getWeb3";
 import MetaCoinContract from "./contracts/MetaCoin.json";
 import Web3TestButton from "./components/Web3TestButton";
-import HDWalletProvider from "@truffle/hdwallet-provider"
+import HDWalletProvider from "@truffle/hdwallet-provider";
 
 class App extends Component {
-  state = { web3: null, accounts: null, contracts: null };
+  state = {
+    web3: null,
+    bankAccount: ["0x0231D9e5E15df70692dBC1D33bEF8AD151d3b952"],
+    accounts: null,
+    contracts: null,
+  };
 
   componentDidMount = async () => {
     try {
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
-
-      // HD Wallet Provider Set-Up. Make sure to replace private key when making Ganache network
-      const hdwProvider = new HDWalletProvider(
-        "f6e19c48bbcd02a5c496357d081e580872798f39ed336759e76e085a23570975","HTTP://127.0.0.1:7545"
-      );
-
-      // Set provider for Web3 to HD Wallet Provider
-      web3.setProvider(hdwProvider)
 
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
@@ -37,6 +34,15 @@ class App extends Component {
 
       // Set web3, accounts, and contract to the state, and then proceed with an
       this.setState({ web3, accounts, contracts: { metaCoin } });
+
+      // HD Wallet Provider Set-Up. Make sure to replace private key when making Ganache network
+      const hdwProvider = new HDWalletProvider(
+        "cba57b5f41c515a49af7c8e304c879c06d84ef04c26d3c789f0f766235de262f",
+        "HTTP://127.0.0.1:7545"
+      );
+
+      // Set provider for Web3 to HD Wallet Provider
+      web3.setProvider(hdwProvider);
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -60,6 +66,8 @@ class App extends Component {
     return (
       <div onClick={this.killKaboom}>
         <Web3TestButton
+          state={this.state}
+          bankAccount={this.state.bankAccount}
           contracts={this.state.contracts}
           accounts={this.state.accounts}
         />
