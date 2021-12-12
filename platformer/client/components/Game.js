@@ -17,15 +17,16 @@ class Game extends Component {
   }
 
   componentDidUpdate() {
-    console.log("componentDidUpdate");
+    // console.log("componentDidUpdate");
   }
 
   componentDidMount() {
     const { cash } = this.state;
 
     kaboom({
-      // width: 720,
-      // height: 480,
+      width: 720,
+      height: 480,
+      canvas: document.querySelector("#platformer"),
       // font: "sinko",
     });
 
@@ -44,16 +45,16 @@ class Game extends Component {
     loadSound("blip", "/sounds/blip.mp3");
     loadSound("hit", "/sounds/hit.mp3");
     loadSound("portal", "/sounds/portal.mp3");
-    loadSound(
-      "takeOnMe",
-      "/sounds/take_on_me_chiptune_a_ha_-3218709482115074402.mp3"
-    );
+    // loadSound(
+    //   "takeOnMe",
+    //   "/sounds/take_on_me_chiptune_a_ha_-3218709482115074402.mp3"
+    // );
 
-
-    //   const takeOnMe = play("takeOnMe", {
-    //     volume: 0.2,
-    //     seek: 20
-    // })
+    // Seemingly plays without permission
+    // const takeOnMe = play("takeOnMe", {
+    //   volume: 0.2,
+    //   seek: 20,
+    // });
 
     // custom component controlling enemy patrol movement
     function patrol(speed = 60, dir = 1) {
@@ -149,7 +150,14 @@ class Game extends Component {
       height: 64,
       // define each object as a list of components
       "=": () => [sprite("grass"), area(), solid(), origin("bot")],
-      $: () => [sprite("coin"), area(), pos(0, -9), origin("bot"), scale(.08), "coin"],
+      $: () => [
+        sprite("coin"),
+        area(),
+        pos(0, -9),
+        origin("bot"),
+        scale(0.08),
+        "coin",
+      ],
       "%": () => [sprite("prize"), area(), solid(), origin("bot"), "prize"],
       "^": () => [sprite("spike"), area(), solid(), origin("bot"), "danger"],
       "#": () => [sprite("apple"), area(), origin("bot"), body(), "apple"],
@@ -172,13 +180,13 @@ class Game extends Component {
 
     scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
       gravity(3200);
-      camScale(0.8,0.8)
-      volume(0.07)
+      camScale(0.8, 0.8);
+      volume(0.07);
 
       // add level to scene
       const level = addLevel(LEVELS[levelId ?? 0], levelConf);
 
-      add([sprite("nightsky"), fixed(), pos(0,0), scale(2), z(-2)]);
+      add([sprite("nightsky"), fixed(), pos(0, 0), scale(2), z(-2)]);
 
       // define player object
       const player = add([
@@ -261,6 +269,7 @@ class Game extends Component {
 
       let coinPitch = 0;
 
+      // Lowers the coin pitch sound effect over time, no need to reduce the pitch amount
       onUpdate(() => {
         if (coinPitch > 0) {
           coinPitch = Math.max(0, coinPitch - dt() * 100);
@@ -297,12 +306,12 @@ class Game extends Component {
       });
 
       onKeyDown("up", () => {
-        // takeOnMe.stop()
+        // takeOnMe.stop();
       });
 
       onKeyPress("down", () => {
-        // takeOnMe.stop()
-        // takeOnMe.play()
+        // takeOnMe.stop();
+        // takeOnMe.play();
         player.weight = 3;
       });
 
@@ -316,12 +325,14 @@ class Game extends Component {
     });
 
     scene("lose", () => {
+      // takeOnMe.stop();
       add([text("You Lose")]);
       this.updateCash(0);
       onKeyPress(() => go("game"));
     });
 
     scene("win", () => {
+      // takeOnMe.stop();
       const { auth, addCoinsToAccount } = this.props;
       const { cash } = this.state;
       add([text(`You win ${cash} ${cash === 1 ? `coin!` : `coins!`}`)]);
@@ -335,12 +346,14 @@ class Game extends Component {
   }
   render() {
     return (
-      <div>
+      // TODO Fix width and height rescritions to be dependent on kaboom call
+      <div style={{display:"flex", flexDirection:"column", width:"720px", height:"480"}}>
         {this.state.cash === 0
           ? "You have no coins!"
           : `Win to have ${this.state.cash} ${
               this.state.cash === 1 ? "coin" : "coins"
             } added to your account!`}
+            <canvas id="platformer" style={{width:"720px", height:"480"}}></canvas>
       </div>
     );
   }

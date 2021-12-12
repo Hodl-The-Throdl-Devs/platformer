@@ -23,7 +23,8 @@ form div {
 }
 
 canvas {
-  align-self: center;
+  border-color: white;
+  border-width: 10rem;
 }
 
 #navdiv {
