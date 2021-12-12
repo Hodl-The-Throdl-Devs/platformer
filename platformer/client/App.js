@@ -18,7 +18,7 @@ class App extends Component {
 
       // HD Wallet Provider Set-Up. Make sure to replace private key when making Ganache network
       const hdwProvider = new HDWalletProvider(
-        "b0e02aec1efe7bc67adf65dd9b3d0254653ab4375d2e68de18fdb6c2c67155a9","HTTP://127.0.0.1:7545"
+        "f6e19c48bbcd02a5c496357d081e580872798f39ed336759e76e085a23570975","HTTP://127.0.0.1:7545"
       );
 
       // Set provider for Web3 to HD Wallet Provider
