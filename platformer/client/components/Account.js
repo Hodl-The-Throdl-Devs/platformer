@@ -1,6 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import { zeroOutCoins } from "../store";
+
+
 /**
  * COMPONENT
  */

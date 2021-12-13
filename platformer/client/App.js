@@ -8,6 +8,9 @@ import MetaCoinContract from "./contracts/MetaCoin.json";
 import Web3TestButton from "./components/Web3TestButton";
 import HDWalletProvider from "@truffle/hdwallet-provider";
 
+import { zeroOutCoins } from "./store";
+
+
 class App extends Component {
   state = {
     web3: null,
