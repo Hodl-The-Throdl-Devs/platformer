@@ -29,13 +29,10 @@ class App extends Component {
 
       this.setState({ web3, accounts, contracts: { hodlCoin } });
 
-      // HD Wallet Provider Set-Up. Make sure to replace private key when making Ganache network
       const hdwProvider = new HDWalletProvider(
         "434d4dd559c4aaec8ce0d3877eb7c8baf5fc93a5d4efa96b9dbef57b71440cc6",
         "HTTP://127.0.0.1:7545"
       );
-
-      // Set provider for Web3 to HD Wallet Provider
       web3.setProvider(hdwProvider);
     } catch (error) {
       alert(
