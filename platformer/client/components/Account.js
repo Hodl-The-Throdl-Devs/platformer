@@ -11,7 +11,7 @@ export const Account = props => {
 
   const convertCoins = () => {
     console.log(`Your coins before: ${auth.coins}`)
-    .then(auth.coins = 0)
+    auth.coins = 0
     zeroOutCoins(auth);
     console.log(`Your coins after: ${auth.coins}`)
   }
@@ -36,7 +36,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    zeroOutCoins: (auth) => dispatch(zeroOutCoins(coins)),
+    zeroOutCoins: (auth) => dispatch(zeroOutCoins(auth)),
   };
 };
 
