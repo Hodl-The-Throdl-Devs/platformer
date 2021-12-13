@@ -4,14 +4,14 @@ import Navbar from "./components/Navbar";
 import Routes from "./Routes";
 
 import getWeb3 from "./getWeb3";
-import MetaCoinContract from "./contracts/MetaCoin.json";
+import HodlCoinContract from "./contracts/HodlCoin.json";
 import Web3TestButton from "./components/Web3TestButton";
 import HDWalletProvider from "@truffle/hdwallet-provider";
 
 class App extends Component {
   state = {
     web3: null,
-    bankAccount: ["0xA97Bb44F6376BfF1c98cEEC9F04974eb4F4Fa359"],
+    bankAccount: ["0x4eA365b192D283C493ddf2bFc4A90011A4828c89"],
     accounts: null,
     contracts: null,
   };
@@ -26,18 +26,18 @@ class App extends Component {
 
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      const deployedNetwork = MetaCoinContract.networks[networkId];
-      const metaCoin = new web3.eth.Contract(
-        MetaCoinContract.abi,
+      const deployedNetwork = HodlCoinContract.networks[networkId];
+      const hodlCoin = new web3.eth.Contract(
+        HodlCoinContract.abi,
         deployedNetwork && deployedNetwork.address
       );
 
       // Set web3, accounts, and contract to the state, and then proceed with an
-      this.setState({ web3, accounts, contracts: { metaCoin } });
+      this.setState({ web3, accounts, contracts: { hodlCoin } });
 
       // HD Wallet Provider Set-Up. Make sure to replace private key when making Ganache network
       const hdwProvider = new HDWalletProvider(
-        "311870b04ec3e235b1a238f6592202319502a2fb1d88193f4500e9666581c29d",
+        "434d4dd559c4aaec8ce0d3877eb7c8baf5fc93a5d4efa96b9dbef57b71440cc6",
         "HTTP://127.0.0.1:7545"
       );
 

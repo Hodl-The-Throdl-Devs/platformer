@@ -4,7 +4,7 @@ const Web3TestButton = (props) => {
   const { state, bankAccount, contracts, accounts } = props;
 
   const testFunc = async () => {
-    const contract = contracts.metaCoin;
+    const contract = contracts.hodlCoin;
 
     // Sending 500 Meta Coins to specific address
     await contract.methods
