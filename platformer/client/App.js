@@ -11,7 +11,7 @@ import HDWalletProvider from "@truffle/hdwallet-provider";
 class App extends Component {
   state = {
     web3: null,
-    bankAccount: ["0xDf6F1f1EB89Fd31314a64D440da7F55033299837"],
+    bankAccount: ["0xA97Bb44F6376BfF1c98cEEC9F04974eb4F4Fa359"],
     accounts: null,
     contracts: null,
   };
@@ -37,7 +37,7 @@ class App extends Component {
 
       // HD Wallet Provider Set-Up. Make sure to replace private key when making Ganache network
       const hdwProvider = new HDWalletProvider(
-        "84f6a0a40bb1f115e5c9c1157f9389b7ac900c127ba7264189630bf6ee0568e4",
+        "311870b04ec3e235b1a238f6592202319502a2fb1d88193f4500e9666581c29d",
         "HTTP://127.0.0.1:7545"
       );
 
