@@ -25,4 +25,6 @@ const Web3TestButton = (props) => {
   );
 };
 
+// TODO connect(mapState, mapDispatch)(Web3TestButton)
+
 export default Web3TestButton;

@@ -8,12 +8,14 @@ const TOKEN = 'token'
  */
 const SET_AUTH = 'SET_AUTH'
 const ADD_COINS = "ADD_COINS";
+const ZERO_OUT_COINS = "ZERO_OUT_COINS"
 
 /**
  * ACTION CREATORS
  */
 const setAuth = auth => ({type: SET_AUTH, auth})
 const addCoins = (auth) => ({ type: ADD_COINS, auth });
+const zeroOutCoins = (auth) => ({type: ZERO_OUT_COINS, auth});
 
 
 
@@ -58,6 +60,14 @@ export const addCoinsToAccount = (auth) => {
   };
 };
 
+// Written this way if we wanted to eventually flex this to a reduction of any amount rather than just zeroing out.
+export const zeroOutCoins = (auth) => {
+  return async (dispatch) => {
+    const {data: zeroedCoinAmount} = await axios.put(`/api/users/${auth.id}`, auth);
+    dispatch(zeroOutCoins(zeroedCoinAmount));
+  }
+}
+
 /**
  * REDUCER
  */
@@ -66,6 +76,8 @@ export default function(state = {}, action) {
     case SET_AUTH:
       return action.auth
     case ADD_COINS:
+      return action.auth
+    case ZERO_OUT_COINS:
       return action.auth
     default:
       return state
