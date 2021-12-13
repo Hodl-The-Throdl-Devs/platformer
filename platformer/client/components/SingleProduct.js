@@ -1,55 +1,55 @@
-// import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-// // import { purchase } from "../../store/purchase";
+// import { purchase } from "../../store/purchase";
 
-// import { Button, Grid, Typography, Divider, Container, AddShoppingCartIcon } from '@mui/material';
+import { Button, Grid, Typography, Divider, Container, AddShoppingCartIcon } from '@mui/material';
 
-// const SingleProduct = (props) => {
-//   const dispatch = useDispatch()
-//   const products = useSelector(state => state.products)
-//   const { productId } = props.match.params
-//   const singleProduct = products.find(product => product.id === productId * 1)
+const SingleProduct = (props) => {
+  const dispatch = useDispatch()
+  const products = useSelector(state => state.products)
+  const { productId } = props.match.params
+  const singleProduct = products.find(product => product.id === productId * 1)
 
-// //   const [input, setinput] = useState({ quantity: 1 })
+//   const [input, setinput] = useState({ quantity: 1 })
 
-// //   const handleChange = (evt) => {
-// //     const target = evt.target
-// //     setinput({ [target.name]: target.value })
-// //   }
-
-//   const purchaseSingleProduct = () => {
-//     dispatch(purchase(singleProduct))
+//   const handleChange = (evt) => {
+//     const target = evt.target
+//     setinput({ [target.name]: target.value })
 //   }
 
-//   useEffect(() => {
-//     window.scrollTo(0, 0)
-//   }, [])
+  const purchaseSingleProduct = () => {
+    dispatch(purchase(singleProduct))
+  }
 
-//   return (
-//       <Container sx={{ pb: 25 }}>
-//         <Grid container sx={{ mt: 3 }}>
-//           <Grid item xs={12} sm={6} sx={{ px: 4, textAlign: 'center', '@media screen and (max-width: 600px)': { p: 0 } }}>
-//             <img loading='lazy' src={singleProduct.imageURL} width='70%' />
-//           </Grid>
-//           <Grid item xs={12} sm={6} sx={{ px: 4, textAlign: 'right' }}>
-//             <Typography variant='h5'>
-//               {singleProduct.name}
-//             </Typography>
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
-//             <Typography variant='body1' color="text.secondary">
-//               {singleProduct.price}
-//             </Typography>
+  return (
+      <Container sx={{ pb: 25 }}>
+        <Grid container sx={{ mt: 3 }}>
+          <Grid item xs={12} sm={6} sx={{ px: 4, textAlign: 'center', '@media screen and (max-width: 600px)': { p: 0 } }}>
+            <img loading='lazy' src={singleProduct.imageURL} width='70%' />
+          </Grid>
+          <Grid item xs={12} sm={6} sx={{ px: 4, textAlign: 'right' }}>
+            <Typography variant='h5'>
+              {singleProduct.name}
+            </Typography>
 
-//             <Button onClick={purchaseSingleProduct} variant="contained" startIcon={<AddShoppingCartIcon />} sx={{ m: 1 }}>
-//                 Purchase
-//             </Button>
+            <Typography variant='body1' color="text.secondary">
+              {singleProduct.price}
+            </Typography>
 
-//             <Divider sx={{ m: 2 }} />
-//           </Grid>
-//         </Grid >
-//       </Container>
-//   );
-// }
+            <Button onClick={purchaseSingleProduct} variant="contained" startIcon={<AddShoppingCartIcon />} sx={{ m: 1 }}>
+                Purchase
+            </Button>
 
-// export default SingleProduct;
+            <Divider sx={{ m: 2 }} />
+          </Grid>
+        </Grid >
+      </Container>
+  );
+}
+
+export default SingleProduct;
