@@ -1,7 +1,7 @@
 import React from "react";
 
 const Web3TestButton = (props) => {
-  const { state, bankAccount, contracts, accounts } = props;
+  const { bankAccount, contracts, accounts } = props;
 
   const testFunc = async () => {
     const contract = contracts.hodlCoin;

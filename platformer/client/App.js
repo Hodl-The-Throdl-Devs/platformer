@@ -18,13 +18,8 @@ class App extends Component {
 
   componentDidMount = async () => {
     try {
-      // Get network provider and web3 instance.
       const web3 = await getWeb3();
-
-      // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
-
-      // Get the contract instance.
       const networkId = await web3.eth.net.getId();
       const deployedNetwork = HodlCoinContract.networks[networkId];
       const hodlCoin = new web3.eth.Contract(
@@ -32,7 +27,6 @@ class App extends Component {
         deployedNetwork && deployedNetwork.address
       );
 
-      // Set web3, accounts, and contract to the state, and then proceed with an
       this.setState({ web3, accounts, contracts: { hodlCoin } });
 
       // HD Wallet Provider Set-Up. Make sure to replace private key when making Ganache network
@@ -44,7 +38,6 @@ class App extends Component {
       // Set provider for Web3 to HD Wallet Provider
       web3.setProvider(hdwProvider);
     } catch (error) {
-      // Catch any errors for any of the above operations.
       alert(
         `Failed to load web3, accounts, or contract. Check console for details.`
       );
@@ -66,7 +59,6 @@ class App extends Component {
     return (
       <div onClick={this.killKaboom}>
         <Web3TestButton
-          state={this.state}
           bankAccount={this.state.bankAccount}
           contracts={this.state.contracts}
           accounts={this.state.accounts}
