@@ -4,7 +4,7 @@
 - run truffle migrate
 - make sure your metamask wallet is connected to the ganache network & you're using one of the addresses provided by the network in order to gain ETH funds (excluding first address a.k.a. 'bank account')
 
-## Making Changes to App.js
+## Making Changes to Routes.js
 
 - After migrating contracts to ganache local network, make sure to grab the public/private keys of the first address and add them in.
 
