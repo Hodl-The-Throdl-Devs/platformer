@@ -5,14 +5,16 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import auth from './auth'
 import products from './products'
 import purchase from './purchase'
+import web3Props from "./web3Props";
 
-const reducer = combineReducers({ auth, products, purchase})
+const reducer = combineReducers({ auth, products, purchase, web3Props})
 const middleware = composeWithDevTools(
-  applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
-)
-const store = createStore(reducer, middleware)
+  applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
+);
+const store = createStore(reducer, middleware);
 
 export default store
 export * from './auth'
 export * from "./products"
 export * from "./purchase"
+export * from "./web3Props";

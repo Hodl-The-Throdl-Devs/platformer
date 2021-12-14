@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
-const Web3TestButton = (props) => {
-  const { bankAccount, contracts, accounts } = props;
+const Web3TestButton = () => {
+  const bankAccount = useSelector((state) => state.web3Props.bankAccount);
+  const contracts = useSelector((state) => state.web3Props.contracts);
+  const accounts = useSelector((state) => state.web3Props.accounts);
 
   const testFunc = async () => {
     const contract = contracts.hodlCoin;
