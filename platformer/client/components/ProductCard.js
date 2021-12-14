@@ -37,7 +37,7 @@ function ProductCard(props) {
         <CardMedia
           component="img"
           height="400"
-          image={imageURL}
+          image={`/sprites/${imageURL}`}
           sx={{ p: 0 }}
         />
         <CardContent sx={{ textAlign: "center", p: 0 }}>

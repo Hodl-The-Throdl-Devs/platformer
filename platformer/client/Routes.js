@@ -61,8 +61,8 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/game" component={Game} />
             <Route path="/account" component={Account} />
-            <Route exact path="/product" component={Product} />
-            <Route path="/product/:id" component={SingleProduct} />
+            <Route exact path="/products" component={Product} />
+            <Route path="/products/:id" component={SingleProduct} />
             <Redirect to="/home" />
           </Switch>
         ) : (
