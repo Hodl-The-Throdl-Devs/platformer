@@ -8,7 +8,7 @@ import { Button, Grid, Typography, Divider, Container } from "@mui/material";
 
 const SingleProduct = (props) => {
   const dispatch = useDispatch();
-  const {products} = props
+  const products = useSelector((state) => state.products);
   const { id } = props.match.params;
   const singleProduct = products.find(
     (product) => product.id === id * 1
