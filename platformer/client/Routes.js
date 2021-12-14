@@ -6,6 +6,7 @@ import Home from './components/Home';
 import Game from './components/Game';
 import Account from './components/Account'
 import Product from './components/Products'
+import SingleProduct from './components/SingleProduct'
 import {me} from './store'
 
 /**
