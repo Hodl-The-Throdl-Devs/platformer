@@ -44,7 +44,7 @@ const SingleProduct = (props) => {
             <Button onClick={purchaseSingleProduct} variant="contained" startIcon={<AddShoppingCartIcon />} sx={{ m: 1 }}>
                 Purchase
             </Button>
-            
+
             <Divider sx={{ m: 2 }} />
           </Grid>
         </Grid >

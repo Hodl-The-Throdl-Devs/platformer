@@ -1,13 +1,17 @@
 ## Instructions on setting up test network:
 
-- Ganache: create workspace via adding truffle project (truffle-config.js file)
+- Ganache: Create workspace via Quickstart
 - run truffle migrate
-- make sure your metamask wallet is connected to the ganache network & you're using one of the addresses provided by the network in order to gain ETH funds
+- make sure your metamask wallet is connected to the ganache network & you're using one of the addresses provided by the network in order to gain ETH funds (excluding first address a.k.a. 'bank account')
 
-## Adding HTT Token to Metamask Wallet:
+## Making Changes to App.js
+
+- After migrating contracts to ganache local network, make sure to grab the public/private keys of the first address and add them in.
+
+## Adding HodlCoin to Metamask Wallet:
 
 - After migrating contracts to ganache, go to Ganache GUI's Transactions page
-- Find transaction that has event name 'Encoded Event' & Contract 'HTTToken'. Proceed to click event
+- Find transaction that has event name 'Encoded Event' & Contract 'HodlCoin'. Proceed to click event
 - Copy the contract address and paste to Metamark Wallet via Import Token
 
 ## Additional Resources
