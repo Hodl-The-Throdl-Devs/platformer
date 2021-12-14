@@ -7,8 +7,10 @@ const _setContracts = (contracts) => {
   };
 };
 
-export const setContracts = () => {
-  dispatch(_setContracts(contracts));
+export const setContracts = (contracts) => {
+  return async (dispatch) => {
+    dispatch(_setContracts(contracts));
+  };
 };
 
 const initialState = {};

@@ -30,7 +30,6 @@ class App extends Component {
 
       // const dispatch = useDispatch();
       // dispatch(setContracts({ hodlCoin }));
-      console.log($r.store.getState());
 
       this.setState({ web3, accounts, contracts: { hodlCoin } });
 
