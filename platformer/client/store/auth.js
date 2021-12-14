@@ -8,14 +8,14 @@ const TOKEN = 'token'
  */
 const SET_AUTH = 'SET_AUTH'
 const ADD_COINS = "ADD_COINS";
-const ZERO_OUT_COINS = "ZERO_OUT_COINS"
+const CONVERT_COINS = "CONVERT_COINS"
 
 /**
  * ACTION CREATORS
  */
 const setAuth = auth => ({type: SET_AUTH, auth})
 const addCoins = (auth) => ({ type: ADD_COINS, auth });
-const zeroOut = (auth) => ({type: ZERO_OUT_COINS, auth});
+const convertCoins = (auth) => ({type: CONVERT_COINS, auth});
 
 
 
@@ -64,7 +64,7 @@ export const addCoinsToAccount = (auth) => {
 export const zeroOutCoins = (auth) => {
   return async (dispatch) => {
     const {data: zeroedCoinAmount} = await axios.put(`/api/users/${auth.id}`, auth);
-    dispatch(zeroOut(zeroedCoinAmount));
+    dispatch(convertCoins(zeroedCoinAmount));
   }
 }
 
@@ -77,7 +77,7 @@ export default function(state = {}, action) {
       return action.auth
     case ADD_COINS:
       return action.auth
-    case ZERO_OUT_COINS:
+    case CONVERT_COINS:
       return action.auth
     default:
       return state
