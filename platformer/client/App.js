@@ -3,7 +3,8 @@ import React, { Component } from "react";
 import Navbar from "./components/Navbar";
 import Routes from "./Routes";
 
-import Web3TestButton from "./components/Web3TestButton";
+import BankToUserButton from "./components/BankToUserButton";
+import UserToBankButton from "./components/UserToBankButton";
 
 class App extends Component {
   killKaboom() {
@@ -19,7 +20,7 @@ class App extends Component {
   render() {
     return (
       <div onClick={this.killKaboom}>
-        <Web3TestButton />
+        <UserToBankButton />
         <Navbar />
         <Routes />
       </div>
