@@ -3,7 +3,7 @@ const db = require('../db')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const axios = require('axios');
-const { STRING, INTEGER } = require('sequelize');
+const { STRING, INTEGER, TEXT } = require('sequelize');
 
 const SALT_ROUNDS = 5;
 
