@@ -23,12 +23,12 @@ const _purchaseProduct = (product) => {
 ///////////////////// THUNK CREATOR ///////////////////////
 
 //get all the purchased items for one user
-export const purchaseProduct = (productInfo) => {
+export const getpPurchased = (productInfo) => {
     return async (dispatch) => {
       console.log(productInfo);
       try {
-        const { data } = await axios.post("/api/products", productInfo);
-        dispatch(_purchaseProduct(data));
+        const { data } = await axios.get("/api/products", productInfo);
+        dispatch(_getPurchased(data));
       } catch (err) {
         console.log(err);
       }
@@ -54,7 +54,7 @@ const initialState = [];
 export default (state = initialState, action) => {
   switch (action.type) {  
     case GET_PURCHASED:
-        return [action.product]
+        return action.products
 
     case PURCHASE_PRODUCT:
     return [...state, action.product];  // add to the list of the purchased characters of the user
