@@ -4,14 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import purchase from "../store/products";
 import swapAuthProfile from "../store/auth";
 
-import {
-  Button,
-  Grid,
-  Typography,
-  Divider,
-  Container,
-  AddShoppingCartIcon,
-} from "@mui/material";
+import { Button, Grid, Typography, Divider, Container } from "@mui/material";
 
 const SingleProduct = (props) => {
   const dispatch = useDispatch();
@@ -66,7 +59,6 @@ const SingleProduct = (props) => {
           <Button
             onClick={purchaseSingleProduct}
             variant="contained"
-            startIcon={<AddShoppingCartIcon />}
             sx={{ m: 1 }}
           >
             Purchase
