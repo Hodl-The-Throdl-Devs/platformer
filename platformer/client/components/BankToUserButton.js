@@ -6,7 +6,7 @@ const BankToUserButton = () => {
   const contracts = useSelector((state) => state.web3Props.contracts);
   const accounts = useSelector((state) => state.web3Props.accounts);
 
-  const testFunc = async () => {
+  const sendTokenToUser = async () => {
     const contract = contracts.hodlCoin;
 
     await contract.methods
@@ -19,7 +19,7 @@ const BankToUserButton = () => {
 
   return (
     <>
-      <button type="button" onClick={testFunc}>
+      <button type="button" onClick={sendTokenToUser}>
         Receive Tokens from Bank
       </button>
     </>
