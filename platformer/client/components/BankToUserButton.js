@@ -26,5 +26,4 @@ const BankToUserButton = () => {
   );
 };
 
-// TODO connect(mapState, mapDispatch)(BankToUserButton)
 export default BankToUserButton;
