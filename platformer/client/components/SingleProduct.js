@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// import { purchase } from "../../store/purchase";
+import { purchase } from "../../store/products";
 
 import { Button, Grid, Typography, Divider, Container, AddShoppingCartIcon } from '@mui/material';
 
