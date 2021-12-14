@@ -7,6 +7,11 @@ const Product = require('./models/Product')
 
 //associations could go here!
 
+//for the purchased items
+Product.belongsTo(User);
+User.hasMany(Product);
+
+
 module.exports = {
   db,
   models: {
