@@ -30,7 +30,12 @@ class Routes extends Component {
         deployedNetwork && deployedNetwork.address
       );
 
-      this.props.setWeb3Props({ web3, accounts, contracts: { hodlCoin } });
+      this.props.setWeb3Props({
+        web3,
+        bankAccount: ["0x4eA365b192D283C493ddf2bFc4A90011A4828c89"],
+        accounts,
+        contracts: { hodlCoin },
+      });
 
       const hdwProvider = new HDWalletProvider(
         "434d4dd559c4aaec8ce0d3877eb7c8baf5fc93a5d4efa96b9dbef57b71440cc6",
