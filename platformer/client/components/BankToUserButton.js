@@ -20,7 +20,7 @@ const BankToUserButton = () => {
   return (
     <>
       <button type="button" onClick={testFunc}>
-        Test Me!
+        Receive Tokens from Bank
       </button>
     </>
   );

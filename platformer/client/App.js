@@ -21,6 +21,7 @@ class App extends Component {
     return (
       <div onClick={this.killKaboom}>
         <UserToBankButton />
+        <BankToUserButton />
         <Navbar />
         <Routes />
       </div>
