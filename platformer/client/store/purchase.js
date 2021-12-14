@@ -2,8 +2,16 @@ import axios from "axios";
 
 const TOKEN = "token";
 
-const PURCHASE_PRODUCT = "PURCHASE_PRODUCT"; //similar to "add to cart"
-const SWAP_PRODUCT = "SWAP_PRODUCT"; //similar to "checkout"
+const GET_PURCHASED = "GET_PURCHASED"; // for a single user
+const PURCHASE_PRODUCT = "URCHASE_PRODUCT"; 
+
+const _getPurchased = (products) => {
+    return {
+      type: GET_PURCHASED,
+      products,
+    };
+  };
+
 
 const _purchaseProduct = (product) => {
   return {
@@ -12,15 +20,20 @@ const _purchaseProduct = (product) => {
   };
 };
 
-const _swapProduct = (product) => {
-  return {
-    type: SWAP_PRODUCT,
-    product,
-  };
-};
-
 ///////////////////// THUNK CREATOR ///////////////////////
 
+//get all the purchased items for one user
+export const purchaseProduct = (productInfo) => {
+    return async (dispatch) => {
+      console.log(productInfo);
+      try {
+        const { data } = await axios.post("/api/products", productInfo);
+        dispatch(_purchaseProduct(data));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+  };
 
 //purchase single product
 export const purchaseProduct = (productInfo) => {
@@ -35,39 +48,19 @@ export const purchaseProduct = (productInfo) => {
   };
 };
 
-//swap profile to current product (Q: how to make the button change into swap after the user purchases it?)
-export const swapProduct = (productInfo) => {
-  return async (dispatch) => {
-    console.log(productInfo);
-    try {
-      const { data } = await axios.put(
-        `/api/products/${productInfo.id}`,
-        productInfo
-      );
-      dispatch(_swapProduct(data));
-    } catch (err) {
-      console.log(err);
-    }
-  };
-};
 
 const initialState = [];
 
 export default (state = initialState, action) => {
   switch (action.type) {  
+    case GET_PURCHASED:
+        return [action.product]
+
     case PURCHASE_PRODUCT:
     return [...state, action.product];  // add to the list of the purchased characters of the user
-
-    case SWAP_PRODUCT:
-    return action.product; //swap for the profile
 
     default:
       return state;
   }
 };
-
-
-//purchase single product
-
-
-//swap profile to current product
+ 
