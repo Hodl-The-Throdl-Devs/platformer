@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-// import { purchase } from "../../store/purchase";
+import purchase  from "../../store/products";
+import swapAuthProfile from "./store/auth";
 
 import { Button, Grid, Typography, Divider, Container, AddShoppingCartIcon } from '@mui/material';
 
@@ -20,6 +21,10 @@ const SingleProduct = (props) => {
 
   const purchaseSingleProduct = () => {
     dispatch(purchase(singleProduct))
+  }
+
+  const swapProfile = () => { //not used yet
+    dispatch(swapAuthProfile(singleProduct))
   }
 
   useEffect(() => {

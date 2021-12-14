@@ -9,13 +9,14 @@ const TOKEN = "token";
 const SET_AUTH = "SET_AUTH";
 const ADD_COINS = "ADD_COINS";
 const CONVERT_COINS = "CONVERT_COINS";
-
+const SWAP_PROFILE = "SWAP_PROFILE"
 /**
  * ACTION CREATORS
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
 const addCoins = (auth) => ({ type: ADD_COINS, auth });
 const convertCoins = (auth) => ({ type: CONVERT_COINS, auth });
+const swapProfile = (auth) => ({ type: SWAP_PROFILE, auth });
 
 /**
  * THUNK CREATORS
@@ -73,6 +74,28 @@ export const zeroOutCoins = (auth) => {
   };
 };
 
+//Swap the profile with a purchased product
+export const swapAuthProfile = (profile) => {
+  return async (dispatch) => {
+    // getState（）safest way to get the state
+    const token = window.localStorage.getItem(TOKEN);
+    if (token) {
+      const res = await axios.put(
+        "/api/users",
+        { profile },
+        {
+          headers: {
+            authorization: token,
+          },
+        }
+      );
+      return dispatch(swapProfile(res.data));
+    }
+  };
+};
+
+
+
 /**
  * REDUCER
  */
@@ -83,6 +106,8 @@ export default function (state = {}, action) {
     case ADD_COINS:
       return action.auth;
     case CONVERT_COINS:
+      return action.auth;
+    case SWAP_PROFILE:
       return action.auth;
     default:
       return state;
