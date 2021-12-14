@@ -1,28 +1,32 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { updateProduct } from "../store";
 
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Typography from "@mui/material/Typography";
+import {
+  Card,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Typography,
+  Button,
+} from "@mui/material";
+
 import { Box } from "@mui/system";
 
-// import { destroyProduct } from "../../store";
-
 function ProductCard(props) {
-  const { isAdmin } = useSelector((state) => state.auth);
-  const { id, name, imageURL, price, count } = props.product;
-
-  const dispatch = useDispatch();
-
-  const handleDelete = (productId) => {
-    dispatch(destroyProduct(productId));
+  const dispatch = useDispatch()
+  
+  const buyProduct = () => {
+    const { auth, product } = props;
+    product.count = product.count - 1;
+    product.userId = auth.id;
+    dispatch(updateProduct(product));
   };
-
+  
+  const { name, imageURL, price, count } = props.product;
+  
   return (
-    <Box component={Link} to={`/products/${id}`}>
       <Card
         raised
         sx={{
@@ -48,12 +52,12 @@ function ProductCard(props) {
           <Typography variant="body2" color="text.secondary">
             Available quantity: {count}
           </Typography>
+          <Button onClick={buyProduct}>Purchase!</Button>
         </CardContent>
         <CardActions
           sx={{ display: "flex", flexDirection: "column" }}
         ></CardActions>
       </Card>
-    </Box>
   );
 }
 

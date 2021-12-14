@@ -9,7 +9,8 @@ import ProductCard from "./ProductCard";
 import { Grid, Typography } from "@mui/material";
 
 const Products = () => {
-  const products = useSelector((state) => state.products);
+  const state = useSelector((state) => state);
+  const { auth, products } = state;
   return (
     <>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
@@ -21,7 +22,7 @@ const Products = () => {
             .filter((p) => p.count !== 0)
             .map((product) => (
               <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
-                <ProductCard product={product} />
+                <ProductCard product={product} auth={auth} />
               </Grid>
             ))}
         </Grid>
