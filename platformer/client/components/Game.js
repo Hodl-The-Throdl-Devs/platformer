@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addCoinsToAccount } from "../store";
+import { addCoinsToAccount, zeroOutCoins } from "../store";
 import kaboom from "kaboom";
 
 class Game extends Component {
