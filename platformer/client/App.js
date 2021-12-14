@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { useDispatch } from "react-redux";
 
 import Navbar from "./components/Navbar";
 import Routes from "./Routes";
@@ -26,6 +27,10 @@ class App extends Component {
         HodlCoinContract.abi,
         deployedNetwork && deployedNetwork.address
       );
+
+      // const dispatch = useDispatch();
+      // dispatch(setContracts({ hodlCoin }));
+      console.log($r.store.getState());
 
       this.setState({ web3, accounts, contracts: { hodlCoin } });
 
