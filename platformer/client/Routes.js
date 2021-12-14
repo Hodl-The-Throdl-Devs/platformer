@@ -8,7 +8,7 @@ import Account from "./components/Account";
 import Product from "./components/Products";
 import SingleProduct from "./components/SingleProduct";
 
-import { me, setWeb3Props } from "./store";
+import { me, setWeb3Props, fetchProducts } from "./store";
 
 import getWeb3 from "./getWeb3";
 import HodlCoinContract from "./contracts/HodlCoin.json";
@@ -30,6 +30,7 @@ class Routes extends Component {
         deployedNetwork && deployedNetwork.address
       );
 
+      this.props.setProducts();
       this.props.setWeb3Props({
         web3,
         bankAccount: ["0xB8D12EAdF22214F3e486060E89a5224C363fF32c"],
@@ -90,6 +91,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => ({
   loadInitialData: () => dispatch(me()),
   setWeb3Props: (web3Props) => dispatch(setWeb3Props(web3Props)),
+  setProducts: () => dispatch(fetchProducts()),
 });
 
 // The `withRouter` wrapper makes sure that updates are not blocked

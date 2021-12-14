@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
+const { STRING, INTEGER } = Sequelize;
 const db = require("../db");
-const axios = require("axios");
-const { STRING, INTEGER, BOOLEAN } = require("sequelize");
 
 const Product = db.define("product", {
   name: {
@@ -24,10 +23,6 @@ const Product = db.define("product", {
       max: 1,
       min: 0,
     },
-  },
-  purchased: {
-    type: BOOLEAN,
-    defaultValue: false,
   },
 });
 
