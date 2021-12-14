@@ -32,13 +32,13 @@ class Routes extends Component {
 
       this.props.setWeb3Props({
         web3,
-        bankAccount: ["0xB8D12EAdF22214F3e486060E89a5224C363fF32c"],
+        bankAccount: ["0xC1855E77807B9753d37ec5A7CACA22484a3a8074"],
         accounts,
         contracts: { hodlCoin },
       });
 
       const hdwProvider = new HDWalletProvider(
-        "4eeb0da1feaa667762538a691d751e0853189f0bde5b2d8f60f99c524c043c46",
+        "82b302d8d9c912b26f4dc26d96b93ce62e8e4b75fdac5b41bd9320f65861bbc2",
         "HTTP://127.0.0.1:7545"
       );
       web3.setProvider(hdwProvider);
