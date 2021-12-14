@@ -1,5 +1,5 @@
-import React, { Component, Fragment, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
@@ -8,7 +8,7 @@ import Account from "./components/Account";
 import Product from "./components/Products";
 import SingleProduct from "./components/SingleProduct";
 
-import { me, setContracts } from "./store";
+import { me, setWeb3Props } from "./store";
 
 import getWeb3 from "./getWeb3";
 import HodlCoinContract from "./contracts/HodlCoin.json";
@@ -30,7 +30,7 @@ class Routes extends Component {
         deployedNetwork && deployedNetwork.address
       );
 
-      this.props.setContracts({ web3, accounts, contracts: { hodlCoin } });
+      this.props.setWeb3Props({ web3, accounts, contracts: { hodlCoin } });
 
       const hdwProvider = new HDWalletProvider(
         "434d4dd559c4aaec8ce0d3877eb7c8baf5fc93a5d4efa96b9dbef57b71440cc6",
@@ -84,16 +84,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => ({
   loadInitialData: () => dispatch(me()),
-  setContracts: (contracts) => dispatch(setContracts(contracts)),
+  setWeb3Props: (web3Props) => dispatch(setWeb3Props(web3Props)),
 });
-
-// const mapDispatch = (dispatch) => {
-//   return {
-//     loadInitialData() {
-//       dispatch(me());
-//     },
-//   };
-// };
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes

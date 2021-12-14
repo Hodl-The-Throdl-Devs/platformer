@@ -4,9 +4,9 @@ import thunkMiddleware from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import auth from "./auth";
-import contractsReducer from "./contracts.js";
+import web3PropsReducer from "./web3Props";
 
-const reducer = combineReducers({ auth, contracts: contractsReducer });
+const reducer = combineReducers({ auth, web3Props: web3PropsReducer });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
@@ -14,4 +14,4 @@ const store = createStore(reducer, middleware);
 
 export default store;
 export * from "./auth";
-export * from "./contracts";
+export * from "./web3Props";
