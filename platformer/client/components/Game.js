@@ -21,7 +21,7 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    const { products } = this.props;
+    const { products, character } = this.props;
 
     kaboom({
       width: 720,
@@ -196,11 +196,10 @@ class Game extends Component {
       const level = addLevel(LEVELS[levelId ?? 0], levelConf);
 
       add([sprite("nightsky"), fixed(), pos(0, 0), scale(2), z(-2)]);
-
+      
       // define player object
-      // const {character } = this.props.character
       const player = add([
-        sprite("bean"), // character
+        sprite(character), // character
         pos(0, 0),
         area(),
         scale(1),
@@ -384,6 +383,7 @@ const mapState = (state) => {
   return {
     auth: state.auth,
     products: state.products,
+    character: state.character,
   };
 };
 
