@@ -18,7 +18,7 @@ const User = db.define("user", {
   },
   coins: {
     type: INTEGER,
-    defaultValue: 10,
+    defaultValue: 0,
   },
   hodlCoins: {
     type: INTEGER,

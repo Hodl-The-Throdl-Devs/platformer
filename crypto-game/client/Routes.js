@@ -37,12 +37,11 @@ class Routes extends Component {
         contracts: { hodlCoin },
       });
 
+      // Having user's MetaMask HODL balance update in store if logged in
       if (this.props.isLoggedIn) {
-        // Having user's MetaMask HODL balance update in store
         let hodlCoinBalance = await hodlCoin.methods
           .balanceOf(accounts[0])
           .call();
-        console.log(this.props);
         this.props.auth.hodlCoins = hodlCoinBalance;
         this.props.updateHodlCoins(this.props.auth);
       }
