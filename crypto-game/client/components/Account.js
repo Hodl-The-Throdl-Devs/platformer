@@ -2,18 +2,18 @@ import React from 'react'
 import {connect} from 'react-redux'
 import CharacterBoard from './CharacterBoard';
 
-import { zeroOutCoins } from "../store";
+import { updateCoins } from "../store";
 
 /**
  * COMPONENT
  */
 export const Account = props => {
-  const {auth, zeroOutCoins} = props
+  const {auth, updateCoins, web3Props} = props
 
   const convertCoins = () => {
     console.log(`Your coins before: ${auth.coins}`)
     auth.coins = 0
-    zeroOutCoins(auth);
+    updateCoins(auth);
     console.log(`Your coins after: ${auth.coins}`)
   }
 
@@ -37,7 +37,7 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
   return {
-    zeroOutCoins: (auth) => dispatch(zeroOutCoins(auth)),
+    updateCoins: (auth) => dispatch(updateCoins(auth)),
   };
 };
 
