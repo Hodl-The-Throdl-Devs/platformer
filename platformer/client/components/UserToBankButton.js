@@ -9,13 +9,13 @@ const UserToBankButton = () => {
 
   const sendTokenToBank = async () => {
     web3.setProvider("HTTP://127.0.0.1:7545");
+
     const contract = contracts.hodlCoin;
 
     await contract.methods
-      .sendCoin(bankAccount[0], 500)
+      .transfer(bankAccount[0], 10000)
       .send({ from: accounts[0] });
-
-    let balance = await contract.methods.getBalance(accounts[0]).call();
+    let balance = await contract.methods.balanceOf(accounts[0]).call();
     console.log(balance);
   };
 

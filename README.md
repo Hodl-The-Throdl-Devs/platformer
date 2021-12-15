@@ -1,6 +1,6 @@
 ## Instructions on setting up test network:
 
-- Ganache: Create workspace via Quickstart
+- Ganache: Create workspace via Quickstart, 
 - run truffle migrate
 - make sure your metamask wallet is connected to the ganache network & you're using one of the addresses provided by the network in order to gain ETH funds (excluding first address a.k.a. 'bank account')
 
