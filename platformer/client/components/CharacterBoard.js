@@ -8,19 +8,22 @@ class CharacterBoard extends Component {
     super(props);
   }
   render() {
-    const { auth, products, character } = this.props;
-    const myCharacters = products.filter((prod) => prod.userId === auth.id);
+    const { auth, products, chooseCharacter } = this.props;
+    const myCharacters = products.filter((prod) => prod.userId === auth.id || prod.name === "bean");
 
     return (
       <div>
         {myCharacters.map((ch) => {
+          console.log(ch);
           return (
-            <img
-              src={`/sprites/${ch.imageURL}`}
-              key={ch.id}
-              onClick={() => console.log(ch.name)}
-              className="characters"
-            />
+            <Link to="/game">
+              <img
+                src={`/sprites/${ch.imageURL}`}
+                key={ch.id}
+                onClick={() => chooseCharacter(ch.name)}
+                className="characters"
+              />
+            </Link>
           );
         })}
       </div>
@@ -32,14 +35,13 @@ const mapState = (state) => {
   return {
     products: state.products,
     auth: state.auth,
-    character: state.character,
   };
 };
 
 const mapDispatch = (dispatch) => {
   return {
-    chooseCharacter() {
-      dispatch(chooseCharacter());
+    chooseCharacter(character) {
+      dispatch(chooseCharacter(character));
     },
   };
 };
