@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addCoinsToAccount, zeroOutCoins } from "../store";
 import kaboom from "kaboom";
-import products from "../store/products";
 
 class Game extends Component {
   constructor(props) {
