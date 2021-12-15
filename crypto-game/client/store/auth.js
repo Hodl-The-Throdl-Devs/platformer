@@ -8,12 +8,14 @@ const TOKEN = "token";
  */
 const SET_AUTH = "SET_AUTH";
 const UPDATE_COINS = "UPDATE_COINS";
-const SWAP_PROFILE = "SWAP_PROFILE"
+const UPDATE_HODL_COINS = "UPDATE_HODL_COINS";
+const SWAP_PROFILE = "SWAP_PROFILE";
 /**
  * ACTION CREATORS
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
 const _updateCoins = (auth) => ({ type: UPDATE_COINS, auth });
+const _updateHodlCoins = (auth) => ({ type: UPDATE_HODL_COINS, auth });
 const swapProfile = (auth) => ({ type: SWAP_PROFILE, auth });
 
 /**
@@ -61,6 +63,16 @@ export const updateCoins = (auth) => {
   };
 };
 
+export const updateHodlCoins = (auth) => {
+  return async (dispatch) => {
+    const { data: updatedHodlCoinAmount } = await axios.put(
+      `/api/users/${auth.id}`,
+      auth
+    );
+    dispatch(_updateHodlCoins(updatedHodlCoinAmount));
+  };
+};
+
 //Swap the profile with a purchased product
 export const swapAuthProfile = (profile) => {
   return async (dispatch) => {
@@ -81,8 +93,6 @@ export const swapAuthProfile = (profile) => {
   };
 };
 
-
-
 /**
  * REDUCER
  */
@@ -91,6 +101,8 @@ export default function (state = {}, action) {
     case SET_AUTH:
       return action.auth;
     case UPDATE_COINS:
+      return action.auth;
+    case UPDATE_HODL_COINS:
       return action.auth;
     case SWAP_PROFILE:
       return action.auth;
