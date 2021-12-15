@@ -11,9 +11,7 @@ const BankToUserButton = () => {
   );
 
   const sendTokenToUser = async () => {
-    const contract = contracts.hodlCoin_OZ;
-
-    // Version for HodlCoin OZ
+    const contract = contracts.hodlCoin;
 
     await contract.methods
       .transfer(accounts[0], 10000)
@@ -21,16 +19,6 @@ const BankToUserButton = () => {
     let balance = await contract.methods.balanceOf(accounts[0]).call();
     console.log(balance);
     console.log(contract.methods);
-
-    // Version for HodlCoin
-    // const contract = contracts.hodlCoin;
-
-    // await contract.methods
-    //   .sendCoin(accounts[0], 500)
-    //   .send({ from: bankAccount[0] });
-
-    // let balance = await contract.methods.getBalance(accounts[0]).call();
-    // console.log(balance);
   };
 
   return (

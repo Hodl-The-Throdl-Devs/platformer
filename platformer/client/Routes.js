@@ -12,7 +12,6 @@ import { me, setWeb3Props } from "./store";
 
 import getWeb3 from "./getWeb3";
 import HodlCoinContract from "./contracts/HodlCoin.json";
-import HodlCoinOZContract from "./contracts/HodlCoinOZ.json";
 import HDWalletProvider from "@truffle/hdwallet-provider";
 
 /**
@@ -28,23 +27,19 @@ class Routes extends Component {
       const deployedNetwork = HodlCoinContract.networks[networkId];
       const hodlCoin = new web3.eth.Contract(
         HodlCoinContract.abi,
-        deployedNetwork && deployedNetwork.address
-      );
-      const hodlCoin_OZ = new web3.eth.Contract(
-        HodlCoinOZContract.abi,
-        "0xda158729E4C317565B7F1466F5B6D4D1fcbDE9A8"
+        "0x4638AfDeAa64860D93B513Ae7EB054BA9297A295"
       );
 
       this.props.setWeb3Props({
         web3,
         deployedNetwork,
-        bankAccount: ["0xcC4b3B8b96Db990C4211aFaBDE23c2ef51f2BEbD"],
+        bankAccount: ["0x6ED1E11341342b0f9A2fD71D3497BEcdD7fF40eF"],
         accounts,
-        contracts: { hodlCoin, hodlCoin_OZ },
+        contracts: { hodlCoin },
       });
 
       const hdwProvider = new HDWalletProvider(
-        "867943c492ce1cabaf5710ecb2c81dcf1c31f0ec8fd32227df0f482a0da4c716",
+        "986be1dd39b9cf6f35dd442383a5c1022ef49cf633a1bf806eb6716c7d602714",
         "HTTP://127.0.0.1:7545"
       );
       web3.setProvider(hdwProvider);
