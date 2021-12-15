@@ -29,7 +29,6 @@ export const Account = (props) => {
     await contract.methods
       .transfer(accounts[0], auth.coins)
       .send({ from: bankAccount[0] });
-    // .then(updateHodlCoins(auth));
   };
 
   const convertCoins = () => {

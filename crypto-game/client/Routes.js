@@ -7,7 +7,7 @@ import Game from "./components/Game";
 import Account from "./components/Account";
 import Shop from "./components/Products";
 
-import { me, setWeb3Props, fetchProducts } from "./store";
+import { me, setWeb3Props, fetchProducts, updateHodlCoins } from "./store";
 
 import getWeb3 from "./getWeb3";
 import HodlCoinContract from "./contracts/HodlCoin.json";
@@ -37,6 +37,17 @@ class Routes extends Component {
         contracts: { hodlCoin },
       });
 
+      if (this.props.isLoggedIn) {
+        // Having user's MetaMask HODL balance update in store
+        let hodlCoinBalance = await hodlCoin.methods
+          .balanceOf(accounts[0])
+          .call();
+        console.log(this.props);
+        this.props.auth.hodlCoins = hodlCoinBalance;
+        this.props.updateHodlCoins(this.props.auth);
+      }
+
+      // Setting Provider to Bank Account
       const hdwProvider = new HDWalletProvider(
         "766f652118231b9eeb8ca75ded6bd98217118fde8419774e24057a85676da99f",
         "HTTP://127.0.0.1:7545"
@@ -83,6 +94,7 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    auth: state.auth,
   };
 };
 
@@ -90,6 +102,7 @@ const mapDispatch = (dispatch) => ({
   loadInitialData: () => dispatch(me()),
   setWeb3Props: (web3Props) => dispatch(setWeb3Props(web3Props)),
   setProducts: () => dispatch(fetchProducts()),
+  updateHodlCoins: (auth) => dispatch(updateHodlCoins(auth)),
 });
 
 // The `withRouter` wrapper makes sure that updates are not blocked
