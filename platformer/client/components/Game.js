@@ -10,17 +10,10 @@ class Game extends Component {
       cash: 0,
     };
     this.updateCash = this.updateCash.bind(this);
+    this.initGame = this.initGame.bind(this)
   }
 
-  updateCash(newCash) {
-    this.setState({ cash: newCash });
-  }
-
-  componentDidUpdate() {
-    // console.log("componentDidUpdate");
-  }
-
-  componentDidMount() {
+  initGame() {
     const { products, character } = this.props;
 
     kaboom({
@@ -196,7 +189,7 @@ class Game extends Component {
       const level = addLevel(LEVELS[levelId ?? 0], levelConf);
 
       add([sprite("nightsky"), fixed(), pos(0, 0), scale(2), z(-2)]);
-      
+
       // define player object
       const player = add([
         sprite(character), // character
@@ -352,6 +345,24 @@ class Game extends Component {
     });
 
     go("game");
+  }
+
+  updateCash(newCash) {
+    this.setState({ cash: newCash });
+  }
+
+  componentDidUpdate(prevProps) {
+    const { products } = this.props;
+    if (!prevProps.products.length && products.length) {
+      this.initGame()
+    }
+  }
+
+  componentDidMount() {
+    const { products } = this.props;
+    if(products.length){
+      this.initGame()
+    }
   }
   render() {
     return (
