@@ -16,10 +16,9 @@ class CharacterBoard extends Component {
         {myCharacters.map((ch) => {
           console.log(ch);
           return (
-            <Link to="/game">
+            <Link to="/game" key={ch.id}>
               <img
                 src={`/sprites/${ch.imageURL}`}
-                key={ch.id}
                 onClick={() => chooseCharacter(ch.name)}
                 className="characters"
               />
