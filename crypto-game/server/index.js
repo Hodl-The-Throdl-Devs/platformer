@@ -12,7 +12,9 @@ const init = async () => {
       await db.sync()
     }
     // start listening (and create a 'server' object representing our server)
-    app.listen(PORT, () => console.log(`Port: ${PORT}`))
+    app.listen(PORT, () => console.log(`
+    http://localhost:${PORT}
+    `))
   } catch (ex) {
     console.log(ex)
   }

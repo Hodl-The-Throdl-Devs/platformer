@@ -7,15 +7,13 @@ const TOKEN = "token";
  * ACTION TYPES
  */
 const SET_AUTH = "SET_AUTH";
-const ADD_COINS = "ADD_COINS";
-const CONVERT_COINS = "CONVERT_COINS";
+const UPDATE_COINS = "UPDATE_COINS";
 const SWAP_PROFILE = "SWAP_PROFILE"
 /**
  * ACTION CREATORS
  */
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
-const addCoins = (auth) => ({ type: ADD_COINS, auth });
-const convertCoins = (auth) => ({ type: CONVERT_COINS, auth });
+const _updateCoins = (auth) => ({ type: UPDATE_COINS, auth });
 const swapProfile = (auth) => ({ type: SWAP_PROFILE, auth });
 
 /**
@@ -53,24 +51,13 @@ export const logout = () => {
   };
 };
 
-export const addCoinsToAccount = (auth) => {
+export const updateCoins = (auth) => {
   return async (dispatch) => {
     const { data: updatedCoinAmount } = await axios.put(
       `/api/users/${auth.id}`,
       auth
     );
-    dispatch(addCoins(updatedCoinAmount));
-  };
-};
-
-// Written this way if we wanted to eventually flex this to a reduction of any amount rather than just zeroing out.
-export const zeroOutCoins = (auth) => {
-  return async (dispatch) => {
-    const { data: zeroedCoinAmount } = await axios.put(
-      `/api/users/${auth.id}`,
-      auth
-    );
-    dispatch(convertCoins(zeroedCoinAmount));
+    dispatch(_updateCoins(updatedCoinAmount));
   };
 };
 
@@ -103,9 +90,7 @@ export default function (state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
       return action.auth;
-    case ADD_COINS:
-      return action.auth;
-    case CONVERT_COINS:
+    case UPDATE_COINS:
       return action.auth;
     case SWAP_PROFILE:
       return action.auth;

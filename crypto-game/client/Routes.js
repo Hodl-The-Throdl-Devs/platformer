@@ -5,8 +5,7 @@ import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import Game from "./components/Game";
 import Account from "./components/Account";
-import Product from "./components/Products";
-import SingleProduct from "./components/SingleProduct";
+import Shop from "./components/Products";
 
 import { me, setWeb3Props, fetchProducts } from "./store";
 
@@ -61,8 +60,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/game" component={Game} />
             <Route path="/account" component={Account} />
-            <Route exact path="/products" component={Product} />
-            <Route path="/products/:id" component={SingleProduct} />
+            <Route exact path="/shop" component={Shop} />
             <Redirect to="/home" />
           </Switch>
         ) : (

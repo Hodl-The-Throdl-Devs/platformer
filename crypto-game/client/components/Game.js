@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { addCoinsToAccount, zeroOutCoins } from "../store";
+import { updateCoins } from "../store";
 import kaboom from "kaboom";
 
 class Game extends Component {
@@ -335,11 +335,11 @@ class Game extends Component {
 
     scene("win", () => {
       // takeOnMe.stop();
-      const { auth, addCoinsToAccount } = this.props;
+      const { auth, updateCoins } = this.props;
       const { cash } = this.state;
       add([text(`You win ${cash} ${cash === 1 ? `coin!` : `coins!`}`)]);
       auth.coins = auth.coins + cash;
-      addCoinsToAccount(auth);
+      updateCoins(auth);
       this.setState({ cash: 0 });
       onKeyPress(() => go("game"));
     });
@@ -400,7 +400,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    addCoinsToAccount: (coins) => dispatch(addCoinsToAccount(coins)),
+    updateCoins: (coins) => dispatch(updateCoins(coins)),
   };
 };
 
