@@ -29,7 +29,6 @@ class Routes extends Component {
         HodlCoinContract.abi,
         deployedNetwork && deployedNetwork.address
       );
-
       this.props.setProducts();
       this.props.setWeb3Props({
         web3,
@@ -37,20 +36,20 @@ class Routes extends Component {
         accounts,
         contracts: { hodlCoin },
       });
-
+      
       const hdwProvider = new HDWalletProvider(
         "82b302d8d9c912b26f4dc26d96b93ce62e8e4b75fdac5b41bd9320f65861bbc2",
         "HTTP://127.0.0.1:7545"
-      );
-      web3.setProvider(hdwProvider);
-    } catch (error) {
-      alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`
-      );
-      console.error(error);
-    }
-  };
-
+        );
+        web3.setProvider(hdwProvider);
+      } catch (error) {
+        alert(
+          `Failed to load web3, accounts, or contract. Check console for details.`
+          );
+          console.error(error);
+        }
+      };
+      
   render() {
     const { isLoggedIn } = this.props;
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import CharacterBoard from './CharacterBoard';
 
 import { zeroOutCoins } from "../store";
 
@@ -20,6 +21,7 @@ export const Account = props => {
     <div>
       Account page.
       <button onClick={convertCoins}>Convert coins to tokens!</button>
+      <CharacterBoard />
     </div>
   )
 }
