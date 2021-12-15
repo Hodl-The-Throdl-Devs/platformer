@@ -2,13 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import CharacterBoard from "./CharacterBoard";
 
-import { updateCoins } from "../store";
+import { updateCoins, updateHodlCoins } from "../store";
 
 /**
  * COMPONENT
  */
 export const Account = (props) => {
-  const { auth, updateCoins, web3Props } = props;
+  const { auth, updateCoins, updateHodlCoins, web3Props } = props;
   const { bankAccount, contracts, accounts, deployedNetwork } = web3Props;
 
   // trying to get balance to display balance @rfougy
@@ -29,13 +29,16 @@ export const Account = (props) => {
     await contract.methods
       .transfer(accounts[0], auth.coins)
       .send({ from: bankAccount[0] });
+    // .then(updateHodlCoins(auth));
   };
 
   const convertCoins = () => {
     sendTokenToUser().then((res, rej) => {
+      auth.hodlCoins = auth.coins;
       auth.coins = 0;
       res(updateCoins(auth));
-      rej(console.log("something is wrong with your hodl account"))
+      res(updateHodlCoins(auth));
+      rej(console.log("something is wrong with your hodl account"));
     });
   };
 
@@ -44,7 +47,7 @@ export const Account = (props) => {
       <div id="accountHeader">
         <h1>Coin Count: {auth.coins}</h1>
         <button onClick={convertCoins}>Convert coins to tokens!</button>
-        <h1>Hodl Count: {"balance"}</h1>
+        <h1>Hodl Count: {auth.hodlCoins}</h1>
       </div>
       <CharacterBoard />
     </div>
@@ -64,6 +67,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     updateCoins: (auth) => dispatch(updateCoins(auth)),
+    updateHodlCoins: (auth) => dispatch(updateHodlCoins(auth)),
   };
 };
 
