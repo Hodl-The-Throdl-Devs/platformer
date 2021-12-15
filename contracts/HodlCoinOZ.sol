@@ -5,6 +5,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
 contract HodlCoinOZ is ERC20 {
     constructor() ERC20("HodlCoinOZ", "HODL") {
-        _mint(msg.sender, 1000000);
+        _mint(msg.sender, 1 * 10 ** decimals());
     }
 }

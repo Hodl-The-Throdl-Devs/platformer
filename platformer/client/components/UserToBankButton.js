@@ -18,7 +18,7 @@ const UserToBankButton = () => {
     const contract = contracts.hodlCoin_OZ;
 
     await contract.methods
-      .transfer(bankAccount[0], 500)
+      .transfer(bankAccount[0], 10000)
       .send({ from: accounts[0] });
     let balance = await contract.methods.balanceOf(accounts[0]).call();
     console.log(balance);
