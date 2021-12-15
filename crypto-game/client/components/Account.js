@@ -39,7 +39,7 @@ export const Account = (props) => {
 
   return (
     <div>
-      <div>
+      <div id="accountHeader">
         <h1>Coin Count: {auth.coins}</h1>
         <button onClick={convertCoins}>Convert coins to tokens!</button>
         <h1>Hodl Count: {"balance"}</h1>
