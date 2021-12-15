@@ -7,14 +7,24 @@ const BankToUserButton = () => {
   const accounts = useSelector((state) => state.web3Props.accounts);
 
   const sendTokenToUser = async () => {
-    const contract = contracts.hodlCoin;
+    const contract = contracts.hodlCoin_OZ;
 
-    await contract.methods
-      .sendCoin(accounts[0], 500)
-      .send({ from: bankAccount[0] });
+    // await contract.methods
+    //   .sendCoin(bankAccount[0], 500)
+    //   .send({ from: accounts[0] });
 
-    let balance = await contract.methods.getBalance(accounts[0]).call();
-    console.log(balance);
+    // let name = await contract.methods.name().call();
+    // let balance = await contract.methods.getBalance(accounts[0]).call();
+    console.log(contract.methods);
+
+    // const contract = contracts.hodlCoin;
+
+    // await contract.methods
+    //   .sendCoin(accounts[0], 500)
+    //   .send({ from: bankAccount[0] });
+
+    // let balance = await contract.methods.getBalance(accounts[0]).call();
+    // console.log(balance);
   };
 
   return (
