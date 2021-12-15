@@ -350,13 +350,11 @@ class Game extends Component {
 
   updateCash(newCash) {
     this.setState({ cash: newCash });
-    console.log("updateCash is being called. Find me. -Alex")
   }
 
   componentDidUpdate(prevProps) {
     const { products } = this.props;
     if (!prevProps.products.length && products.length) {
-      console.log(products);
       this.initGame()
     }
   }
@@ -364,7 +362,6 @@ class Game extends Component {
   componentDidMount() {
     const { products } = this.props;
     if(products.length){
-      console.log(products)
       this.initGame()
     }
   }
