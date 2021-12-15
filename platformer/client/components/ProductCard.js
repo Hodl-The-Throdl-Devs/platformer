@@ -22,6 +22,7 @@ function ProductCard(props) {
     product.count = product.count - 1;
     product.userId = auth.id;
     dispatch(updateProduct(product));
+    // smart contract send back to bank
   };
   
   const { name, imageURL, price, count } = props.product;
