@@ -8,7 +8,7 @@ import Account from "./components/Account";
 import Product from "./components/Products";
 import SingleProduct from "./components/SingleProduct";
 
-import { me, setWeb3Props } from "./store";
+import { me, setWeb3Props, fetchProducts } from "./store";
 
 import getWeb3 from "./getWeb3";
 import HodlCoinContract from "./contracts/HodlCoin.json";
@@ -30,6 +30,7 @@ class Routes extends Component {
         deployedNetwork && deployedNetwork.address
       );
 
+      this.props.setProducts();
       this.props.setWeb3Props({
         web3,
         bankAccount: ["0xC1855E77807B9753d37ec5A7CACA22484a3a8074"],
@@ -60,8 +61,8 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/game" component={Game} />
             <Route path="/account" component={Account} />
-            <Route exact path="/product" component={Product} />
-            <Route path="/product/:id" component={SingleProduct} />
+            <Route exact path="/products" component={Product} />
+            <Route path="/products/:id" component={SingleProduct} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -90,6 +91,7 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => ({
   loadInitialData: () => dispatch(me()),
   setWeb3Props: (web3Props) => dispatch(setWeb3Props(web3Props)),
+  setProducts: () => dispatch(fetchProducts()),
 });
 
 // The `withRouter` wrapper makes sure that updates are not blocked

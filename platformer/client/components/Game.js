@@ -21,7 +21,7 @@ class Game extends Component {
   }
 
   componentDidMount() {
-    const { cash } = this.state;
+    const { products } = this.props;
 
     kaboom({
       width: 720,
@@ -31,15 +31,13 @@ class Game extends Component {
     });
 
     // load assets
-    loadSprite("bean", "/sprites/bean.png");
-    loadSprite("ghosty", "/sprites/ghosty.png");
-    loadSprite("spike", "/sprites/spike.png");
-    loadSprite("grass", "/sprites/grass.png");
+    products.forEach((p) => loadSprite(p.name, `/sprites/${p.imageURL}`));
+
+    // custom sprites
     loadSprite("prize", "/sprites/jumpy.png");
-    loadSprite("apple", "/sprites/apple.png");
-    loadSprite("portal", "/sprites/portal.png");
     loadSprite("coin", "/sprites/ether.png");
-    loadSprite("nightsky", "/sprites/nightsky.png");
+
+    // sounds
     loadSound("coin", "/sounds/score.mp3");
     loadSound("powerup", "/sounds/powerup.mp3");
     loadSound("blip", "/sounds/blip.mp3");
@@ -200,8 +198,9 @@ class Game extends Component {
       add([sprite("nightsky"), fixed(), pos(0, 0), scale(2), z(-2)]);
 
       // define player object
+      // const {character } = this.props.character
       const player = add([
-        sprite("bean"),
+        sprite("bean"), // character
         pos(0, 0),
         area(),
         scale(1),
@@ -358,13 +357,23 @@ class Game extends Component {
   render() {
     return (
       // TODO Fix width and height rescritions to be dependent on kaboom call
-      <div style={{display:"flex", flexDirection:"column", width:"720px", height:"480"}}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          width: "720px",
+          height: "480",
+        }}
+      >
         {this.state.cash === 0
           ? "You have no coins!"
           : `Win to have ${this.state.cash} ${
               this.state.cash === 1 ? "coin" : "coins"
             } added to your account!`}
-            <canvas id="platformer" style={{width:"720px", height:"480"}}></canvas>
+        <canvas
+          id="platformer"
+          style={{ width: "720px", height: "480" }}
+        ></canvas>
       </div>
     );
   }
@@ -374,6 +383,7 @@ class Game extends Component {
 const mapState = (state) => {
   return {
     auth: state.auth,
+    products: state.products,
   };
 };
 

@@ -9,9 +9,9 @@ import { Button, Grid, Typography, Divider, Container } from "@mui/material";
 const SingleProduct = (props) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products);
-  const { productId } = props.match.params;
+  const { id } = props.match.params;
   const singleProduct = products.find(
-    (product) => product.id === productId * 1
+    (product) => product.id === id * 1
   );
 
   //   const [input, setinput] = useState({ quantity: 1 })
@@ -47,7 +47,7 @@ const SingleProduct = (props) => {
             "@media screen and (max-width: 600px)": { p: 0 },
           }}
         >
-          <img loading="lazy" src={singleProduct.imageURL} width="70%" />
+          <img loading="lazy" src={`/sprites/${singleProduct.imageURL}`} width="70%" />
         </Grid>
         <Grid item xs={12} sm={6} sx={{ px: 4, textAlign: "right" }}>
           <Typography variant="h5">{singleProduct.name}</Typography>
