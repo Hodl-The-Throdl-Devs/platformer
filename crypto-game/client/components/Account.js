@@ -10,19 +10,20 @@ import { updateCoins } from "../store";
 export const Account = (props) => {
   const { auth, updateCoins, web3Props } = props;
   const { bankAccount, contracts, accounts, deployedNetwork } = web3Props;
-  
 
   // trying to get balance to display balance @rfougy
-  const getBalance = async() => {
-    console.log(contracts)
-    const contract = contracts.hodlCoin;
-    await contract.methods.balanceOf(accounts[0]).call().then(res=> console.log(res));
+  const getBalance = async () => {
+    console.log(contracts);
+    // const contract = contracts.hodlCoin;
+    // const balance = await contract.methods
+    //   .balanceOf(accounts[0])
+    //   .call()
+    //   .then((res) => console.log(res));
     // return balance;
-  }
-  
+  };
+
   getBalance();
-  
-  
+
   const sendTokenToUser = async () => {
     const contract = contracts.hodlCoin;
     await contract.methods
@@ -31,9 +32,10 @@ export const Account = (props) => {
   };
 
   const convertCoins = () => {
-    sendTokenToUser().then(() => {
+    sendTokenToUser().then((res, rej) => {
       auth.coins = 0;
-      updateCoins(auth);
+      res(updateCoins(auth));
+      rej(console.log("something is wrong with your hodl account"))
     });
   };
 

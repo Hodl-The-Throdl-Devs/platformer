@@ -14,7 +14,6 @@ class CharacterBoard extends Component {
     return (
       <div>
         {myCharacters.map((ch) => {
-          console.log(ch);
           return (
             <Link to="/game" key={ch.id}>
               <img
