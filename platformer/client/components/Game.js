@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { addCoinsToAccount, zeroOutCoins } from "../store";
 import kaboom from "kaboom";
+import products from "../store/products";
 
 class Game extends Component {
   constructor(props) {
@@ -10,17 +11,10 @@ class Game extends Component {
       cash: 0,
     };
     this.updateCash = this.updateCash.bind(this);
+    this.initGame = this.initGame.bind(this)
   }
 
-  updateCash(newCash) {
-    this.setState({ cash: newCash });
-  }
-
-  componentDidUpdate() {
-    // console.log("componentDidUpdate");
-  }
-
-  componentDidMount() {
+  initGame() {
     const { products, character } = this.props;
 
     kaboom({
@@ -196,7 +190,7 @@ class Game extends Component {
       const level = addLevel(LEVELS[levelId ?? 0], levelConf);
 
       add([sprite("nightsky"), fixed(), pos(0, 0), scale(2), z(-2)]);
-      
+
       // define player object
       const player = add([
         sprite(character), // character
@@ -352,6 +346,27 @@ class Game extends Component {
     });
 
     go("game");
+  }
+
+  updateCash(newCash) {
+    this.setState({ cash: newCash });
+    console.log("updateCash is being called. Find me. -Alex")
+  }
+
+  componentDidUpdate(prevProps) {
+    const { products } = this.props;
+    if (!prevProps.products.length && products.length) {
+      console.log(products);
+      this.initGame()
+    }
+  }
+
+  componentDidMount() {
+    const { products } = this.props;
+    if(products.length){
+      console.log(products)
+      this.initGame()
+    }
   }
   render() {
     return (
