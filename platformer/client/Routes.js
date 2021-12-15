@@ -32,7 +32,7 @@ class Routes extends Component {
       );
       const hodlCoin_OZ = new web3.eth.Contract(
         HodlCoinOZContract.abi,
-        deployedNetwork && deployedNetwork.address
+        "0x3a62654EF45dF4acb075a2d9698563f4e10Cb447"
       );
 
       this.props.setWeb3Props({
