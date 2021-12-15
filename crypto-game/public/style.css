@@ -43,3 +43,8 @@ a {
   height: 200px;
   border: 2px solid whitesmoke;
 }
+
+#accountHeader {
+  display:flex;
+  justify-content: space-around;
+}
