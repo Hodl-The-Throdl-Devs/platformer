@@ -39,6 +39,9 @@ class Game extends Component {
     loadSprite("portal", "/spritesPixelAdventure/assets/portal.png");
     loadSprite("nightsky", "/spritesPixelAdventure/assets/nightsky.png");
 
+    loadSprite("grassAndDirt", "/spritesPixelAdventure/assets/grassAndDirt.png");
+    loadSprite("spikeTrap", "/spritesPixelAdventure/assets/spikeTrap.png");
+
     // load character Sprite Atlas
     loadSpriteAtlas(
       `/spritesPixelAdventure/characters/sheets/${character.spriteSheet}`,
@@ -191,7 +194,7 @@ class Game extends Component {
       width: 64,
       height: 64,
       // define each object as a list of components
-      "=": () => [sprite("grass"), area(), solid(), origin("bot")],
+      "=": () => [sprite("grassAndDirt"), area(), solid(), origin("bot")],
       $: () => [
         sprite("coin"),
         area(),
@@ -201,7 +204,7 @@ class Game extends Component {
         "coin",
       ],
       "%": () => [sprite("prize"), area(), solid(), origin("bot"), "prize"],
-      "^": () => [sprite("spike"), area(), solid(), origin("bot"), "danger"],
+      "^": () => [sprite("spikeTrap"), area(), solid(), origin("bot"), "danger"],
       "#": () => [sprite("apple"), area(), origin("bot"), body(), "apple"],
       ">": () => [
         sprite("ghosty"),
