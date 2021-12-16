@@ -19,11 +19,10 @@ export const Account = (props) => {
   };
 
   const convertCoins = () => {
-    sendTokenToUser().then((res, rej) => {
+    sendTokenToUser().then(() => {
       auth.hodlCoins += auth.coins;
       auth.coins = 0;
-      res(updateCoins(auth));
-      rej(console.log("something is wrong with your hodl account"));
+      updateCoins(auth);
     });
   };
 
