@@ -42,6 +42,7 @@ class Game extends Component {
     loadSprite("grassAndDirt", "/spritesPixelAdventure/assets/grassAndDirt.png");
     loadSprite("spikeTrap", "/spritesPixelAdventure/assets/spikeTrap.png");
 
+
     // load character Sprite Atlas
     loadSpriteAtlas(
       `/spritesPixelAdventure/characters/sheets/${character.spriteSheet}`,
@@ -56,6 +57,27 @@ class Game extends Component {
             "idle": {
               "from": 0,
               "to": 10,
+              "speed": 15,
+              "loop": true
+            }
+          }
+        }
+      }
+    );
+
+    loadSpriteAtlas(
+      '/spritesPixelAdventure/assets/Checkpoint_FlagOut.png',
+      {
+        "checkpoint": {
+          "x": 0,
+          "y": 0,
+          "width": 1664,
+          "height": 64,
+          "sliceX": 26,
+          "anims": {
+            "waving": {
+              "from": 0,
+              "to": 25,
               "speed": 15,
               "loop": true
             }
@@ -215,11 +237,11 @@ class Game extends Component {
         "enemy",
       ],
       "@": () => [
-        sprite("portal"),
+        sprite("checkpoint", { anim: "waving" }),
         area({ scale: 0.5 }),
         origin("bot"),
         pos(0, -12),
-        "portal",
+        "checkpoint",
       ],
     };
 
@@ -262,7 +284,7 @@ class Game extends Component {
         play("hit");
       });
 
-      player.onCollide("portal", () => {
+      player.onCollide("checkpoint", () => {
         play("portal");
         if (levelId + 1 < LEVELS.length) {
           go("game", {
