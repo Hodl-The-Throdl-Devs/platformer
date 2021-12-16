@@ -23,7 +23,7 @@ fs.readdir(dirPathPreviews, function (err, files) {
   if (err) {
     throw "Unable to scan directory: " + err;
   }
-  //listing all files using forEach
+  //Adding sprite info and preview image to products array
   files.forEach(function (file) {
     const product = {};
     const name = file.split("_")[0];
@@ -47,10 +47,9 @@ fs.readdir(dirPathSheets, function (err, files) {
   if (err) {
     throw "Unable to scan directory: " + err;
   }
-  //listing all files using forEach
+  //Adding sprite sheets to products array
   files.forEach(function (file) {
     const name = file.split("_")[0];
-    // add spriteSheet to product obj in products array where the name is the same as the name in this func
     const product = products.find((product) => product.name === name);
     const productIdx = products.indexOf(product);
 
