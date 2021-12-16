@@ -44,12 +44,20 @@ class Game extends Component {
       `/spritesPixelAdventure/characters/sheets/${character.spriteSheet}`,
       {
         "userCharacter": {
-          "x": 48,
-          "y": 82,
-          "width": 30,
-          "height": 30,
-          "sliceX": 10,
-        },
+          "x": 0,
+          "y": 0,
+          "width": 352,
+          "height": 32,
+          "sliceX": 11,
+          "anims": {
+            "idle": {
+              "from": 0,
+              "to": 10,
+              "speed": 3,
+              "loop": true
+            }
+          }
+        }
       }
     );
 
@@ -224,7 +232,7 @@ class Game extends Component {
 
       // define player object
       const player = add([
-        sprite("userCharacter"), // character
+        sprite("userCharacter", { anim: "idle" }), // character
         pos(0, 0),
         area(),
         scale(1),
