@@ -14,7 +14,7 @@ class Game extends Component {
   }
 
   initGame() {
-    const { products, character } = this.props;
+    const { products, character, assets } = this.props;
 
     kaboom({
       width: 720,
@@ -24,11 +24,13 @@ class Game extends Component {
     });
 
     // load assets
-    products.forEach((p) => loadSprite(p.name, `/sprites/${p.imageURL}`));
+    assets.forEach((asset) =>
+      loadSprite(asset.name, `/spritesPixelAdventure/assets/${asset.image}`)
+    );
 
     // custom sprites
-    loadSprite("prize", "/sprites/jumpy.png");
-    loadSprite("coin", "/sprites/ether.png");
+    loadSprite("prize", "/spritesPixelAdventure/assets/jumpy.png");
+    loadSprite("coin", "/spritesPixelAdventure/assets/ether.png");
 
     // sounds
     loadSound("coin", "/sounds/score.mp3");
@@ -403,6 +405,7 @@ const mapState = (state) => {
   return {
     auth: state.auth,
     products: state.products,
+    assets: state.assets,
     character: state.character,
   };
 };

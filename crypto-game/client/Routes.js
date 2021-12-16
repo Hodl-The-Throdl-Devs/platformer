@@ -7,7 +7,13 @@ import Game from "./components/Game";
 import Account from "./components/Account";
 import Shop from "./components/Products";
 
-import { me, setWeb3Props, fetchProducts, updateHodlCoins } from "./store";
+import {
+  me,
+  setWeb3Props,
+  fetchProducts,
+  fetchAssets,
+  updateHodlCoins,
+} from "./store";
 
 import getWeb3 from "./getWeb3";
 import HodlCoinContract from "./contracts/HodlCoin.json";
@@ -38,6 +44,7 @@ class Routes extends Component {
         "0x6a2445d60E0D465Dd3d0Bb8886cb33c6E40D662F"
       );
       this.props.setProducts();
+      this.props.setAssets();
       this.props.setWeb3Props({
         web3: this.web3,
         deployedNetwork: this.deployedNetwork,

@@ -55,7 +55,7 @@ export const createAsset = (assetInfo) => {
   };
 };
 
-export const updateaAsset = (assetInfo) => {
+export const updateAsset = (assetInfo) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.put(
