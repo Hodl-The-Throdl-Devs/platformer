@@ -1,6 +1,6 @@
 import React from "react";
-import { connect, useSelector } from "react-redux";
-import { authenticate, updateHodlCoins } from "../store";
+import { connect } from "react-redux";
+import { authenticate } from "../store";
 
 /**
  * COMPONENT
@@ -54,17 +54,6 @@ const mapSignup = (state) => {
     error: state.auth.error,
   };
 };
-
-// const contracts = useSelector((state) => state.web3Props.contracts);
-// const accounts = useSelector((state) => state.web3Props.accounts);
-// const auth = useSelector((state) => state.auth);
-
-// const updateHodlCoinBalance = async () => {
-//   const hodlCoin = contracts.hodlCoin;
-//   let hodlCoinBalance = await hodlCoin.methods.balanceOf(accounts[0]).call();
-//   auth.hodlCoins = hodlCoinBalance;
-//   updateHodlCoins(auth);
-// };
 
 const mapDispatch = (dispatch) => {
   return {
