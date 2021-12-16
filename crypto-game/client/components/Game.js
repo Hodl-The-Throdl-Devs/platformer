@@ -24,7 +24,7 @@ class Game extends Component {
     });
 
     // load assets
-    products.forEach((p) => loadSprite(p.name, `/spritesPixelAdventure/characters/${p.imagePreview}`));
+    products.forEach((p) => loadSprite(p.name, `/spritesPixelAdventure/characters/${p.spriteImage}`));
 
     // custom sprites
     loadSprite("prize", "/sprites/jumpy.png");
