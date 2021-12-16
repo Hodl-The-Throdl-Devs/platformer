@@ -57,7 +57,7 @@ class Game extends Component {
             "idle": {
               "from": 0,
               "to": 10,
-              "speed": 15,
+              "speed": 20,
               "loop": true
             }
           }
@@ -78,7 +78,28 @@ class Game extends Component {
             "waving": {
               "from": 0,
               "to": 25,
-              "speed": 15,
+              "speed": 20,
+              "loop": true
+            }
+          }
+        }
+      }
+    );
+
+    loadSpriteAtlas(
+      '/spritesPixelAdventure/assets/bouncingApple.png',
+      {
+        "bouncingApple": {
+          "x": 0,
+          "y": 0,
+          "width": 544,
+          "height": 32,
+          "sliceX": 17,
+          "anims": {
+            "bounce": {
+              "from": 0,
+              "to": 16,
+              "speed": 20,
               "loop": true
             }
           }
@@ -227,7 +248,7 @@ class Game extends Component {
       ],
       "%": () => [sprite("prize"), area(), solid(), origin("bot"), "prize"],
       "^": () => [sprite("spikeTrap"), area(), solid(), origin("bot"), "danger"],
-      "#": () => [sprite("apple"), area(), origin("bot"), body(), "apple"],
+      "#": () => [sprite("bouncingApple", { anim: "bounce" }), area(), origin("bot"), body(), "bouncingApple"],
       ">": () => [
         sprite("ghosty"),
         area(),
@@ -318,15 +339,15 @@ class Game extends Component {
       // grow an apple if player's head bumps into an obj with "prize" tag
       player.onHeadbutt((obj) => {
         if (obj.is("prize") && !hasApple) {
-          const apple = level.spawn("#", obj.gridPos.sub(0, 1));
-          apple.jump();
+          const bouncingApple = level.spawn("#", obj.gridPos.sub(0, 1));
+          bouncingApple.jump();
           hasApple = true;
           play("blip");
         }
       });
 
       // player grows big onCollide with an "apple" obj
-      player.onCollide("apple", (a) => {
+      player.onCollide("bouncingApple", (a) => {
         destroy(a);
         // as we defined in the big() component
         player.biggify(3);
