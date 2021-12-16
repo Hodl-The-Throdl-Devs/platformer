@@ -31,6 +31,8 @@ export const Account = (props) => {
       .send({ from: bankAccount[0] });
   };
 
+  // Note: If coins change, update balance
+
   const convertCoins = () => {
     sendTokenToUser().then((res, rej) => {
       auth.hodlCoins = auth.coins;
