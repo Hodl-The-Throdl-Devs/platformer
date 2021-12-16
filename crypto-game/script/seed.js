@@ -9,14 +9,16 @@ const fs = require("fs");
 
 // create products from sprites
 const products = [];
-const directoryPath = path.join(
+
+const dirPathPreviews = path.join(
   __dirname,
   "..",
   "public",
   "spritesPixelAdventure",
-  "characters"
+  "characters",
+  "previews"
 );
-fs.readdir(directoryPath, function (err, files) {
+fs.readdir(dirPathPreviews, function (err, files) {
   //handling error
   if (err) {
     throw "Unable to scan directory: " + err;
@@ -25,13 +27,35 @@ fs.readdir(directoryPath, function (err, files) {
   files.forEach(function (file) {
     const product = {};
     const name = file.split("_")[0];
-    const ext = file.split("_")[1];
-    if (ext !== "Sheet.png") {
-      product.name = name;
-      product.spriteImage = file;
-      product.count = 1;
-      products.push(product);
-    }
+    product.name = name;
+    product.spriteImage = file;
+    product.count = 1;
+    products.push(product);
+  });
+});
+
+const dirPathSheets = path.join(
+  __dirname,
+  "..",
+  "public",
+  "spritesPixelAdventure",
+  "characters",
+  "sheets"
+);
+fs.readdir(dirPathSheets, function (err, files) {
+  //handling error
+  if (err) {
+    throw "Unable to scan directory: " + err;
+  }
+  //listing all files using forEach
+  files.forEach(function (file) {
+    const name = file.split("_")[0];
+    // add spriteSheet to product obj in products array where the name is the same as the name in this func
+    const product = products.find((product) => product.name === name);
+    const productIdx = products.indexOf(product);
+
+    products[productIdx].spriteSheet = file;
+    console.log(products);
   });
 });
 
@@ -55,6 +79,7 @@ async function seed() {
       Product.create({
         name: product.name,
         spriteImage: product.spriteImage,
+        spriteSheet: product.spriteSheet,
         count: 1,
         price: Math.ceil(Math.random() * 1000),
       });
