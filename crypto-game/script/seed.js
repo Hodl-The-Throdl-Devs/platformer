@@ -9,7 +9,13 @@ const fs = require("fs");
 
 // create products from sprites
 const products = [];
-const directoryPath = path.join(__dirname, "..", "public", "sprites");
+const directoryPath = path.join(
+  __dirname,
+  "..",
+  "public",
+  "spritesPixelAdventure",
+  "characters"
+);
 fs.readdir(directoryPath, function (err, files) {
   //handling error
   if (err) {
@@ -50,7 +56,7 @@ async function seed() {
         name: product.name,
         imageURL: product.imageUrl,
         count: 1,
-        price: Math.ceil(Math.random() * 1000)
+        price: Math.ceil(Math.random() * 1000),
       });
     })
   );
