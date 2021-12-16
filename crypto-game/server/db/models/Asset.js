@@ -8,7 +8,7 @@ const Asset = db.define("asset", {
     unique: true,
     allowNull: false,
   },
-  spriteImage: {
+  image: {
     type: STRING,
     allowNull: false,
   },
