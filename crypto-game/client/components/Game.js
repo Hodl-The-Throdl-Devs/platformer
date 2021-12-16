@@ -31,16 +31,16 @@ class Game extends Component {
     loadSprite("prize", "/spritesPixelAdventure/assets/jumpy.png");
     loadSprite("coin", "/spritesPixelAdventure/assets/ether.png");
 
-    // load character Sprite Atlas (*Make sure to substitute products with character)
+    // load character Sprite Atlas
     loadSpriteAtlas(
-      `/spritesPixelAdventure/characters/sheets/${products[0].spriteSheet}`,
+      `/spritesPixelAdventure/characters/sheets/${character.spriteSheet}`,
       {
-        userCharacter: {
-          x: 0,
-          y: 0,
-          width: 0,
-          height: 0,
-          sliceX: 9,
+        "userCharacter": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0,
+          "sliceX": 9,
         },
       }
     );
@@ -175,7 +175,7 @@ class Game extends Component {
       width: 64,
       height: 64,
       // define each object as a list of components
-      "=": () => [sprite("grass"), area(), solid(), origin("bot")],
+      "=": () => [sprite("bean"), area(), solid(), origin("bot")],
       $: () => [
         sprite("coin"),
         area(),
@@ -216,7 +216,7 @@ class Game extends Component {
 
       // define player object
       const player = add([
-        sprite(character), // character
+        sprite("userCharacter"), // character
         pos(0, 0),
         area(),
         scale(1),

@@ -13,7 +13,14 @@ export const chooseCharacter = (character) => {
   };
 };
 
-const initialState = "bean";
+// const initialState = "bean";
+
+const initialState = {
+  id: 0,
+  name: "MaskDude",
+  spritePreview: "MaskDude_Preview.png",
+  spriteSheet: "MaskDude_Sheet.png",
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
