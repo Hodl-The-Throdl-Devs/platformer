@@ -107,6 +107,27 @@ class Game extends Component {
       }
     );
 
+    loadSpriteAtlas(
+      '/spritesPixelAdventure/assets/rotatingCoin.png',
+      {
+        "rotatingCoin": {
+          "x": 0,
+          "y": 0,
+          "width": 300,
+          "height": 50,
+          "sliceX": 6,
+          "anims": {
+            "spin": {
+              "from": 0,
+              "to": 5,
+              "speed": 10,
+              "loop": true
+            }
+          }
+        }
+      }
+    );
+
     // sounds
     loadSound("coin", "/sounds/score.mp3");
     loadSound("powerup", "/sounds/powerup.mp3");
@@ -239,19 +260,27 @@ class Game extends Component {
       // define each object as a list of components
       "=": () => [sprite("grassAndDirt"), area(), solid(), origin("bot")],
       $: () => [
-        sprite("coin"),
+        sprite("rotatingCoin", { anim: "spin" }),
         area(),
         pos(0, -9),
         origin("bot"),
-        scale(0.08),
-        "coin",
+        scale(),
+        "rotatingCoin",
       ],
       "%": () => [sprite("prize"), area(), solid(), origin("bot"), "prize"],
       "^": () => [sprite("spikeTrap"), area(), solid(), origin("bot"), "danger"],
-      "#": () => [sprite("bouncingApple", { anim: "bounce" }), area(), origin("bot"), body(), "bouncingApple"],
+      "#": () => [
+        sprite("bouncingApple", 
+        { anim: "bounce" }), 
+        area(), 
+        scale(2.0),
+        origin("bot"), 
+        body(), 
+        "bouncingApple"],
       ">": () => [
         sprite("ghosty"),
         area(),
+        scale(),
         origin("bot"),
         body(),
         patrol(),
@@ -364,7 +393,7 @@ class Game extends Component {
         }
       });
 
-      player.onCollide("coin", (c) => {
+      player.onCollide("rotatingCoin", (c) => {
         destroy(c);
         play("coin", {
           detune: coinPitch,
