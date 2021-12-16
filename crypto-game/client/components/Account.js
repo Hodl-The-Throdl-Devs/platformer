@@ -2,13 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import CharacterBoard from "./CharacterBoard";
 
-import { updateCoins, updateHodlCoins } from "../store";
+import { updateCoins } from "../store";
 
 /**
  * COMPONENT
  */
 export const Account = (props) => {
-  const { auth, updateCoins, updateHodlCoins, web3Props } = props;
+  const { auth, updateCoins, web3Props } = props;
   const { bankAccount, contracts, accounts } = web3Props;
 
   const sendTokenToUser = async () => {
@@ -52,7 +52,6 @@ const mapState = (state) => {
 const mapDispatch = (dispatch) => {
   return {
     updateCoins: (auth) => dispatch(updateCoins(auth)),
-    updateHodlCoins: (auth) => dispatch(updateHodlCoins(auth)),
   };
 };
 
