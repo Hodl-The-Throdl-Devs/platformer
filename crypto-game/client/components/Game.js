@@ -42,6 +42,8 @@ class Game extends Component {
     loadSprite("grassAndDirt", "/spritesPixelAdventure/assets/grassAndDirt.png");
     loadSprite("spikeTrap", "/spritesPixelAdventure/assets/spikeTrap.png");
     loadSprite("floatingBlock", "/spritesPixelAdventure/assets/floatingBlock.png");
+    loadSprite("brickBlock", "/spritesPixelAdventure/assets/brickBlock.png");
+
 
 
 
@@ -235,11 +237,11 @@ class Game extends Component {
         "                          $",
         "                          $",
         "                          $",
-        "           $$         =   $",
-        "  %      ----         =   $",
-        "                      =   $",
-        "                      =    ",
-        "       ^^      = >    =   @",
+        "           $$         H   $",
+        "  %      ----         H   $",
+        "                      H   $",
+        "                      H    ",
+        "       ^^      = >    H   @",
         "===========================",
         "                           ",
         "$                          ",
@@ -283,6 +285,8 @@ class Game extends Component {
       // define each object as a list of components
       "=": () => [sprite("grassAndDirt"), area(), solid(), origin("bot")],
       "-": () => [sprite("floatingBlock"), area(), solid(), origin("bot")],
+      "H": () => [sprite("brickBlock"), area(), solid(), origin("bot")],
+
       $: () => [
         sprite("rotatingCoin", { anim: "spin" }),
         area(),
