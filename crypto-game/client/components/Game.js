@@ -412,7 +412,7 @@ class Game extends Component {
           display: "flex",
           flexDirection: "column",
           width: "720px",
-          height: "480",
+          height: "480px",
         }}
       >
         {this.state.cash === 0
