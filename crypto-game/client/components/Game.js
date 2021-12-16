@@ -41,6 +41,8 @@ class Game extends Component {
 
     loadSprite("grassAndDirt", "/spritesPixelAdventure/assets/grassAndDirt.png");
     loadSprite("spikeTrap", "/spritesPixelAdventure/assets/spikeTrap.png");
+    loadSprite("floatingBlock", "/spritesPixelAdventure/assets/floatingBlock.png");
+
 
 
     // load character Sprite Atlas
@@ -234,7 +236,7 @@ class Game extends Component {
         "                          $",
         "                          $",
         "           $$         =   $",
-        "  %      ====         =   $",
+        "  %      ----         =   $",
         "                      =   $",
         "                      =    ",
         "       ^^      = >    =   @",
@@ -280,6 +282,7 @@ class Game extends Component {
       height: 64,
       // define each object as a list of components
       "=": () => [sprite("grassAndDirt"), area(), solid(), origin("bot")],
+      "-": () => [sprite("floatingBlock"), area(), solid(), origin("bot")],
       $: () => [
         sprite("rotatingCoin", { anim: "spin" }),
         area(),
@@ -294,7 +297,7 @@ class Game extends Component {
         sprite("bouncingApple", 
         { anim: "bounce" }), 
         area(), 
-        scale(2.0),
+        scale(3.0),
         origin("bot"), 
         body(), 
         "bouncingApple"],
