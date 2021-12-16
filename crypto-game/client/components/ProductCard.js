@@ -1,7 +1,6 @@
-import * as React from "react";
-// import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { updateProduct } from "../store";
+import React, { useCallback } from "react"; //Used to have import * as ...
+import { useDispatch, connect } from "react-redux";
+import { updateProduct, updateHodlCoins } from "../store";
 
 import {
   Card,
@@ -15,14 +14,30 @@ import {
 import { Box } from "@mui/system";
 
 function ProductCard(props) {
+  const { auth, web3Props, product } = props;
+  const { bankAccount, contracts, accounts } = web3Props;
+
   const dispatch = useDispatch()
   
+  const sendTokenToBank = async () => {
+    web3Props.web3.setProvider("HTTP://127.0.0.1:7545");
+
+    const contract = contracts.hodlCoin;
+    await contract.methods
+      .transfer(bankAccount[0], product.price)
+      .send({ from: accounts[0] });
+  };
+
+
   const buyProduct = () => {
-    const { auth, product } = props;
     product.count = product.count - 1;
     product.userId = auth.id;
     dispatch(updateProduct(product));
-    // smart contract send back to bank
+
+    sendTokenToBank().then(() => {
+      auth.hodlCoins -= product.price;
+      dispatch(updateHodlCoins(auth));
+    })
   };
   
   const { name, imageURL, price, count } = props.product;
@@ -62,4 +77,15 @@ function ProductCard(props) {
   );
 }
 
-export default ProductCard;
+const mapState = (state) => {
+  return {
+    auth: state.auth,
+    products: state.products,
+    character: state.character,
+    web3Props: state.web3Props
+  };
+};
+
+
+
+export default connect(mapState)(ProductCard);
