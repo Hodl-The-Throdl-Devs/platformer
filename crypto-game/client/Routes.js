@@ -60,6 +60,17 @@ class Routes extends Component {
     }
   };
 
+  // componentDidUpdate = async (prevProps) => {
+  //   if (this.props.auth !== prevProps.auth) {
+  //     const hodlCoin = this.props.web3Props.contracts.hodlCoin;
+  //     let hodlCoinBalance = await hodlCoin.methods
+  //       .balanceOf(accounts[0])
+  //       .call();
+  //     this.props.auth.hodlCoins = parseInt(hodlCoinBalance);
+  //     this.props.updateHodlCoins(this.props.auth);
+  //   }
+  // };
+
   render() {
     const { isLoggedIn } = this.props;
 
