@@ -28,7 +28,7 @@ fs.readdir(dirPathPreviews, function (err, files) {
     const product = {};
     const name = file.split("_")[0];
     product.name = name;
-    product.spriteImage = file;
+    product.spritePreview = file;
     product.count = 1;
     products.push(product);
   });
@@ -77,7 +77,7 @@ async function seed() {
     products.map((product) => {
       Product.create({
         name: product.name,
-        spriteImage: product.spriteImage,
+        spritePreview: product.spritePreview,
         spriteSheet: product.spriteSheet,
         count: 1,
         price: Math.ceil(Math.random() * 1000),

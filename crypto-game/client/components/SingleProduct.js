@@ -47,7 +47,7 @@ const SingleProduct = (props) => {
         >
           <img
             loading="lazy"
-            src={`/spritesPixelAdventure/characters/previews/${singleProduct.spriteImage}`}
+            src={`/spritesPixelAdventure/characters/previews/${singleProduct.spritePreview}`}
             width="70%"
           />
         </Grid>

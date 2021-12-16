@@ -17,7 +17,7 @@ class CharacterBoard extends Component {
           return (
             <Link to="/game" key={ch.id}>
               <img
-                src={`/spritesPixelAdventure/characters/previews/${ch.spriteImage}`}
+                src={`/spritesPixelAdventure/characters/previews/${ch.spritePreview}`}
                 onClick={() => chooseCharacter(ch.name)}
                 className="characters"
               />
