@@ -23,24 +23,32 @@ class Game extends Component {
     });
 
     // load assets
-    assets.forEach((asset) =>
-      loadSprite(asset.name, `/spritesPixelAdventure/assets/${asset.image}`)
-    );
+    // assets.forEach((asset) => {
+    //   console.log(asset.name)
+    //   loadSprite(asset.name, `/spritesPixelAdventure/assets/${asset.image}`)}
+    // );
 
     // load custom sprites
+
     loadSprite("prize", "/spritesPixelAdventure/assets/jumpy.png");
     loadSprite("coin", "/spritesPixelAdventure/assets/ether.png");
+    loadSprite("grass", "/spritesPixelAdventure/assets/grass.png");
+    loadSprite("spike", "/spritesPixelAdventure/assets/spike.png");
+    loadSprite("apple", "/spritesPixelAdventure/assets/apple.png");
+    loadSprite("ghosty", "/spritesPixelAdventure/assets/ghosty.png");
+    loadSprite("portal", "/spritesPixelAdventure/assets/portal.png");
+    loadSprite("nightsky", "/spritesPixelAdventure/assets/nightsky.png");
 
     // load character Sprite Atlas
     loadSpriteAtlas(
       `/spritesPixelAdventure/characters/sheets/${character.spriteSheet}`,
       {
         "userCharacter": {
-          "x": 0,
-          "y": 0,
-          "width": 0,
-          "height": 0,
-          "sliceX": 9,
+          "x": 48,
+          "y": 82,
+          "width": 30,
+          "height": 30,
+          "sliceX": 10,
         },
       }
     );
@@ -175,7 +183,7 @@ class Game extends Component {
       width: 64,
       height: 64,
       // define each object as a list of components
-      "=": () => [sprite("bean"), area(), solid(), origin("bot")],
+      "=": () => [sprite("grass"), area(), solid(), origin("bot")],
       $: () => [
         sprite("coin"),
         area(),
