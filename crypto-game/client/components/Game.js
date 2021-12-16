@@ -15,7 +15,6 @@ class Game extends Component {
 
   initGame() {
     const { products, character, assets } = this.props;
-
     kaboom({
       width: 720,
       height: 480,
@@ -28,9 +27,23 @@ class Game extends Component {
       loadSprite(asset.name, `/spritesPixelAdventure/assets/${asset.image}`)
     );
 
-    // custom sprites
+    // load custom sprites
     loadSprite("prize", "/spritesPixelAdventure/assets/jumpy.png");
     loadSprite("coin", "/spritesPixelAdventure/assets/ether.png");
+
+    // load character Sprite Atlas (*Make sure to substitute products with character)
+    loadSpriteAtlas(
+      `/spritesPixelAdventure/characters/sheets/${products[0].spriteSheet}`,
+      {
+        userCharacter: {
+          x: 0,
+          y: 0,
+          width: 0,
+          height: 0,
+          sliceX: 9,
+        },
+      }
+    );
 
     // sounds
     loadSound("coin", "/sounds/score.mp3");
