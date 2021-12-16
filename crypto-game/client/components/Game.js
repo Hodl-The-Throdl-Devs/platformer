@@ -31,21 +31,11 @@ class Game extends Component {
     // load custom sprites
 
     loadSprite("prize", "/spritesPixelAdventure/assets/jumpy.png");
-    loadSprite("coin", "/spritesPixelAdventure/assets/ether.png");
-    loadSprite("grass", "/spritesPixelAdventure/assets/grass.png");
-    loadSprite("spike", "/spritesPixelAdventure/assets/spike.png");
-    loadSprite("apple", "/spritesPixelAdventure/assets/apple.png");
-    loadSprite("ghosty", "/spritesPixelAdventure/assets/ghosty.png");
-    loadSprite("portal", "/spritesPixelAdventure/assets/portal.png");
     loadSprite("nightsky", "/spritesPixelAdventure/assets/nightsky.png");
-
     loadSprite("grassAndDirt", "/spritesPixelAdventure/assets/grassAndDirt.png");
     loadSprite("spikeTrap", "/spritesPixelAdventure/assets/spikeTrap.png");
     loadSprite("floatingBlock", "/spritesPixelAdventure/assets/floatingBlock.png");
     loadSprite("brickBlock", "/spritesPixelAdventure/assets/brickBlock.png");
-
-
-
 
     // load character Sprite Atlas
     loadSpriteAtlas(
