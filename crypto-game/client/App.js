@@ -7,6 +7,10 @@ import BankToUserButton from "./components/BankToUserButton";
 import UserToBankButton from "./components/UserToBankButton";
 
 class App extends Component {
+  constructor(props){
+    super(props)
+  }
+
   killKaboom() {
     const canvasTag = document.getElementsByTagName("CANVAS")[0];
     if (window.location.pathname !== "/game") {
@@ -15,6 +19,12 @@ class App extends Component {
         console.log("Killing Kaboom...");
       }
     }
+  }
+
+  componentDidUpdate() {
+  }
+
+  componentDidMount() {
   }
 
   render() {
