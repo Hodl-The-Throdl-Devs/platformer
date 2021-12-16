@@ -42,7 +42,7 @@ class Routes extends Component {
         let hodlCoinBalance = await hodlCoin.methods
           .balanceOf(accounts[0])
           .call();
-        this.props.auth.hodlCoins = hodlCoinBalance;
+        this.props.auth.hodlCoins = parseInt(hodlCoinBalance);
         this.props.updateHodlCoins(this.props.auth);
       }
 
