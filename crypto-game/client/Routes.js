@@ -7,7 +7,7 @@ import Game from "./components/Game";
 import Account from "./components/Account";
 import Shop from "./components/Products";
 
-import { me, setWeb3Props, fetchProducts } from "./store";
+import { me, setWeb3Props, fetchProducts, updateHodlCoins } from "./store";
 
 import getWeb3 from "./getWeb3";
 import HodlCoinContract from "./contracts/HodlCoin.json";
@@ -26,30 +26,40 @@ class Routes extends Component {
       const deployedNetwork = HodlCoinContract.networks[networkId];
       const hodlCoin = new web3.eth.Contract(
         HodlCoinContract.abi,
-        "0x4638AfDeAa64860D93B513Ae7EB054BA9297A295"
+        "0x6a2445d60E0D465Dd3d0Bb8886cb33c6E40D662F"
       );
       this.props.setProducts();
       this.props.setWeb3Props({
         web3,
         deployedNetwork,
-        bankAccount: ["0x6ED1E11341342b0f9A2fD71D3497BEcdD7fF40eF"],
+        bankAccount: ["0xCded6Ba33f50CA5a123E6Ed136788A442Bbe35d8"],
         accounts,
         contracts: { hodlCoin },
       });
-      
+
+      // Having user's MetaMask HODL balance update in store if logged in
+      if (this.props.isLoggedIn) {
+        let hodlCoinBalance = await hodlCoin.methods
+          .balanceOf(accounts[0])
+          .call();
+        this.props.auth.hodlCoins = parseInt(hodlCoinBalance);
+        this.props.updateHodlCoins(this.props.auth);
+      }
+
+      // Setting Provider to Bank Account
       const hdwProvider = new HDWalletProvider(
-        "986be1dd39b9cf6f35dd442383a5c1022ef49cf633a1bf806eb6716c7d602714",
+        "766f652118231b9eeb8ca75ded6bd98217118fde8419774e24057a85676da99f",
         "HTTP://127.0.0.1:7545"
-        );
-        web3.setProvider(hdwProvider);
-      } catch (error) {
-        alert(
-          `Failed to load web3, accounts, or contract. Check console for details.`
-          );
-          console.error(error);
-        }
-      };
-      
+      );
+      web3.setProvider(hdwProvider);
+    } catch (error) {
+      alert(
+        `Failed to load web3, accounts, or contract. Check console for details.`
+      );
+      console.error(error);
+    }
+  };
+
   render() {
     const { isLoggedIn } = this.props;
 
@@ -83,6 +93,7 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
+    auth: state.auth,
   };
 };
 
@@ -90,6 +101,7 @@ const mapDispatch = (dispatch) => ({
   loadInitialData: () => dispatch(me()),
   setWeb3Props: (web3Props) => dispatch(setWeb3Props(web3Props)),
   setProducts: () => dispatch(fetchProducts()),
+  updateHodlCoins: (auth) => dispatch(updateHodlCoins(auth)),
 });
 
 // The `withRouter` wrapper makes sure that updates are not blocked

@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../store";
 
-
-const Navbar = ({handleClick, isLoggedIn}) => (
+const Navbar = ({ handleClick, isLoggedIn, auth }) => (
   <div id="navdiv">
     <h1>hodl the throdl</h1>
     <nav>
@@ -18,6 +17,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
           <a href="#" onClick={handleClick}>
             Logout
           </a>
+          <p>Hodl Coins: {auth.hodlCoins}</p>
         </div>
       ) : (
         <div>
@@ -44,6 +44,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.auth.id,
+    auth: state.auth,
   };
 };
 
