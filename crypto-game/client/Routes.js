@@ -26,13 +26,13 @@ class Routes extends Component {
       const deployedNetwork = HodlCoinContract.networks[networkId];
       const hodlCoin = new web3.eth.Contract(
         HodlCoinContract.abi,
-        "0x6a2445d60E0D465Dd3d0Bb8886cb33c6E40D662F"
+        "0x9f35de661DE843b69eEA9805792a55C7f6004f54"
       );
       this.props.setProducts();
       this.props.setWeb3Props({
         web3,
         deployedNetwork,
-        bankAccount: ["0xCded6Ba33f50CA5a123E6Ed136788A442Bbe35d8"],
+        bankAccount: ["0x0033FCAE572e9B67ba940b244e72aB324Cd90EA4"],
         accounts,
         contracts: { hodlCoin },
       });
@@ -48,7 +48,7 @@ class Routes extends Component {
 
       // Setting Provider to Bank Account
       const hdwProvider = new HDWalletProvider(
-        "766f652118231b9eeb8ca75ded6bd98217118fde8419774e24057a85676da99f",
+        "6d2976731d8158223340d85c985012ebab7da195463a1bbb3cd6d2617222c35e",
         "HTTP://127.0.0.1:7545"
       );
       web3.setProvider(hdwProvider);
