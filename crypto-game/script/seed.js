@@ -24,9 +24,9 @@ fs.readdir(directoryPath, function (err, files) {
   //listing all files using forEach
   files.forEach(function (file) {
     const product = {};
-    const name = file.split(".")[0];
-    const ext = file.split(".")[1];
-    if (ext.toLowerCase() === "png") {
+    const name = file.split("_")[0];
+    const ext = file.split("_")[1];
+    if (ext !== "Sheet.png") {
       product.name = name;
       product.imageUrl = file;
       product.count = 1;
