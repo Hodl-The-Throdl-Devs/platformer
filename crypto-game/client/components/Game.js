@@ -16,8 +16,8 @@ class Game extends Component {
   initGame() {
     const { products, character, assets } = this.props;
     kaboom({
-      width: 720,
-      height: 480,
+      width: 1280,
+      height: 720,
       canvas: document.querySelector("#platformer"),
       // font: "sinko",
     });
@@ -513,8 +513,8 @@ class Game extends Component {
         style={{
           display: "flex",
           flexDirection: "column",
-          width: "720px",
-          height: "480px",
+          width: "1280px",
+          height: "720px",
         }}
       >
         {this.state.cash === 0
@@ -524,7 +524,7 @@ class Game extends Component {
             } added to your account!`}
         <canvas
           id="platformer"
-          style={{ width: "720px", height: "480" }}
+          style={{ width: "1280px", height: "720px" }}
         ></canvas>
       </div>
     );
