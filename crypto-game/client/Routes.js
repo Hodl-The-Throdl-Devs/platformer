@@ -120,6 +120,7 @@ const mapDispatch = (dispatch) => ({
   loadInitialData: () => dispatch(me()),
   setWeb3Props: (web3Props) => dispatch(setWeb3Props(web3Props)),
   setProducts: () => dispatch(fetchProducts()),
+  setAssets: () => dispatch(fetchAssets()),
   updateHodlCoins: (auth) => dispatch(updateHodlCoins(auth)),
 });
 
