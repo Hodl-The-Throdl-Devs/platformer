@@ -10,7 +10,7 @@ class Game extends Component {
       cash: 0,
     };
     this.updateCash = this.updateCash.bind(this);
-    this.initGame = this.initGame.bind(this)
+    this.initGame = this.initGame.bind(this);
   }
 
   initGame() {
@@ -24,7 +24,7 @@ class Game extends Component {
     });
 
     // load assets
-    products.forEach((p) => loadSprite(p.name, `/spritesPixelAdventure/characters/previews/${p.spritePreview}`));
+    products.forEach((p) => loadSprite(p.name, `/sprites/${p.imageURL}`));
 
     // custom sprites
     loadSprite("prize", "/sprites/jumpy.png");
@@ -120,6 +120,9 @@ class Game extends Component {
         "                      =    ",
         "       ^^      = >    =   @",
         "===========================",
+        "                           ",
+        "$                          ",
+        "@                          ",
       ],
       [
         "     $    $    $    $     $",
@@ -131,6 +134,9 @@ class Game extends Component {
         "                           ",
         "  ^^^>^^^^>^^^^>^^^^>^^^^ @",
         "===========================",
+        "                           ",
+        "$                          ",
+        "@                          ",
       ],
       [
         "                           ",
@@ -142,6 +148,9 @@ class Game extends Component {
         " $$$$$$$$$$$$$$$$$$$$$$$$$ ",
         "   > >> > > >   > >       @",
         "===========================",
+        "                           ",
+        "$                          ",
+        "@                          ",
       ],
     ];
 
@@ -354,14 +363,14 @@ class Game extends Component {
   componentDidUpdate(prevProps) {
     const { products } = this.props;
     if (!prevProps.products.length && products.length) {
-      this.initGame()
+      this.initGame();
     }
   }
 
   componentDidMount() {
     const { products } = this.props;
-    if(products.length){
-      this.initGame()
+    if (products.length) {
+      this.initGame();
     }
   }
   render() {
