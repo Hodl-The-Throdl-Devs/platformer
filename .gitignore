@@ -3,6 +3,10 @@ public/bundle.js
 public/bundle.js.map
 crypto-game/public/bundle.js
 crypto-game/public/bundle.js.map
+crypto-game/client/contracts/Context.json
+crypto-game/client/contracts/ERC20.json
+crypto-game/client/contracts/IERC20.json
+crypto-game/client/contracts/IERC20Metadata.json
 .DS_Store
 npm-debug.log
 yarn-error.log
