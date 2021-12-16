@@ -235,7 +235,7 @@ class Game extends Component {
         sprite("userCharacter", { anim: "idle" }), // character
         pos(0, 0),
         area(),
-        scale(1),
+        scale(),
         // makes it fall to gravity and jumpable
         body(),
         // the custom component we defined above
