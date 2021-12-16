@@ -8,7 +8,7 @@ const Product = db.define("product", {
     unique: true,
     allowNull: false,
   },
-  imageURL: {
+  imagePreview: {
     type: STRING,
     allowNull: false,
   },

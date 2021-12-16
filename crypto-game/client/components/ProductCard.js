@@ -39,7 +39,7 @@ function ProductCard(props) {
     });
   };
 
-  const { name, imageURL, price, count } = props.product;
+  const { name, imagePreview, price, count } = props.product;
 
   return (
     <Card
@@ -56,7 +56,7 @@ function ProductCard(props) {
       <CardMedia
         component="img"
         height="400"
-        image={`/spritesPixelAdventure/characters/${imageURL}`}
+        image={`/spritesPixelAdventure/characters/${imagePreview}`}
         sx={{ p: 0 }}
       />
       <CardContent sx={{ textAlign: "center", p: 0 }}>
