@@ -17,30 +17,39 @@ import HDWalletProvider from "@truffle/hdwallet-provider";
  * COMPONENT
  */
 class Routes extends Component {
+  constructor(props) {
+    super(props);
+    this.web3;
+    this.accounts;
+    this.networkId;
+    this.deployedNetwork;
+    this.hodlCoin;
+  }
+
   componentDidMount = async () => {
     this.props.loadInitialData();
     try {
-      const web3 = await getWeb3();
-      const accounts = await web3.eth.getAccounts();
-      const networkId = await web3.eth.net.getId();
-      const deployedNetwork = HodlCoinContract.networks[networkId];
-      const hodlCoin = new web3.eth.Contract(
+      this.web3 = await getWeb3();
+      this.accounts = await this.web3.eth.getAccounts();
+      this.networkId = await this.web3.eth.net.getId();
+      this.deployedNetwork = HodlCoinContract.networks[this.networkId];
+      this.hodlCoin = new this.web3.eth.Contract(
         HodlCoinContract.abi,
         "0x9f35de661DE843b69eEA9805792a55C7f6004f54"
       );
       this.props.setProducts();
       this.props.setWeb3Props({
-        web3,
-        deployedNetwork,
+        web3: this.web3,
+        deployedNetwork: this.deployedNetwork,
         bankAccount: ["0x0033FCAE572e9B67ba940b244e72aB324Cd90EA4"],
-        accounts,
-        contracts: { hodlCoin },
+        accounts: this.accounts,
+        contracts: { hodlCoin: this.hodlCoin },
       });
 
       // Having user's MetaMask HODL balance update in store if logged in
       if (this.props.isLoggedIn) {
-        let hodlCoinBalance = await hodlCoin.methods
-          .balanceOf(accounts[0])
+        let hodlCoinBalance = await this.hodlCoin.methods
+          .balanceOf(this.accounts[0])
           .call();
         this.props.auth.hodlCoins = parseInt(hodlCoinBalance);
         this.props.updateHodlCoins(this.props.auth);
@@ -51,12 +60,22 @@ class Routes extends Component {
         "6d2976731d8158223340d85c985012ebab7da195463a1bbb3cd6d2617222c35e",
         "HTTP://127.0.0.1:7545"
       );
-      web3.setProvider(hdwProvider);
+      this.web3.setProvider(hdwProvider);
     } catch (error) {
       alert(
         `Failed to load web3, accounts, or contract. Check console for details.`
       );
       console.error(error);
+    }
+  };
+
+  componentDidUpdate = async (prevProps) => {
+    if (this.props.isLoggedIn && !prevProps.isLoggedIn) {
+      let hodlCoinBalance = await this.hodlCoin.methods
+        .balanceOf(this.accounts[0])
+        .call();
+      this.props.auth.hodlCoins = parseInt(hodlCoinBalance);
+      this.props.updateHodlCoins(this.props.auth);
     }
   };
 
