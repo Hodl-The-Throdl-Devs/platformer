@@ -128,6 +128,27 @@ class Game extends Component {
       }
     );
 
+    loadSpriteAtlas(
+      '/spritesPixelAdventure/assets/enemyRadish.png',
+      {
+        "enemyRadish": {
+          "x": 0,
+          "y": 0,
+          "width": 180,
+          "height": 38,
+          "sliceX": 6,
+          "anims": {
+            "idle": {
+              "from": 0,
+              "to": 5,
+              "speed": 10,
+              "loop": true
+            }
+          }
+        }
+      }
+    );
+
     // sounds
     loadSound("coin", "/sounds/score.mp3");
     loadSound("powerup", "/sounds/powerup.mp3");
@@ -278,9 +299,9 @@ class Game extends Component {
         body(), 
         "bouncingApple"],
       ">": () => [
-        sprite("ghosty"),
+        sprite("enemyRadish", { anim: "idle" }),
         area(),
-        scale(),
+        scale(2.0),
         origin("bot"),
         body(),
         patrol(),
@@ -310,11 +331,10 @@ class Game extends Component {
         sprite("userCharacter", { anim: "idle" }), // character
         pos(0, 0),
         area(),
-        scale(),
+        scale(2.0),
         // makes it fall to gravity and jumpable
         body(),
         // the custom component we defined above
-        big(),
         origin("bot"),
       ]);
 
