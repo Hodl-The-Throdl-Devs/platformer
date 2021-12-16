@@ -53,7 +53,7 @@ class Game extends Component {
             "idle": {
               "from": 0,
               "to": 10,
-              "speed": 3,
+              "speed": 15,
               "loop": true
             }
           }
