@@ -70,12 +70,15 @@ class Routes extends Component {
   };
 
   componentDidUpdate = async (prevProps) => {
-    if (this.props.isLoggedIn && !prevProps.isLoggedIn) {
-      let hodlCoinBalance = await this.hodlCoin.methods
-        .balanceOf(this.accounts[0])
-        .call();
-      this.props.auth.hodlCoins = parseInt(hodlCoinBalance);
-      this.props.updateHodlCoins(this.props.auth);
+    // console.log(this.hodlCoin.methods);
+    if (this.hodlCoin) {
+      if (this.props.isLoggedIn && !prevProps.isLoggedIn) {
+        let hodlCoinBalance = await this.hodlCoin.methods
+          .balanceOf(this.accounts[0])
+          .call();
+        this.props.auth.hodlCoins = parseInt(hodlCoinBalance);
+        this.props.updateHodlCoins(this.props.auth);
+      }
     }
   };
 
