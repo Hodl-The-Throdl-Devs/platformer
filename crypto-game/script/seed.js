@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Product },
+  models: { User, Product, Asset },
 } = require("../server/db");
 const path = require("path");
 const fs = require("fs");
@@ -58,17 +58,28 @@ fs.readdir(dirPathSheets, function (err, files) {
   });
 });
 
-
-
-
-
-
-
-
-
-
-
-
+// create assets from sprites (originally named products pre-newSprites)
+const assets = [];
+const dirPathAssets = path.join(
+  __dirname,
+  "..",
+  "public",
+  "spritesPixelAdventure",
+  "assets"
+);
+fs.readdir(dirPathAssets, function (err, files) {
+  //handling error
+  if (err) {
+    throw "Unable to scan directory: " + err;
+  }
+  //listing all files using forEach
+  files.forEach(function (file) {
+    const asset = {};
+    asset.name = file.split(".")[0];
+    asset.image = file;
+    assets.push(asset);
+  });
+});
 
 /**
  * seed - this function clears the database, updates tables to
@@ -85,7 +96,7 @@ async function seed() {
     User.create({ username: "Alex", password: "123", coins: 5 }),
   ]);
 
-  await Promise.all(
+  await Promise.all([
     products.map((product) => {
       Product.create({
         name: product.name,
@@ -94,8 +105,14 @@ async function seed() {
         count: 1,
         price: Math.ceil(Math.random() * 1000),
       });
-    })
-  );
+    }),
+    assets.map((asset) => {
+      Asset.create({
+        name: asset.name,
+        image: asset.image,
+      });
+    }),
+  ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
