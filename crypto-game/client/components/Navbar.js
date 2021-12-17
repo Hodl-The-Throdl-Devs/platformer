@@ -13,15 +13,24 @@ import { logout } from "../store";
 const Navbar = ({ handleClick, isLoggedIn, auth }) => (
   <div id="navdiv">
     <h1>hodl the throdl</h1>
+    <p>developed by: Alex, Spencer, Riviere, and Luna</p>
     <nav>
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <Link to="/game">Game</Link>
-          <Link to="/shop">Shop</Link>
-          <Link to="/account">Account</Link>
-          <a href="#" onClick={handleClick}>
+          <Link to="/home" className="menubuttons">
+            Home
+          </Link>
+          <Link to="/game" className="menubuttons">
+            Game
+          </Link>
+          <Link to="/shop" className="menubuttons">
+            Shop
+          </Link>
+          <Link to="/account" className="menubuttons">
+            Account
+          </Link>
+          <a href="#" onClick={handleClick} className="logoutbutton">
             Logout
           </a>
           <p>Hodl Coins: {auth.hodlCoins}</p>
@@ -30,9 +39,12 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
       ) : (
         <div>
           {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
+          <Link to="/login" className="menubuttons">
+            Login
+          </Link>
           <Link
             to="/signup"
+            className="menubuttons"
             onClick={() => {
               alert("Remember not to use the same password you use elsewhere!");
             }}

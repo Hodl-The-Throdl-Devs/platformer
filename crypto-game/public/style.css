@@ -41,9 +41,34 @@ form div {
   display: inline-block;
 }
 
-canvas {
+.canvas {
   border-color: white;
   border-width: 10rem;
+  box-shadow: "-14px 14px 0px -3px rgba(0,0,0,0.5)";
+}
+
+.menubuttons {
+  padding: 10px 15px;
+  border-radius: 3px;
+  background-color: #28b463;
+  box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+.menubuttons:hover {
+  background-color: #2ecc71;
+  box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.6);
+}
+
+.logoutbutton {
+  padding: 10px 15px;
+  border-radius: 3px;
+  background-color: #ec7063;
+  box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+.logoutbutton:hover {
+  background-color: #e74c3c;
+  box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.6);
 }
 
 #navdiv {

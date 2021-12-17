@@ -605,15 +605,22 @@ class Game extends Component {
           // height: "720px",
         }}
       >
-        {this.state.cash === 0
-          ? "You have no coins!"
-          : `Win to have ${this.state.cash} ${
-              this.state.cash === 1 ? "coin" : "coins"
-            } added to your account!`}
         <canvas
           id="platformer"
-          style={{ width: "1000px", height: "562.5px" }}
+          className="canvas"
+          style={{
+            width: "1000px",
+            height: "562.5px",
+          }}
         ></canvas>
+        <br />
+        <h3>
+          {this.state.cash === 0
+            ? "You have no coins!"
+            : `Win to have ${this.state.cash} ${
+                this.state.cash === 1 ? "coin" : "coins"
+              } added to your account!`}
+        </h3>
       </div>
     );
   }
