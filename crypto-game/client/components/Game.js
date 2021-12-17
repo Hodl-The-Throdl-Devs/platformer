@@ -433,7 +433,7 @@ class Game extends Component {
           player.play("run")
         }
         if (l.is("enemy")) {
-          shake(5)
+          shake(3)
           player.jump(JUMP_FORCE * 1.5);
           destroy(l);
           addKaboom(player.pos);
@@ -529,7 +529,7 @@ class Game extends Component {
       });
 
       onKeyDown("up", () => {
-        // takeOnMe.stop();
+        go("win")
       });
 
       onKeyPress("down", () => {
@@ -557,10 +557,10 @@ class Game extends Component {
     });
 
     scene("win", () => {
-      // takeOnMe.stop();
       const { auth, updateCoins } = this.props;
       const { cash } = this.state;
       add([text(`You win ${cash} ${cash === 1 ? `coin!` : `coins!`}`)]);
+      add([sprite('nightsky'), scale(15), z(-2)])
       auth.coins = auth.coins + cash;
       updateCoins(auth);
       this.setState({ cash: 0 });
