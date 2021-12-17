@@ -1,10 +1,14 @@
 @font-face {
-  font-family: "Retro-Computer";
-  src: url("retro_compuer_personal_use.ttf") format("truetype");
+  font-family: "Retro Computer";
+  src: url("fonts/retro_computer_personal_use-webfont.eot") format("eot"),
+    url("fonts/retro_computer_personal_use-webfont.woff") format("woff"),
+    url("fonts/retro_computer_personal_use-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 body {
-  font-family: Retro-Computer;
+  font-family: Retro Computer;
   background-image: url("/spritesPixelAdventure/assets/metalTileScrewed.png");
   background-repeat: repeat;
   background-size: 10px 10px;

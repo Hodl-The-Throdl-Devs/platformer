@@ -19,7 +19,8 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
         <div>
           {/* The navbar will show these links after you log in */}
           <Link to="/home">
-            <img src={homeButton} />
+            Home
+            {/* <img src={homeButton} /> */}
           </Link>
           <Link to="/game">Game</Link>
           <Link to="/shop">Shop</Link>
