@@ -11,6 +11,7 @@ class Game extends Component {
     };
     this.updateCash = this.updateCash.bind(this);
     this.initGame = this.initGame.bind(this);
+    this.flip = false;
   }
 
   initGame() {
@@ -168,9 +169,12 @@ class Game extends Component {
         id: "patrol",
         require: ["pos", "area"],
         add() {
+          this.flipX(true)
           this.on("collide", (obj, col) => {
             if (col.isLeft() || col.isRight()) {
               dir = -dir;
+              this.flipX(this.flip)
+              this.flip = !this.flip
             }
           });
         },
