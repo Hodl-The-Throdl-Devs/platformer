@@ -13,9 +13,7 @@ const Products = () => {
   const { auth, products } = state;
   return (
     <>
-      <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
-        SHOP
-      </Typography>
+      <h1>Shop</h1>
       <br />
       <Box display="flex" alignItems="center" justifyContent="center">
         <Grid
@@ -24,7 +22,7 @@ const Products = () => {
           item
           xs={12}
           sm={8}
-          spacing={3}
+          spacing={2}
           sx={{ m: 0, mb: 18 }}
         >
           {products

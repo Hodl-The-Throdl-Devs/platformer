@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { chooseCharacter } from "../store";
 
+import { Grid, Typography, Box } from "@mui/material";
+
 class CharacterBoard extends Component {
   constructor(props) {
     super(props);
@@ -15,18 +17,33 @@ class CharacterBoard extends Component {
 
     return (
       <div>
-        {myCharacters.map((ch) => {
-          return (
-            <Link to="/game" key={ch.id}>
-              <img
-                src={`/spritesPixelAdventure/characters/previews/${ch.spritePreview}`}
-                onClick={() => chooseCharacter(ch)}
-                className="characters"
-              />
-              <h6>{ch.name}</h6>
-            </Link>
-          );
-        })}
+        <br />
+        <Box display="flex" alignItems="center" justifyContent="center">
+          <Grid
+            container
+            alignItems="center"
+            item
+            xs={12}
+            sm={8}
+            spacing={3}
+            sx={{ m: 0, mb: 18 }}
+          >
+            {myCharacters.map((ch) => {
+              return (
+                <Grid item xs={11} sm={6} md={4} lg={3} key={ch.id}>
+                  <Link to="/game">
+                    <img
+                      src={`/spritesPixelAdventure/characters/previews/${ch.spritePreview}`}
+                      onClick={() => chooseCharacter(ch)}
+                      className="characters"
+                    />
+                    <h6>{ch.name}</h6>
+                  </Link>
+                </Grid>
+              );
+            })}
+          </Grid>
+        </Box>
       </div>
     );
   }
