@@ -3,7 +3,7 @@ const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
-const { STRING, INTEGER, TEXT } = require("sequelize");
+const { STRING, INTEGER, BIGINT, TEXT } = require("sequelize");
 
 const SALT_ROUNDS = 5;
 
@@ -21,7 +21,7 @@ const User = db.define("user", {
     defaultValue: 1,
   },
   hodlCoins: {
-    type: INTEGER,
+    type: BIGINT,
     defaultValue: 0,
   },
   profile: {

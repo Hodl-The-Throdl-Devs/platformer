@@ -9,7 +9,7 @@ class CharacterBoard extends Component {
   }
   render() {
     const { auth, products, chooseCharacter } = this.props;
-    const myCharacters = products.filter((prod) => prod.userId === auth.id || prod.name === "bean");
+    const myCharacters = products.filter((prod) => prod.userId === auth.id || prod.name === "MaskDude");
 
     return (
       <div>
@@ -18,7 +18,7 @@ class CharacterBoard extends Component {
             <Link to="/game" key={ch.id}>
               <img
                 src={`/spritesPixelAdventure/characters/previews/${ch.spritePreview}`}
-                onClick={() => chooseCharacter(ch.name)}
+                onClick={() => chooseCharacter(ch)}
                 className="characters"
               />
             </Link>
