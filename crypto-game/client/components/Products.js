@@ -22,7 +22,7 @@ const Products = () => {
           item
           xs={12}
           sm={8}
-          spacing={2}
+          spacing={3.5}
           sx={{ m: 0, mb: 18 }}
         >
           {products
