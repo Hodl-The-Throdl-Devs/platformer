@@ -2,30 +2,82 @@
 
 const {
   db,
-  models: { User, Product },
+  models: { User, Product, Asset },
 } = require("../server/db");
 const path = require("path");
 const fs = require("fs");
 
 // create products from sprites
 const products = [];
-const directoryPath = path.join(__dirname, "..", "public", "sprites");
-fs.readdir(directoryPath, function (err, files) {
+
+const dirPathPreviews = path.join(
+  __dirname,
+  "..",
+  "public",
+  "spritesPixelAdventure",
+  "characters",
+  "previews"
+);
+fs.readdir(dirPathPreviews, function (err, files) {
+  //handling error
+  if (err) {
+    throw "Unable to scan directory: " + err;
+  }
+  //Adding sprite info and preview image to products array
+  files.forEach(function (file) {
+    const product = {};
+    const name = file.split("_")[0];
+    product.name = name;
+    product.spritePreview = file;
+    product.count = 1;
+    products.push(product);
+  });
+});
+
+const dirPathSheets = path.join(
+  __dirname,
+  "..",
+  "public",
+  "spritesPixelAdventure",
+  "characters",
+  "sheets"
+);
+fs.readdir(dirPathSheets, function (err, files) {
+  //handling error
+  if (err) {
+    throw "Unable to scan directory: " + err;
+  }
+  //Adding sprite sheets to products array
+  files.forEach(function (file) {
+    const name = file.split("_")[0];
+    const product = products.find((product) => product.name === name);
+    const productIdx = products.indexOf(product);
+
+    products[productIdx].spriteSheet = file;
+    console.log(products);
+  });
+});
+
+// create assets from sprites (originally named products pre-newSprites)
+const assets = [];
+const dirPathAssets = path.join(
+  __dirname,
+  "..",
+  "public",
+  "spritesPixelAdventure",
+  "assets"
+);
+fs.readdir(dirPathAssets, function (err, files) {
   //handling error
   if (err) {
     throw "Unable to scan directory: " + err;
   }
   //listing all files using forEach
   files.forEach(function (file) {
-    const product = {};
-    const name = file.split(".")[0];
-    const ext = file.split(".")[1];
-    if (ext.toLowerCase() === "png") {
-      product.name = name;
-      product.imageUrl = file;
-      product.count = 1;
-      products.push(product);
-    }
+    const asset = {};
+    asset.name = file.split(".")[0];
+    asset.image = file;
+    assets.push(asset);
   });
 });
 
@@ -44,16 +96,23 @@ async function seed() {
     User.create({ username: "Alex", password: "123", coins: 5 }),
   ]);
 
-  await Promise.all(
+  await Promise.all([
     products.map((product) => {
       Product.create({
         name: product.name,
-        imageURL: product.imageUrl,
+        spritePreview: product.spritePreview,
+        spriteSheet: product.spriteSheet,
         count: 1,
-        price: Math.ceil(Math.random() * 1000)
+        price: Math.ceil(Math.random() * 1000),
       });
-    })
-  );
+    }),
+    assets.map((asset) => {
+      Asset.create({
+        name: asset.name,
+        image: asset.image,
+      });
+    }),
+  ]);
 
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);

@@ -1,7 +1,7 @@
 body {
-  font-family: monospace;
-  background-color:black;
-  color:white;
+  font-family: OCR A Std, monospace	;
+  background-color:white;
+  color:black;
 }
 
 a {
@@ -23,7 +23,7 @@ form div {
 }
 
 canvas {
-  border-color: white;
+  border-color: black;
   border-width: 10rem;
 }
 
@@ -35,13 +35,13 @@ canvas {
 }
 
 a {
-  color: white;
+  color: black;
 }
 
 .characters {
   width: 200px;
   height: 200px;
-  border: 2px solid whitesmoke;
+  border: 2px solid black;
 }
 
 #accountHeader {

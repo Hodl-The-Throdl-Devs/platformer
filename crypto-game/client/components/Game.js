@@ -10,25 +10,145 @@ class Game extends Component {
       cash: 0,
     };
     this.updateCash = this.updateCash.bind(this);
-    this.initGame = this.initGame.bind(this)
+    this.initGame = this.initGame.bind(this);
   }
 
   initGame() {
-    const { products, character } = this.props;
-
+    const { products, character, assets } = this.props;
     kaboom({
-      width: 720,
-      height: 480,
+      width: 1280,
+      height: 720,
       canvas: document.querySelector("#platformer"),
       // font: "sinko",
     });
 
     // load assets
-    products.forEach((p) => loadSprite(p.name, `/sprites/${p.imageURL}`));
+    // assets.forEach((asset) => {
+    //   console.log(asset.name)
+    //   loadSprite(asset.name, `/spritesPixelAdventure/assets/${asset.image}`)}
+    // );
 
-    // custom sprites
-    loadSprite("prize", "/sprites/jumpy.png");
-    loadSprite("coin", "/sprites/ether.png");
+    // load custom sprites
+
+    loadSprite("prize", "/spritesPixelAdventure/assets/jumpy.png");
+    loadSprite("nightsky", "/spritesPixelAdventure/assets/nightsky.png");
+    loadSprite("grassAndDirt", "/spritesPixelAdventure/assets/grassAndDirt.png");
+    loadSprite("spikeTrap", "/spritesPixelAdventure/assets/spikeTrap.png");
+    loadSprite("floatingBlock", "/spritesPixelAdventure/assets/floatingBlock.png");
+    loadSprite("brickBlock", "/spritesPixelAdventure/assets/brickBlock.png");
+
+    // load character Sprite Atlas
+    loadSpriteAtlas(
+      `/spritesPixelAdventure/characters/sheets/${character.spriteSheet}`,
+      {
+        "userCharacter": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 32,
+          "sliceX": 24,
+          "anims": {
+            "idle": {
+              "from": 0,
+              "to": 10,
+              "speed": 30,
+              "loop": true
+            },
+            "run": {
+              "from": 11,
+              "to": 22,
+              "speed": 30,
+              "loop": true
+            },
+            "jump": 23
+          }
+        }
+      }
+    );
+
+    loadSpriteAtlas(
+      '/spritesPixelAdventure/assets/Checkpoint_FlagOut.png',
+      {
+        "checkpoint": {
+          "x": 0,
+          "y": 0,
+          "width": 1664,
+          "height": 64,
+          "sliceX": 26,
+          "anims": {
+            "waving": {
+              "from": 0,
+              "to": 25,
+              "speed": 30,
+              "loop": true
+            }
+          }
+        }
+      }
+    );
+
+    loadSpriteAtlas(
+      '/spritesPixelAdventure/assets/bouncingApple.png',
+      {
+        "bouncingApple": {
+          "x": 0,
+          "y": 0,
+          "width": 544,
+          "height": 32,
+          "sliceX": 17,
+          "anims": {
+            "bounce": {
+              "from": 0,
+              "to": 16,
+              "speed": 30,
+              "loop": true
+            }
+          }
+        }
+      }
+    );
+
+    loadSpriteAtlas(
+      '/spritesPixelAdventure/assets/rotatingCoin.png',
+      {
+        "rotatingCoin": {
+          "x": 0,
+          "y": 0,
+          "width": 300,
+          "height": 50,
+          "sliceX": 6,
+          "anims": {
+            "spin": {
+              "from": 0,
+              "to": 5,
+              "speed": 15,
+              "loop": true
+            }
+          }
+        }
+      }
+    );
+
+    loadSpriteAtlas(
+      '/spritesPixelAdventure/assets/enemyRadish.png',
+      {
+        "enemyRadish": {
+          "x": 0,
+          "y": 0,
+          "width": 180,
+          "height": 38,
+          "sliceX": 6,
+          "anims": {
+            "idle": {
+              "from": 0,
+              "to": 5,
+              "speed": 10,
+              "loop": true
+            }
+          }
+        }
+      }
+    );
 
     // sounds
     loadSound("coin", "/sounds/score.mp3");
@@ -114,11 +234,11 @@ class Game extends Component {
         "                          $",
         "                          $",
         "                          $",
-        "           $$         =   $",
-        "  %      ====         =   $",
-        "                      =   $",
-        "                      =    ",
-        "       ^^      = >    =   @",
+        "           $$         H   $",
+        "  %      ----         H   $",
+        "                      H   $",
+        "                      H    ",
+        "       ^^      = >    H   @",
         "===========================",
         "                           ",
         "$                          ",
@@ -160,32 +280,43 @@ class Game extends Component {
       width: 64,
       height: 64,
       // define each object as a list of components
-      "=": () => [sprite("grass"), area(), solid(), origin("bot")],
+      "=": () => [sprite("grassAndDirt"), area(), solid(), origin("bot")],
+      "-": () => [sprite("floatingBlock"), area(), solid(), origin("bot")],
+      "H": () => [sprite("brickBlock"), area(), solid(), origin("bot")],
+
       $: () => [
-        sprite("coin"),
+        sprite("rotatingCoin", { anim: "spin" }),
         area(),
         pos(0, -9),
         origin("bot"),
-        scale(0.08),
-        "coin",
+        scale(),
+        "rotatingCoin",
       ],
       "%": () => [sprite("prize"), area(), solid(), origin("bot"), "prize"],
-      "^": () => [sprite("spike"), area(), solid(), origin("bot"), "danger"],
-      "#": () => [sprite("apple"), area(), origin("bot"), body(), "apple"],
+      "^": () => [sprite("spikeTrap"), area(), solid(), origin("bot"), "danger"],
+      "#": () => [
+        sprite("bouncingApple", 
+        { anim: "bounce" }), 
+        area(), 
+        scale(3.0),
+        origin("bot"), 
+        body(), 
+        "bouncingApple"],
       ">": () => [
-        sprite("ghosty"),
+        sprite("enemyRadish", { anim: "idle" }),
         area(),
+        scale(2.0),
         origin("bot"),
         body(),
         patrol(),
         "enemy",
       ],
       "@": () => [
-        sprite("portal"),
+        sprite("checkpoint", { anim: "waving" }),
         area({ scale: 0.5 }),
         origin("bot"),
         pos(0, -12),
-        "portal",
+        "checkpoint",
       ],
     };
 
@@ -201,14 +332,13 @@ class Game extends Component {
 
       // define player object
       const player = add([
-        sprite(character), // character
+        sprite("userCharacter", { anim: "idle" }), // character
         pos(0, 0),
         area(),
-        scale(1),
+        scale(2.0),
         // makes it fall to gravity and jumpable
         body(),
         // the custom component we defined above
-        big(),
         origin("bot"),
       ]);
 
@@ -228,7 +358,7 @@ class Game extends Component {
         play("hit");
       });
 
-      player.onCollide("portal", () => {
+      player.onCollide("checkpoint", () => {
         play("portal");
         if (levelId + 1 < LEVELS.length) {
           go("game", {
@@ -241,6 +371,11 @@ class Game extends Component {
       });
 
       player.onGround((l) => {
+        if (!isKeyDown("left") && !isKeyDown("right")) {
+          player.play("idle")
+        } else {
+          player.play("run")
+        }
         if (l.is("enemy")) {
           player.jump(JUMP_FORCE * 1.5);
           destroy(l);
@@ -262,15 +397,15 @@ class Game extends Component {
       // grow an apple if player's head bumps into an obj with "prize" tag
       player.onHeadbutt((obj) => {
         if (obj.is("prize") && !hasApple) {
-          const apple = level.spawn("#", obj.gridPos.sub(0, 1));
-          apple.jump();
+          const bouncingApple = level.spawn("#", obj.gridPos.sub(0, 1));
+          bouncingApple.jump();
           hasApple = true;
           play("blip");
         }
       });
 
       // player grows big onCollide with an "apple" obj
-      player.onCollide("apple", (a) => {
+      player.onCollide("bouncingApple", (a) => {
         destroy(a);
         // as we defined in the big() component
         player.biggify(3);
@@ -287,7 +422,7 @@ class Game extends Component {
         }
       });
 
-      player.onCollide("coin", (c) => {
+      player.onCollide("rotatingCoin", (c) => {
         destroy(c);
         play("coin", {
           detune: coinPitch,
@@ -305,15 +440,35 @@ class Game extends Component {
         // these 2 functions are provided by body() component
         if (player.isGrounded()) {
           player.jump(JUMP_FORCE);
+          player.play("jump");
         }
       });
 
+      onKeyRelease(["left", "right", "up", "down"], () => {
+        if (
+          !isKeyDown("left")
+          && !isKeyDown("right")
+          && !isKeyDown("up")
+          && !isKeyDown("down")
+        ) {
+          player.play("idle")
+        }
+      })
+
       onKeyDown("left", () => {
         player.move(-MOVE_SPEED, 0);
+        player.flipX(true)
+        if (player.isGrounded() && player.curAnim() !== "run") {
+		      player.play("run")
+	      }
       });
 
       onKeyDown("right", () => {
         player.move(MOVE_SPEED, 0);
+        player.flipX(false)
+        if (player.isGrounded() && player.curAnim() !== "run") {
+		      player.play("run")
+	      }
       });
 
       onKeyDown("up", () => {
@@ -363,14 +518,14 @@ class Game extends Component {
   componentDidUpdate(prevProps) {
     const { products } = this.props;
     if (!prevProps.products.length && products.length) {
-      this.initGame()
+      this.initGame();
     }
   }
 
   componentDidMount() {
     const { products } = this.props;
-    if(products.length){
-      this.initGame()
+    if (products.length) {
+      this.initGame();
     }
   }
   render() {
@@ -380,8 +535,8 @@ class Game extends Component {
         style={{
           display: "flex",
           flexDirection: "column",
-          width: "720px",
-          height: "480",
+          width: "1280px",
+          height: "720px",
         }}
       >
         {this.state.cash === 0
@@ -391,7 +546,7 @@ class Game extends Component {
             } added to your account!`}
         <canvas
           id="platformer"
-          style={{ width: "720px", height: "480" }}
+          style={{ width: "1280px", height: "720px" }}
         ></canvas>
       </div>
     );
@@ -403,6 +558,7 @@ const mapState = (state) => {
   return {
     auth: state.auth,
     products: state.products,
+    assets: state.assets,
     character: state.character,
   };
 };

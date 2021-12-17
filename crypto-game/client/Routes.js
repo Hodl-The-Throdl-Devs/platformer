@@ -7,7 +7,13 @@ import Game from "./components/Game";
 import Account from "./components/Account";
 import Shop from "./components/Products";
 
-import { me, setWeb3Props, fetchProducts, updateHodlCoins } from "./store";
+import {
+  me,
+  setWeb3Props,
+  fetchProducts,
+  fetchAssets,
+  updateHodlCoins,
+} from "./store";
 
 import getWeb3 from "./getWeb3";
 import HodlCoinContract from "./contracts/HodlCoin.json";
@@ -35,13 +41,14 @@ class Routes extends Component {
       this.deployedNetwork = HodlCoinContract.networks[this.networkId];
       this.hodlCoin = new this.web3.eth.Contract(
         HodlCoinContract.abi,
-        "0x9f35de661DE843b69eEA9805792a55C7f6004f54"
+        "0x6a2445d60E0D465Dd3d0Bb8886cb33c6E40D662F"
       );
       this.props.setProducts();
+      this.props.setAssets();
       this.props.setWeb3Props({
         web3: this.web3,
         deployedNetwork: this.deployedNetwork,
-        bankAccount: ["0x0033FCAE572e9B67ba940b244e72aB324Cd90EA4"],
+        bankAccount: ["0xCded6Ba33f50CA5a123E6Ed136788A442Bbe35d8"],
         accounts: this.accounts,
         contracts: { hodlCoin: this.hodlCoin },
       });
@@ -57,7 +64,7 @@ class Routes extends Component {
 
       // Setting Provider to Bank Account
       const hdwProvider = new HDWalletProvider(
-        "6d2976731d8158223340d85c985012ebab7da195463a1bbb3cd6d2617222c35e",
+        "766f652118231b9eeb8ca75ded6bd98217118fde8419774e24057a85676da99f",
         "HTTP://127.0.0.1:7545"
       );
       this.web3.setProvider(hdwProvider);
@@ -123,6 +130,7 @@ const mapDispatch = (dispatch) => ({
   loadInitialData: () => dispatch(me()),
   setWeb3Props: (web3Props) => dispatch(setWeb3Props(web3Props)),
   setProducts: () => dispatch(fetchProducts()),
+  setAssets: () => dispatch(fetchAssets()),
   updateHodlCoins: (auth) => dispatch(updateHodlCoins(auth)),
 });
 

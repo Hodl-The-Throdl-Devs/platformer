@@ -8,9 +8,13 @@ const Product = db.define("product", {
     unique: true,
     allowNull: false,
   },
-  imageURL: {
+  spritePreview: {
     type: STRING,
     allowNull: false,
+  },
+  spriteSheet: {
+    type: STRING,
+    allowNull: true,
   },
   price: {
     type: INTEGER,
