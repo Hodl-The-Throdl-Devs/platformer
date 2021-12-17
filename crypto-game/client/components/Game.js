@@ -15,7 +15,6 @@ class Game extends Component {
 
   initGame() {
     const { products, character, assets } = this.props;
-    const userCharacter = character.spriteSheet.split('.')[0]
     kaboom({
       width: 1280,
       height: 720,
