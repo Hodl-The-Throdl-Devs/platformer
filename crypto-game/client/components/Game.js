@@ -44,7 +44,7 @@ class Game extends Component {
         "userCharacter": {
           "x": 0,
           "y": 0,
-          "width": 352,
+          "width": 768,
           "height": 32,
           "sliceX": 11,
           "anims": {
@@ -53,7 +53,14 @@ class Game extends Component {
               "to": 10,
               "speed": 20,
               "loop": true
-            }
+            },
+            "run": {
+              "from": 11,
+              "to": 23,
+              "speed": 20,
+              "loop": true
+            },
+            "jump": 24
           }
         }
       }
