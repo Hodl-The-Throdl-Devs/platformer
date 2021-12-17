@@ -45,7 +45,9 @@ function ProductCard(props) {
     <Card
       raised
       sx={{
-        maxWidth: 350,
+        maxWidth: 500,
+        backgroundColor: "transparent",
+        outline: "3px solid white",
         boxShadow: "none",
         "&:hover": {
           boxShadow:
@@ -59,15 +61,19 @@ function ProductCard(props) {
         image={`/spritesPixelAdventure/characters/previews/${spritePreview}`}
         sx={{ p: 0 }}
       />
-      <CardContent sx={{ textAlign: "center", p: 0 }}>
+      <CardContent sx={{ color: "white", textAlign: "center", p: 0 }}>
         <Typography variant="h6">{name}</Typography>
-        <Typography variant="body2" color="text.secondary">
-          Price: {price}
+        <Typography variant="body2" color="white">
+          Price: {price} HODL
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Available quantity: {count}
-        </Typography>
-        <Button onClick={buyProduct}>Purchase!</Button>
+        <br />
+        <Button
+          onClick={buyProduct}
+          sx={{ color: "white", outline: "1px solid white", fill: "green" }}
+        >
+          SELECT
+        </Button>
+        <br />
       </CardContent>
       <CardActions
         sx={{ display: "flex", flexDirection: "column" }}

@@ -14,7 +14,7 @@ const Products = () => {
   return (
     <>
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
-        All Products
+        Characters
       </Typography>
       <Grid container sx={{ pb: 10 }}>
         <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
