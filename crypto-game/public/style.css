@@ -66,8 +66,8 @@ form div {
   background: linear-gradient(
     0deg,
     rgba(26, 119, 65, 1) 0%,
-    rgba(40, 180, 99, 1) 5%,
-    rgba(40, 180, 99, 1) 95%,
+    rgba(44, 195, 108, 1) 5%,
+    rgba(44, 195, 108, 1) 95%,
     rgba(108, 255, 169, 1) 100%
   );
   box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.6);
@@ -92,8 +92,8 @@ form div {
   background: linear-gradient(
     0deg,
     rgba(119, 26, 26, 1) 0%,
-    rgba(236, 112, 99, 1) 5%,
-    rgba(236, 112, 99, 1) 95%,
+    rgba(235, 86, 71, 1) 5%,
+    rgba(235, 86, 71, 1) 95%,
     rgba(255, 167, 158, 1) 100%
   );
   box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.6);
