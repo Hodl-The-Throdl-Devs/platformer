@@ -51,13 +51,13 @@ class Game extends Component {
             "idle": {
               "from": 0,
               "to": 10,
-              "speed": 20,
+              "speed": 30,
               "loop": true
             },
             "run": {
               "from": 11,
               "to": 22,
-              "speed": 20,
+              "speed": 30,
               "loop": true
             },
             "jump": 23
@@ -79,7 +79,7 @@ class Game extends Component {
             "waving": {
               "from": 0,
               "to": 25,
-              "speed": 20,
+              "speed": 30,
               "loop": true
             }
           }
@@ -100,7 +100,7 @@ class Game extends Component {
             "bounce": {
               "from": 0,
               "to": 16,
-              "speed": 20,
+              "speed": 30,
               "loop": true
             }
           }
@@ -121,7 +121,7 @@ class Game extends Component {
             "spin": {
               "from": 0,
               "to": 5,
-              "speed": 10,
+              "speed": 15,
               "loop": true
             }
           }
@@ -384,10 +384,6 @@ class Game extends Component {
         }
       });
 
-      player.onAnimEnd("run", () => {
-        player.play("idle")
-      })
-
       player.onCollide("enemy", (e, col) => {
         // if it's not from the top, die
         if (!col.isBottom()) {
@@ -447,6 +443,17 @@ class Game extends Component {
           player.play("jump");
         }
       });
+
+      onKeyRelease(["left", "right", "up", "down"], () => {
+        if (
+          !isKeyDown("left")
+          && !isKeyDown("right")
+          && !isKeyDown("up")
+          && !isKeyDown("down")
+        ) {
+          player.play("idle")
+        }
+      })
 
       onKeyDown("left", () => {
         player.move(-MOVE_SPEED, 0);
