@@ -59,12 +59,11 @@ function ProductCard(props) {
       sx={{
         maxWidth: 500,
         backgroundColor: "transparent",
-        outline: "3px solid white",
+        outline: "2px solid white",
         margin: "auto",
         boxShadow: "none",
         "&:hover": {
-          boxShadow:
-            "0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)",
+          boxShadow: "-10px 10px 0px 1px #000000",
         },
       }}
     >
@@ -83,7 +82,10 @@ function ProductCard(props) {
         <br />
         <Button
           onClick={buyProduct}
-          sx={{ color: "white", outline: "1px solid white", fill: "green" }}
+          sx={{
+            color: "white",
+            outline: "1px solid white",
+          }}
         >
           SELECT
         </Button>
