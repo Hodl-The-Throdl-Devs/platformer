@@ -1,4 +1,4 @@
-var webpack = require('webpack');
+var webpack = require("webpack");
 
 module.exports = {
   plugins: [
@@ -6,7 +6,7 @@ module.exports = {
       Buffer: ["buffer", "Buffer"],
     }),
     new webpack.ProvidePlugin({
-      process: 'process/browser',
+      process: "process/browser",
     }),
   ],
   entry: ["./client/index.js"],
@@ -33,6 +33,10 @@ module.exports = {
         options: {
           presets: ["@babel/preset-react"],
         },
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        loader: "file-loader",
       },
     ],
   },

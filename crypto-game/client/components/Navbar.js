@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+
 import { logout } from "../store";
 
-import homeButton from "../../public/assetsUI/buttons/button_home.png";
-import playButton from "../../public/assetsUI/buttons/button_play.png";
-import shopButton from "../../public/assetsUI/buttons/button_shop.png";
-import accountButton from "../../public/assetsUI/buttons/button_account.png";
+// import homeButton from "assetsUI/buttons/buttonHome.png";
+// import playButton from "../../public/assetsUI/buttons/button_play.png";
+// import shopButton from "../../public/assetsUI/buttons/button_shop.png";
+// import accountButton from "../../public/assetsUI/buttons/button_account.png";
+
+const homeButton = "https://imgur.com/ely84EM";
 
 const Navbar = ({ handleClick, isLoggedIn, auth }) => (
   <div id="navdiv">
