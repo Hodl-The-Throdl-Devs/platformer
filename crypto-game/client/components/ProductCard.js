@@ -41,13 +41,26 @@ function ProductCard(props) {
 
   const { name, spritePreview, price, count } = props.product;
 
+  const styles = (theme) => ({
+    card: {
+      width: 300,
+      margin: "auto",
+    },
+    media: {
+      height: 0,
+      width: 100,
+    },
+  });
+
   return (
     <Card
       raised
+      className={styles.card}
       sx={{
         maxWidth: 500,
         backgroundColor: "transparent",
         outline: "3px solid white",
+        margin: "auto",
         boxShadow: "none",
         "&:hover": {
           boxShadow:
@@ -56,8 +69,9 @@ function ProductCard(props) {
       }}
     >
       <CardMedia
+        className={styles.media}
         component="img"
-        height="400"
+        // height="400"
         image={`/spritesPixelAdventure/characters/previews/${spritePreview}`}
         sx={{ p: 0 }}
       />

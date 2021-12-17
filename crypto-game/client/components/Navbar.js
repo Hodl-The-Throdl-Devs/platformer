@@ -8,7 +8,7 @@ import { logout } from "../store";
 // import shopButton from "../../public/assetsUI/buttons/button_shop.png";
 // import accountButton from "../../public/assetsUI/buttons/button_account.png";
 
-const homeButton = "https://imgur.com/ely84EM";
+// const homeButton = "https://imgur.com/ely84EM";
 
 const Navbar = ({ handleClick, isLoggedIn, auth }) => (
   <div id="navdiv">
@@ -17,10 +17,9 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          <Link to="/home">
+          {/* <Link to="/home">
             Home
-            {/* <img src={homeButton} /> */}
-          </Link>
+          </Link> */}
           <Link to="/game">Game</Link>
           <Link to="/shop">Shop</Link>
           <Link to="/account">Account</Link>
