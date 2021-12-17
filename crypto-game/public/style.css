@@ -1,6 +1,8 @@
 body {
   font-family: OCR A Std, monospace	;
-  background-color:white;
+  background-image: url("/spritesPixelAdventure/assets/metalTileScrewed.png");
+  background-repeat: repeat;
+  /* background-color:white; */
   color:black;
 }
 
