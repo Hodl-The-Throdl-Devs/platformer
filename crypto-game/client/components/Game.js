@@ -36,6 +36,7 @@ class Game extends Component {
     loadSprite("spikeTrap", "/spritesPixelAdventure/assets/spikeTrap.png");
     loadSprite("floatingBlock", "/spritesPixelAdventure/assets/floatingBlock.png");
     loadSprite("brickBlock", "/spritesPixelAdventure/assets/brickBlock.png");
+    loadSprite("black", "/spritesPixelAdventure/assets/black.png")
 
     // load character Sprite Atlas
     loadSpriteAtlas(
@@ -432,6 +433,7 @@ class Game extends Component {
           player.play("run")
         }
         if (l.is("enemy")) {
+          shake(5)
           player.jump(JUMP_FORCE * 1.5);
           destroy(l);
           addKaboom(player.pos);
@@ -547,7 +549,9 @@ class Game extends Component {
 
     scene("lose", () => {
       // takeOnMe.stop();
-      add([text("You Lose")]);
+      shake(60);
+      add([text("You Lose"), pos(center())]);
+      add([sprite("black"), pos(-150,-150), scale(15), z(-2)]);
       this.updateCash(0);
       onKeyPress(() => go("game"));
     });
@@ -590,8 +594,10 @@ class Game extends Component {
         style={{
           display: "flex",
           flexDirection: "column",
-          width: "1280px",
-          height: "720px",
+          alignItems: "center",
+          justifyContent: "center"
+          // width: "1280px",
+          // height: "720px",
         }}
       >
         {this.state.cash === 0
@@ -601,7 +607,7 @@ class Game extends Component {
             } added to your account!`}
         <canvas
           id="platformer"
-          style={{ width: "1280px", height: "720px" }}
+           style={{ width: "1280px", height: "720px" }}
         ></canvas>
       </div>
     );
