@@ -88,10 +88,12 @@ a {
   padding: 20px;
   border: 2px solid white;
   border-radius: 10px;
+  background-color: "rgba(0, 0, 0, 0.2)";
 }
 
 .characters:hover {
   box-shadow: -5px 5px 0px 1px #000000;
+  background-color: "rgba(0, 0, 0, 0.5)";
 }
 
 #accountHeader {

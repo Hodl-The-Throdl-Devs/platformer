@@ -58,12 +58,13 @@ function ProductCard(props) {
       className={styles.card}
       sx={{
         maxWidth: 500,
-        backgroundColor: "transparent",
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
         outline: "2px solid white",
         margin: "auto",
         boxShadow: "none",
         "&:hover": {
           boxShadow: "-10px 10px 0px 1px #000000",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
         },
       }}
     >

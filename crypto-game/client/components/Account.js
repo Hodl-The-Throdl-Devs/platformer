@@ -61,7 +61,15 @@ export const Account = (props) => {
       <br />
       <h2>Choose Your Character</h2>
       <br />
-      <CharacterBoard />
+      <Box
+        sx={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+        }}
+      >
+        <CharacterBoard />
+      </Box>
     </div>
   );
 };
