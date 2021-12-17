@@ -41,6 +41,16 @@ form div {
   display: inline-block;
 }
 
+.hodlTitle {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.devCredits {
+  font-size: 10px;
+  margin-bottom: 30px;
+}
+
 .canvas {
   border-color: white;
   border-width: 10rem;
@@ -50,25 +60,53 @@ form div {
 .menubuttons {
   padding: 10px 15px;
   border-radius: 3px;
-  background-color: #28b463;
+  background: rgb(26, 119, 65);
+  background: linear-gradient(
+    0deg,
+    rgba(26, 119, 65, 1) 0%,
+    rgba(40, 180, 99, 1) 5%,
+    rgba(40, 180, 99, 1) 95%,
+    rgba(108, 255, 169, 1) 100%
+  );
   box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 0.3);
 }
 
 .menubuttons:hover {
-  background-color: #2ecc71;
-  box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.6);
+  background: rgb(26, 119, 65);
+  background: linear-gradient(
+    0deg,
+    rgba(26, 119, 65, 1) 0%,
+    rgba(44, 195, 108, 1) 5%,
+    rgba(44, 195, 108, 1) 95%,
+    rgba(108, 255, 169, 1) 100%
+  );
+  box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.45);
 }
 
 .logoutbutton {
   padding: 10px 15px;
   border-radius: 3px;
-  background-color: #ec7063;
+  background: rgb(119, 26, 26);
+  background: linear-gradient(
+    0deg,
+    rgba(119, 26, 26, 1) 0%,
+    rgba(236, 112, 99, 1) 5%,
+    rgba(236, 112, 99, 1) 95%,
+    rgba(255, 167, 158, 1) 100%
+  );
   box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 0.3);
 }
 
 .logoutbutton:hover {
-  background-color: #e74c3c;
-  box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.6);
+  background: rgb(119, 26, 26);
+  background: linear-gradient(
+    0deg,
+    rgba(119, 26, 26, 1) 0%,
+    rgba(235, 86, 71, 1) 5%,
+    rgba(235, 86, 71, 1) 95%,
+    rgba(255, 167, 158, 1) 100%
+  );
+  box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.45);
 }
 
 #navdiv {
