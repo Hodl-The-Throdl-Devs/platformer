@@ -52,7 +52,7 @@ export const Account = (props) => {
             width: "250px",
           }}
         >
-          Convert coins to tokens!
+          Convert coins to tokens
         </Button>
       </Box>
       <br />
