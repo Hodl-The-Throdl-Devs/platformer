@@ -27,6 +27,7 @@ class App extends Component {
     return (
       <div onClick={this.killKaboom}>
         <Navbar />
+        <hr />
         <Routes />
         <Footer />
       </div>

@@ -38,7 +38,10 @@ export const Account = (props) => {
           alignItems: "center",
         }}
       >
-        <h1>Coin Count: {auth.coins}</h1>
+        <h2>Convert Coins to Crypto</h2>
+        <h3>Coin Count: {auth.coins}</h3>
+        <h3>Hodl Count: {auth.hodlCoins}</h3>
+        <br />
         <Button
           onClick={convertCoins}
           variant="contained"
@@ -51,14 +54,13 @@ export const Account = (props) => {
         >
           Convert coins to tokens!
         </Button>
-        <h1>Hodl Count: {auth.hodlCoins}</h1>
       </Box>
       <br />
       <br />
       <br />
       <br />
+      <h2>Choose Your Character</h2>
       <br />
-
       <CharacterBoard />
     </div>
   );
