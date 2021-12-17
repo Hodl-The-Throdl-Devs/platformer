@@ -1,9 +1,26 @@
+@font-face {
+  font-family: "Retro Computer";
+  src: url("fonts/retro_computer_personal_use-webfont.eot") format("eot"),
+    url("fonts/retro_computer_personal_use-webfont.woff") format("woff"),
+    url("fonts/retro_computer_personal_use-webfont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
-  font-family: OCR A Std, monospace	;
+  font-family: Retro Computer;
   background-image: url("/spritesPixelAdventure/assets/metalTileScrewed.png");
   background-repeat: repeat;
   background-size: 10px 10px;
-  color:white;
+  color: white;
+  text-align: center;
+  text-shadow: -2px 1px 0px rgba(150, 150, 150, 1);
+}
+
+hr {
+  height: 1px;
+  background: white;
+  margin-bottom: 75px;
 }
 
 a {
@@ -24,9 +41,34 @@ form div {
   display: inline-block;
 }
 
-canvas {
+.canvas {
   border-color: white;
   border-width: 10rem;
+  box-shadow: "-14px 14px 0px -3px rgba(0,0,0,0.5)";
+}
+
+.menubuttons {
+  padding: 10px 15px;
+  border-radius: 3px;
+  background-color: #28b463;
+  box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+.menubuttons:hover {
+  background-color: #2ecc71;
+  box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.6);
+}
+
+.logoutbutton {
+  padding: 10px 15px;
+  border-radius: 3px;
+  background-color: #ec7063;
+  box-shadow: -3px 3px 0px 0px rgba(0, 0, 0, 0.3);
+}
+
+.logoutbutton:hover {
+  background-color: #e74c3c;
+  box-shadow: -5px 5px 0px 0px rgba(0, 0, 0, 0.6);
 }
 
 #navdiv {
@@ -41,12 +83,20 @@ a {
 }
 
 .characters {
-  width: 200px;
-  height: 200px;
+  width: 150px;
+  height: 150px;
+  padding: 20px;
   border: 2px solid white;
+  border-radius: 10px;
+  background-color: "rgba(0, 0, 0, 0.2)";
+}
+
+.characters:hover {
+  box-shadow: -5px 5px 0px 1px #000000;
+  background-color: "rgba(0, 0, 0, 0.5)";
 }
 
 #accountHeader {
-  display:flex;
+  display: flex;
   justify-content: space-around;
 }

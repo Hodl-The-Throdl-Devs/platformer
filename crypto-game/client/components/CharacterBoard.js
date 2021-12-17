@@ -9,7 +9,9 @@ class CharacterBoard extends Component {
   }
   render() {
     const { auth, products, chooseCharacter } = this.props;
-    const myCharacters = products.filter((prod) => prod.userId === auth.id || prod.name === "MaskDude");
+    const myCharacters = products.filter(
+      (prod) => prod.userId === auth.id || prod.name === "MaskDude"
+    );
 
     return (
       <div>
@@ -21,6 +23,7 @@ class CharacterBoard extends Component {
                 onClick={() => chooseCharacter(ch)}
                 className="characters"
               />
+              <h6>{ch.name}</h6>
             </Link>
           );
         })}

@@ -41,33 +41,56 @@ function ProductCard(props) {
 
   const { name, spritePreview, price, count } = props.product;
 
+  const styles = (theme) => ({
+    card: {
+      width: 300,
+      margin: "auto",
+    },
+    media: {
+      height: 0,
+      width: 100,
+    },
+  });
+
   return (
     <Card
       raised
+      className={styles.card}
       sx={{
-        maxWidth: 350,
+        maxWidth: 500,
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        outline: "2px solid white",
+        margin: "auto",
         boxShadow: "none",
         "&:hover": {
-          boxShadow:
-            "0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%)",
+          boxShadow: "-10px 10px 0px 1px #000000",
+          backgroundColor: "rgba(0, 0, 0, 0.5)",
         },
       }}
     >
       <CardMedia
+        className={styles.media}
         component="img"
-        height="400"
+        // height="400"
         image={`/spritesPixelAdventure/characters/previews/${spritePreview}`}
         sx={{ p: 0 }}
       />
-      <CardContent sx={{ textAlign: "center", p: 0 }}>
+      <CardContent sx={{ color: "white", textAlign: "center", p: 0 }}>
         <Typography variant="h6">{name}</Typography>
-        <Typography variant="body2" color="text.secondary">
-          Price: {price}
+        <Typography variant="body2" color="white">
+          Price: {price} HODL
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Available quantity: {count}
-        </Typography>
-        <Button onClick={buyProduct}>Purchase!</Button>
+        <br />
+        <Button
+          onClick={buyProduct}
+          sx={{
+            color: "white",
+            outline: "1px solid white",
+          }}
+        >
+          SELECT
+        </Button>
+        <br />
       </CardContent>
       <CardActions
         sx={{ display: "flex", flexDirection: "column" }}
