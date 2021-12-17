@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Routes from "./Routes";
 
-import BankToUserButton from "./components/BankToUserButton";
-import UserToBankButton from "./components/UserToBankButton";
-
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
   }
 
   killKaboom() {
@@ -21,19 +19,16 @@ class App extends Component {
     }
   }
 
-  componentDidUpdate() {
-  }
+  componentDidUpdate() {}
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 
   render() {
     return (
       <div onClick={this.killKaboom}>
-        <UserToBankButton />
-        <BankToUserButton />
         <Navbar />
         <Routes />
+        <Footer />
       </div>
     );
   }

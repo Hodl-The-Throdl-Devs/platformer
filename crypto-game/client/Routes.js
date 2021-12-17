@@ -100,7 +100,7 @@ class Routes extends Component {
             <Route path="/game" component={Game} />
             <Route path="/account" component={Account} />
             <Route exact path="/shop" component={Shop} />
-            <Redirect to="/game" />
+            <Redirect to="/home" />
           </Switch>
         ) : (
           <Switch>

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import CharacterBoard from "./CharacterBoard";
 
 import { updateCoins } from "../store";
+import { Button, Box } from "@mui/material";
 
 /**
  * COMPONENT
@@ -28,11 +29,36 @@ export const Account = (props) => {
 
   return (
     <div>
-      <div id="accountHeader">
+      <Box
+        sx={{
+          height: "150%",
+          flexDirection: "row",
+          flexWrap: "wrap",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}
+      >
         <h1>Coin Count: {auth.coins}</h1>
-        <button onClick={convertCoins}>Convert coins to tokens!</button>
+        <Button
+          onClick={convertCoins}
+          variant="contained"
+          sx={{
+            backgroundColor: "#16BE0D",
+            "&:hover": { background: "#4BC744" },
+            height: "55px",
+            width: "250px",
+          }}
+        >
+          Convert coins to tokens!
+        </Button>
         <h1>Hodl Count: {auth.hodlCoins}</h1>
-      </div>
+      </Box>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
       <CharacterBoard />
     </div>
   );

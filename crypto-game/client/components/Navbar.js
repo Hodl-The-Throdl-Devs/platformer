@@ -17,9 +17,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
       {isLoggedIn ? (
         <div>
           {/* The navbar will show these links after you log in */}
-          {/* <Link to="/home">
-            Home
-          </Link> */}
+          <Link to="/home">Home</Link>
           <Link to="/game">Game</Link>
           <Link to="/shop">Shop</Link>
           <Link to="/account">Account</Link>
@@ -27,6 +25,7 @@ const Navbar = ({ handleClick, isLoggedIn, auth }) => (
             Logout
           </a>
           <p>Hodl Coins: {auth.hodlCoins}</p>
+          <br />
         </div>
       ) : (
         <div>
