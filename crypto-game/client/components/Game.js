@@ -46,7 +46,7 @@ class Game extends Component {
           "y": 0,
           "width": 768,
           "height": 32,
-          "sliceX": 11,
+          "sliceX": 24,
           "anims": {
             "idle": {
               "from": 0,
