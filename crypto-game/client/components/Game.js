@@ -56,11 +56,11 @@ class Game extends Component {
             },
             "run": {
               "from": 11,
-              "to": 23,
+              "to": 22,
               "speed": 20,
               "loop": true
             },
-            "jump": 24
+            "jump": 23
           }
         }
       }
@@ -371,6 +371,11 @@ class Game extends Component {
       });
 
       player.onGround((l) => {
+        if (!isKeyDown("left") && !isKeyDown("right")) {
+          player.play("idle")
+        } else {
+          player.play("run")
+        }
         if (l.is("enemy")) {
           player.jump(JUMP_FORCE * 1.5);
           destroy(l);
@@ -378,6 +383,10 @@ class Game extends Component {
           play("powerup");
         }
       });
+
+      player.onAnimEnd("run", () => {
+        player.play("idle")
+      })
 
       player.onCollide("enemy", (e, col) => {
         // if it's not from the top, die
@@ -435,15 +444,24 @@ class Game extends Component {
         // these 2 functions are provided by body() component
         if (player.isGrounded()) {
           player.jump(JUMP_FORCE);
+          player.play("jump");
         }
       });
 
       onKeyDown("left", () => {
         player.move(-MOVE_SPEED, 0);
+        player.flipX(true)
+        if (player.isGrounded() && player.curAnim() !== "run") {
+		      player.play("run")
+	      }
       });
 
       onKeyDown("right", () => {
         player.move(MOVE_SPEED, 0);
+        player.flipX(false)
+        if (player.isGrounded() && player.curAnim() !== "run") {
+		      player.play("run")
+	      }
       });
 
       onKeyDown("up", () => {
