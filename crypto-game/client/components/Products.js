@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import ProductCard from "./ProductCard";
 
 /////////////// MATERIAL UI //////////////////////
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Box } from "@mui/material";
 
 const Products = () => {
   const state = useSelector((state) => state);
@@ -16,18 +16,26 @@ const Products = () => {
       <Typography variant="h3" gutterBottom align="center" sx={{ mt: 5 }}>
         SHOP
       </Typography>
-      <Grid container sx={{ pb: 10 }}>
-        <Grid container item xs={12} sm={8} spacing={4} sx={{ m: 0, mb: 18 }}>
+      <br />
+      <Box display="flex" alignItems="center" justifyContent="center">
+        <Grid
+          container
+          alignItems="center"
+          item
+          xs={12}
+          sm={8}
+          spacing={3}
+          sx={{ m: 0, mb: 18 }}
+        >
           {products
             .filter((p) => p.count !== 0)
             .map((product) => (
-              <Grid xs={11} sm={6} md={6} lg={4} item key={product.id}>
+              <Grid item xs={11} sm={6} md={6} lg={3} key={product.id}>
                 <ProductCard product={product} auth={auth} />
               </Grid>
             ))}
         </Grid>
-        <Grid item xs={false} sm={2} />
-      </Grid>
+      </Box>
     </>
   );
 };
