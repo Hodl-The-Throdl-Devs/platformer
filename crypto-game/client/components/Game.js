@@ -550,7 +550,9 @@ class Game extends Component {
     scene("lose", () => {
       // takeOnMe.stop();
       shake(60);
-      add([text("You Lose"), pos(center())]);
+      add([text("You lose!")]);
+      add([text("Press any key to play again."), pos(0,70)]);
+
       add([sprite("black"), pos(-150,-150), scale(15), z(-2)]);
       this.updateCash(0);
       onKeyPress(() => go("game"));
@@ -560,7 +562,10 @@ class Game extends Component {
       const { auth, updateCoins } = this.props;
       const { cash } = this.state;
       add([text(`You win ${cash} ${cash === 1 ? `coin!` : `coins!`}`)]);
-      add([sprite('nightsky'), scale(15), z(-2)])
+      add([text("Go to your account page"), pos(0,70)]);
+      add([text("to convert them into"), pos(0,140)]);
+      add([text("Hodl Coins!"), pos(0,210)]);
+      add([sprite('nightsky'), scale(6), pos(-490, -600), z(-2)])
       auth.coins = auth.coins + cash;
       updateCoins(auth);
       this.setState({ cash: 0 });
