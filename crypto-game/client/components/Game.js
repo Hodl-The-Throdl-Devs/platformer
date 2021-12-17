@@ -36,6 +36,7 @@ class Game extends Component {
     loadSprite("spikeTrap", "/spritesPixelAdventure/assets/spikeTrap.png");
     loadSprite("floatingBlock", "/spritesPixelAdventure/assets/floatingBlock.png");
     loadSprite("brickBlock", "/spritesPixelAdventure/assets/brickBlock.png");
+    loadSprite("black", "/spritesPixelAdventure/assets/black.png")
 
     // load character Sprite Atlas
     loadSpriteAtlas(
@@ -432,6 +433,7 @@ class Game extends Component {
           player.play("run")
         }
         if (l.is("enemy")) {
+          shake(3)
           player.jump(JUMP_FORCE * 1.5);
           destroy(l);
           addKaboom(player.pos);
@@ -527,7 +529,7 @@ class Game extends Component {
       });
 
       onKeyDown("up", () => {
-        // takeOnMe.stop();
+        go("win")
       });
 
       onKeyPress("down", () => {
@@ -547,16 +549,23 @@ class Game extends Component {
 
     scene("lose", () => {
       // takeOnMe.stop();
-      add([text("You Lose")]);
+      shake(60);
+      add([text("You lose!")]);
+      add([text("Press any key to play again."), pos(0,70)]);
+
+      add([sprite("black"), pos(-150,-150), scale(15), z(-2)]);
       this.updateCash(0);
       onKeyPress(() => go("game"));
     });
 
     scene("win", () => {
-      // takeOnMe.stop();
       const { auth, updateCoins } = this.props;
       const { cash } = this.state;
       add([text(`You win ${cash} ${cash === 1 ? `coin!` : `coins!`}`)]);
+      add([text("Go to your account page"), pos(0,70)]);
+      add([text("to convert them into"), pos(0,140)]);
+      add([text("Hodl Coins!"), pos(0,210)]);
+      add([sprite('nightsky'), scale(6), pos(-490, -600), z(-2)])
       auth.coins = auth.coins + cash;
       updateCoins(auth);
       this.setState({ cash: 0 });
@@ -590,8 +599,10 @@ class Game extends Component {
         style={{
           display: "flex",
           flexDirection: "column",
-          width: "1280px",
-          height: "720px",
+          alignItems: "center",
+          justifyContent: "center"
+          // width: "1280px",
+          // height: "720px",
         }}
       >
         {this.state.cash === 0
@@ -601,7 +612,7 @@ class Game extends Component {
             } added to your account!`}
         <canvas
           id="platformer"
-          style={{ width: "1280px", height: "720px" }}
+           style={{ width: "1280px", height: "720px" }}
         ></canvas>
       </div>
     );
