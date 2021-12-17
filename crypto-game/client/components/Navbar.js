@@ -12,7 +12,7 @@ import { logout } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn, auth }) => (
   <div id="navdiv">
-    <h1>hodl the throdl</h1>
+    <h1>hodl the throdl!</h1>
     <p>developed by: Alex, Spencer, Riviere, and Luna</p>
     <nav>
       {isLoggedIn ? (
