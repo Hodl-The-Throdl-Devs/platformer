@@ -20,7 +20,7 @@ class Game extends Component {
       width: 1000,
       height: 562.5,
       canvas: document.querySelector("#platformer"),
-      // font: "sinko",
+      font: "apl386o",
     });
 
     // load assets
@@ -554,8 +554,8 @@ class Game extends Component {
     scene("lose", () => {
       // takeOnMe.stop();
       shake(60);
-      add([text("You lose!")]);
-      add([text("Press any key to play again."), pos(0, 70)]);
+      add([text("You lose!"), scale(.5)]);
+      add([text("Press any key to play again."), scale(.5), pos(0, 70)]);
 
       add([sprite("black"), pos(-150, -150), scale(15), z(-2)]);
       this.updateCash(0);
@@ -565,10 +565,10 @@ class Game extends Component {
     scene("win", () => {
       const { auth, updateCoins } = this.props;
       const { cash } = this.state;
-      add([text(`You win ${cash} ${cash === 1 ? `coin!` : `coins!`}`)]);
-      add([text("Go to your account page"), pos(0, 70)]);
-      add([text("to convert them into"), pos(0, 140)]);
-      add([text("Hodl Coins!"), pos(0, 210)]);
+      add([text(`You win ${cash} ${cash === 1 ? `coin!` : `coins!`}`), scale(.5)]);
+      add([text("Go to your account page"), scale(.5), pos(0, 70)]);
+      add([text("to convert them into"), scale(.5), pos(0, 140)]);
+      add([text("Hodl Coins!"), scale(.5), pos(0, 210)]);
       add([sprite("nightsky"), scale(6), pos(-490, -600), z(-2)]);
       auth.coins = auth.coins + cash;
       updateCoins(auth);
