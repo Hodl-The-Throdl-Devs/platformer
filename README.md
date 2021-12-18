@@ -1,6 +1,6 @@
 # Instructions on setting up project
 
-## 1. Creating Local Test Network:
+### 1. Creating Local Test Network:
 
 - Ganache: Create workspace via Quickstart, go to settings and add truffle-config.js path via 'Add Project' button. Proceed by clicking 'Save and Restart' button
 - run truffle migrate
