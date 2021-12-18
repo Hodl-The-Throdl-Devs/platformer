@@ -29,14 +29,18 @@ function ProductCard(props) {
   };
 
   const buyProduct = () => {
-    product.count = product.count - 1;
-    product.userId = auth.id;
-    dispatch(updateProduct(product));
+    if (auth.hodlCoins >= product.price) {
+      product.count = product.count - 1;
+      product.userId = auth.id;
+      dispatch(updateProduct(product));
 
-    sendTokenToBank().then(() => {
-      auth.hodlCoins -= product.price;
-      dispatch(updateHodlCoins(auth));
-    });
+      sendTokenToBank().then(() => {
+        auth.hodlCoins -= product.price;
+        dispatch(updateHodlCoins(auth));
+      });
+    } else {
+      alert("Insufficient funds!");
+    }
   };
 
   const { name, spritePreview, price, count } = props.product;
