@@ -20,10 +20,6 @@
 - Find transaction that has event name 'Encoded Event' & Contract 'HodlCoin'. Proceed to click event
 - Copy the contract address and paste to Metamark Wallet via Import Token
 
-## Additional Resources:
-
-- Truffle Quickstart Guide: https://trufflesuite.com/docs/truffle/quickstart.html
-
 
 # Resources
 
