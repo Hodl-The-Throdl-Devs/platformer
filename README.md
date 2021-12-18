@@ -23,3 +23,8 @@
 ## Additional Resources:
 
 - Truffle Quickstart Guide: https://trufflesuite.com/docs/truffle/quickstart.html
+
+
+# Resources
+
+- Videogame Assets: https://pixelfrog-assets.itch.io/pixel-adventure-1
