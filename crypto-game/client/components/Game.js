@@ -569,7 +569,7 @@ class Game extends Component {
       add([text("Go to your account page"), scale(.5), pos(0, 70)]);
       add([text("to convert them into"), scale(.5), pos(0, 140)]);
       add([text("Hodl Coins!"), scale(.5), pos(0, 210)]);
-      add([sprite("nightsky"), scale(6), pos(-490, -600), z(-2)]);
+      add([sprite("nightsky"), scale(4), pos(-260, -350), z(-2)]);
       auth.coins = auth.coins + cash;
       updateCoins(auth);
       this.setState({ cash: 0 });
