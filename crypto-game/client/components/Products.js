@@ -26,7 +26,7 @@ const Products = () => {
           sx={{ m: 0, mb: 18 }}
         >
           {products
-            .filter((p) => p.count !== 0)
+            .filter((p) => p.name !== "MaskDude" && p.count !== 0)
             .map((product) => (
               <Grid item xs={11} sm={6} md={6} lg={3} key={product.id}>
                 <ProductCard product={product} auth={auth} />
