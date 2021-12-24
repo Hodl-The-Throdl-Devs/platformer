@@ -2,6 +2,8 @@
 
 Welcome to Hodl the Throdl, a platformer game where you collect coins that you can then convert into cryptocurrency. We made our own cryptocurrency "HODL coin" using an ERC20 smart contract running off of a local blockchain. Once you have enough HODL coin, you can buy character models and play them in game! 
 
+![Alt text](https://imgur.com/0gJUzpE)
+
 ## Setting up the Project in Your Local Environment
 
 ### 1. Creating Local Test Network:
